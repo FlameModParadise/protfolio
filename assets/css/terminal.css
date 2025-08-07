@@ -1,284 +1,1092 @@
-/* File: terminal.css */
-/* Location: /htdocs/assets/css/terminal.css */
+/* File: terminal-enhanced.css */
+/* Location: /htdocs/assets/css/terminal-enhanced.css */
 
 /* ===============================================
-   INTERACTIVE TERMINAL STYLES
+   ROOT VARIABLES & PERFORMANCE OPTIMIZATIONS
+   =============================================== */
+:root {
+    /* Color Palette */
+    --terminal-bg: #0a0e14;
+    --terminal-bg-alt: #0d1117;
+    --terminal-header-gradient: linear-gradient(135deg, #1e1e2e 0%, #2a2a3e 50%, #1e1e2e 100%);
+    --terminal-border: rgba(255, 255, 255, 0.1);
+    --terminal-border-hover: rgba(255, 255, 255, 0.2);
+    
+    /* Terminal Colors */
+    --terminal-green: #00ff00;
+    --terminal-cyan: #64ffda;
+    --terminal-blue: #82aaff;
+    --terminal-yellow: #ffcb6b;
+    --terminal-red: #ff5370;
+    --terminal-purple: #c792ea;
+    --terminal-orange: #ff9800;
+    --terminal-gray: #8892b0;
+    --terminal-comment: #546e7a;
+    
+    /* Spacing */
+    --terminal-padding: clamp(15px, 3vw, 20px);
+    --terminal-line-height: 1.5;
+    
+    /* Animation Timing */
+    --animation-fast: 0.2s;
+    --animation-normal: 0.3s;
+    --animation-slow: 0.5s;
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.5);
+    --shadow-glow: 0 0 30px rgba(100, 255, 218, 0.1);
+}
+
+/* ===============================================
+   TERMINAL SECTION - ENHANCED
    =============================================== */
 
 .terminal-section {
     background: var(--bg-primary);
     padding: var(--section-padding);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Background Animation */
+.terminal-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(100, 255, 218, 0.03) 0%, transparent 70%);
+    animation: terminalPulse 15s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes terminalPulse {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-10%, -10%) scale(1.1); }
 }
 
 .terminal-container {
-    max-width: 800px;
+    max-width: min(95vw, 900px);
     margin: 0 auto;
-    background: #0a0e14;
-    border-radius: 12px;
+    background: var(--terminal-bg);
+    border-radius: clamp(8px, 2vw, 16px);
     overflow: hidden;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    font-family: 'Fira Code', monospace;
+    box-shadow: var(--shadow-lg), var(--shadow-glow);
+    border: 1px solid var(--terminal-border);
+    font-family: 'Fira Code', 'Cascadia Code', 'JetBrains Mono', 'SF Mono', monospace;
+    position: relative;
+    transition: transform var(--animation-normal) ease,
+                box-shadow var(--animation-normal) ease;
+    will-change: transform;
+    transform: translateZ(0); /* Hardware acceleration */
 }
 
-/* Terminal Header */
+.terminal-container:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg), 0 0 50px rgba(100, 255, 218, 0.15);
+}
+
+/* Glass Morphism Effect */
+.terminal-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(100, 255, 218, 0.5) 50%, 
+        transparent 100%);
+    animation: scanline 8s linear infinite;
+}
+
+@keyframes scanline {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* ===============================================
+   TERMINAL HEADER - ENHANCED
+   =============================================== */
+
 .terminal-header {
-    background: linear-gradient(to right, #1e1e2e, #2a2a3e);
-    padding: 12px 16px;
+    background: var(--terminal-header-gradient);
+    padding: clamp(10px, 2vw, 14px) clamp(12px, 2.5vw, 20px);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid var(--terminal-border);
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 10;
+}
+
+/* Header Shine Effect */
+.terminal-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.05) 50%, 
+        transparent 100%);
+    animation: headerShine 10s infinite;
+}
+
+@keyframes headerShine {
+    0% { left: -100%; }
+    20%, 100% { left: 200%; }
 }
 
 .terminal-controls {
     display: flex;
-    gap: 8px;
+    gap: clamp(6px, 1vw, 10px);
+    z-index: 1;
 }
 
 .control {
-    width: 12px;
-    height: 12px;
+    width: clamp(10px, 1.5vw, 14px);
+    height: clamp(10px, 1.5vw, 14px);
     border-radius: 50%;
     display: block;
     cursor: pointer;
-    transition: opacity 0.3s;
+    transition: all var(--animation-fast) ease;
+    position: relative;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.control::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    opacity: 0;
+    transition: all var(--animation-fast) ease;
 }
 
 .control:hover {
-    opacity: 0.8;
+    transform: scale(1.2);
+    filter: brightness(1.2);
+}
+
+.control:hover::before {
+    width: 150%;
+    height: 150%;
+    opacity: 0.3;
 }
 
 .control.close {
+    background: linear-gradient(135deg, #ff5f56, #ff3b30);
+}
+
+.control.close::before {
     background: #ff5f56;
 }
 
 .control.minimize {
+    background: linear-gradient(135deg, #ffbd2e, #ffaa00);
+}
+
+.control.minimize::before {
     background: #ffbd2e;
 }
 
 .control.maximize {
+    background: linear-gradient(135deg, #27c93f, #00c851);
+}
+
+.control.maximize::before {
     background: #27c93f;
 }
 
 .terminal-title {
-    color: #8892b0;
-    font-size: 0.9rem;
+    color: var(--terminal-gray);
+    font-size: clamp(0.8rem, 1.5vw, 1rem);
     font-weight: 500;
+    letter-spacing: 0.5px;
+    opacity: 0.9;
 }
 
-/* Terminal Body */
+/* ===============================================
+   TERMINAL BODY - ENHANCED
+   =============================================== */
+
 .terminal-body {
-    background: #0a0e14;
-    padding: 20px;
-    min-height: 400px;
-    max-height: 500px;
+    background: linear-gradient(135deg, var(--terminal-bg) 0%, var(--terminal-bg-alt) 100%);
+    padding: var(--terminal-padding);
+    min-height: clamp(250px, 40vh, 400px);
+    max-height: clamp(350px, 60vh, 600px);
     overflow-y: auto;
-    color: #00ff00;
+    overflow-x: hidden;
+    color: var(--terminal-green);
+    scroll-behavior: smooth;
+    position: relative;
 }
 
-/* Custom Scrollbar for Terminal */
+/* Matrix Rain Effect (Optional) */
+.terminal-body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 255, 0, 0.03) 2px,
+            rgba(0, 255, 0, 0.03) 4px
+        );
+    pointer-events: none;
+    animation: matrixRain 20s linear infinite;
+}
+
+@keyframes matrixRain {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(100px); }
+}
+
+/* Custom Scrollbar - Enhanced */
 .terminal-body::-webkit-scrollbar {
-    width: 8px;
+    width: clamp(6px, 1vw, 10px);
 }
 
 .terminal-body::-webkit-scrollbar-track {
-    background: #1a1a2e;
+    background: rgba(26, 26, 46, 0.5);
+    border-radius: 10px;
 }
 
 .terminal-body::-webkit-scrollbar-thumb {
-    background: #16213e;
-    border-radius: 4px;
+    background: linear-gradient(135deg, #16213e, #0f3460);
+    border-radius: 10px;
+    border: 1px solid rgba(100, 255, 218, 0.2);
+    transition: all var(--animation-fast);
 }
 
 .terminal-body::-webkit-scrollbar-thumb:hover {
-    background: #0f3460;
+    background: linear-gradient(135deg, #0f3460, #64ffda);
+    box-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
 }
 
-/* Terminal Content */
+/* Firefox Scrollbar */
+.terminal-body {
+    scrollbar-width: thin;
+    scrollbar-color: #16213e rgba(26, 26, 46, 0.5);
+}
+
+/* ===============================================
+   TERMINAL CONTENT - ENHANCED
+   =============================================== */
+
 .terminal-content {
-    margin-bottom: 20px;
+    margin-bottom: clamp(15px, 3vw, 25px);
+    animation: fadeInUp var(--animation-normal) ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .terminal-line {
-    margin-bottom: 10px;
-    line-height: 1.4;
+    margin-bottom: clamp(8px, 1.5vw, 12px);
+    line-height: var(--terminal-line-height);
     word-wrap: break-word;
+    position: relative;
+    padding-left: 20px;
+    animation: typewriter var(--animation-fast) steps(40, end);
 }
 
+/* Line Number (Optional) */
+.terminal-line::before {
+    content: attr(data-line);
+    position: absolute;
+    left: 0;
+    color: var(--terminal-comment);
+    opacity: 0.3;
+    font-size: 0.8em;
+    user-select: none;
+}
+
+/* Enhanced Color Classes */
 .terminal-prompt {
-    color: #64ffda;
+    color: var(--terminal-cyan);
+    font-weight: 600;
+    text-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
 }
 
 .terminal-comment {
-    color: #546e7a;
+    color: var(--terminal-comment);
     font-style: italic;
+    opacity: 0.8;
 }
 
 .terminal-error {
-    color: #ff5370;
+    color: var(--terminal-red);
+    animation: errorPulse 1s ease infinite;
+}
+
+@keyframes errorPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
 }
 
 .terminal-success {
     color: #c3e88d;
+    position: relative;
+}
+
+.terminal-success::after {
+    content: '✓';
+    margin-left: 8px;
+    animation: checkmark var(--animation-normal) ease;
+}
+
+@keyframes checkmark {
+    0% { transform: scale(0) rotate(-45deg); }
+    50% { transform: scale(1.2) rotate(0deg); }
+    100% { transform: scale(1) rotate(0deg); }
 }
 
 .terminal-warning {
-    color: #ffcb6b;
+    color: var(--terminal-yellow);
+    font-weight: 500;
+}
+
+.terminal-warning::before {
+    content: '⚠ ';
+    margin-right: 5px;
 }
 
 .terminal-info {
-    color: #82aaff;
+    color: var(--terminal-blue);
+    position: relative;
+    padding-left: 20px;
+}
+
+.terminal-info::before {
+    content: 'ℹ';
+    position: absolute;
+    left: 0;
+    font-weight: bold;
 }
 
 .terminal-command {
-    color: #00ff00;
+    color: var(--terminal-green);
+    font-weight: 500;
+    letter-spacing: 0.5px;
 }
 
 .terminal-output {
-    color: #8892b0;
-    margin-left: 20px;
+    color: var(--terminal-gray);
+    margin-left: clamp(15px, 3vw, 25px);
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.02);
+    border-left: 2px solid var(--terminal-cyan);
+    border-radius: 4px;
 }
 
-/* Terminal Input */
+/* ===============================================
+   TERMINAL INPUT - ENHANCED
+   =============================================== */
+
 .terminal-input-line {
     display: flex;
     align-items: center;
-    color: #00ff00;
+    color: var(--terminal-green);
+    margin-top: 10px;
+    position: relative;
 }
 
 .terminal-prompt-symbol {
-    color: #64ffda;
-    margin-right: 10px;
+    color: var(--terminal-cyan);
+    margin-right: clamp(8px, 1.5vw, 12px);
     user-select: none;
+    font-weight: bold;
+    animation: promptPulse 2s ease infinite;
+}
+
+@keyframes promptPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
 }
 
 .terminal-input {
     background: transparent;
     border: none;
     outline: none;
-    color: #00ff00;
-    font-family: 'Fira Code', monospace;
-    font-size: 1rem;
+    color: var(--terminal-green);
+    font-family: inherit;
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
     flex: 1;
-    caret-color: transparent;
+    caret-color: var(--terminal-green);
+    letter-spacing: 0.5px;
 }
 
+.terminal-input::selection {
+    background: rgba(100, 255, 218, 0.3);
+    color: white;
+}
+
+/* Enhanced Cursor */
 .terminal-cursor {
     display: inline-block;
-    width: 10px;
-    height: 20px;
-    background: #00ff00;
-    animation: blink 1s infinite;
-    margin-left: 2px;
+    width: clamp(8px, 1.5vw, 12px);
+    height: clamp(18px, 3vw, 22px);
+    background: var(--terminal-green);
+    animation: cursorBlink 1s infinite, cursorGlow 2s ease infinite;
+    margin-left: 3px;
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
 }
 
-@keyframes blink {
-    0%, 50% {
+@keyframes cursorBlink {
+    0%, 49% {
         opacity: 1;
+        transform: scaleX(1);
     }
-    51%, 100% {
+    50%, 99% {
         opacity: 0;
+        transform: scaleX(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scaleX(1);
     }
 }
 
-/* ASCII Art Styling */
+@keyframes cursorGlow {
+    0%, 100% { box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); }
+    50% { box-shadow: 0 0 20px rgba(0, 255, 0, 0.8); }
+}
+
+/* ===============================================
+   ASCII ART - ENHANCED
+   =============================================== */
+
 .ascii-art {
-    color: #64ffda;
-    font-size: 0.8rem;
+    color: var(--terminal-cyan);
+    font-size: clamp(0.6rem, 1vw, 0.9rem);
     line-height: 1.2;
     white-space: pre;
     font-family: monospace;
+    text-shadow: 0 0 5px rgba(100, 255, 218, 0.5);
+    animation: asciiGlow 3s ease infinite;
 }
 
-/* Terminal Hint */
+@keyframes asciiGlow {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
+}
+
+/* ===============================================
+   TERMINAL HINT - ENHANCED
+   =============================================== */
+
 .terminal-hint {
     text-align: center;
-    margin-top: 20px;
+    margin-top: clamp(15px, 3vw, 25px);
     color: var(--text-secondary);
+    font-size: clamp(0.8rem, 1.3vw, 0.95rem);
 }
 
 .terminal-hint code {
-    background: var(--bg-tertiary);
-    padding: 4px 8px;
-    border-radius: 4px;
+    background: linear-gradient(135deg, var(--bg-tertiary), rgba(100, 255, 218, 0.1));
+    padding: clamp(3px, 0.5vw, 6px) clamp(6px, 1vw, 10px);
+    border-radius: 6px;
     color: var(--accent-primary);
-    font-family: 'Fira Code', monospace;
-    font-size: 0.9rem;
+    font-family: inherit;
+    font-size: 0.9em;
     margin: 0 5px;
+    border: 1px solid rgba(100, 255, 218, 0.2);
+    display: inline-block;
+    transition: all var(--animation-fast);
 }
 
-/* Table Output Styling */
+.terminal-hint code:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(100, 255, 218, 0.3);
+    background: linear-gradient(135deg, rgba(100, 255, 218, 0.2), rgba(100, 255, 218, 0.1));
+}
+
+/* ===============================================
+   TABLE OUTPUT - ENHANCED
+   =============================================== */
+
 .terminal-table {
     display: table;
     width: 100%;
-    margin: 10px 0;
+    margin: clamp(10px, 2vw, 15px) 0;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 .terminal-table-row {
     display: table-row;
+    transition: background var(--animation-fast);
+}
+
+.terminal-table-row:hover {
+    background: rgba(100, 255, 218, 0.05);
 }
 
 .terminal-table-cell {
     display: table-cell;
-    padding: 5px 15px 5px 0;
-    color: #8892b0;
+    padding: clamp(5px, 1vw, 8px) clamp(10px, 2vw, 15px);
+    color: var(--terminal-gray);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .terminal-table-header {
-    color: #64ffda;
-    border-bottom: 1px solid #64ffda;
+    color: var(--terminal-cyan);
+    border-bottom: 2px solid var(--terminal-cyan);
     font-weight: bold;
+    background: rgba(100, 255, 218, 0.05);
+    text-transform: uppercase;
+    font-size: 0.85em;
+    letter-spacing: 1px;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
+/* ===============================================
+   LOADING ANIMATION - ENHANCED
+   =============================================== */
+
+.terminal-loading {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.terminal-loading::after {
+    content: '';
+    display: inline-block;
+}
+
+.terminal-loading span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--terminal-cyan);
+    animation: loadingDot 1.4s ease infinite;
+}
+
+.terminal-loading span:nth-child(1) { animation-delay: 0s; }
+.terminal-loading span:nth-child(2) { animation-delay: 0.2s; }
+.terminal-loading span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes loadingDot {
+    0%, 80%, 100% {
+        transform: scale(0.8);
+        opacity: 0.5;
+    }
+    40% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+}
+
+/* Progress Bar */
+.terminal-progress {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+.terminal-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--terminal-cyan), var(--terminal-green));
+    border-radius: 2px;
+    animation: progress 2s ease forwards;
+}
+
+@keyframes progress {
+    0% { width: 0%; }
+    100% { width: var(--progress, 100%); }
+}
+
+/* ===============================================
+   RESPONSIVE DESIGN - ENHANCED
+   =============================================== */
+
+/* Tablet Devices */
+@media (max-width: 1024px) and (min-width: 769px) {
     .terminal-container {
-        border-radius: 8px;
-        margin: 0 10px;
+        max-width: 90vw;
+        margin: 0 auto;
     }
     
     .terminal-body {
-        padding: 15px;
+        min-height: 350px;
+        max-height: 500px;
+    }
+}
+
+/* Mobile Devices - Large */
+@media (max-width: 768px) and (min-width: 481px) {
+    .terminal-container {
+        border-radius: 10px;
+        margin: 0 15px;
+    }
+    
+    .terminal-body {
         min-height: 300px;
+        max-height: 450px;
+        font-size: 0.95rem;
+    }
+    
+    .terminal-line {
+        padding-left: 15px;
+    }
+    
+    .ascii-art {
+        font-size: 0.7rem;
+    }
+}
+
+/* Mobile Devices - Small */
+@media (max-width: 480px) {
+    .terminal-section {
+        padding: 15px 10px;
+    }
+    
+    .terminal-container {
+        border-radius: 8px;
+        margin: 0 10px;
+        box-shadow: var(--shadow-md);
+    }
+    
+    .terminal-header {
+        padding: 10px 12px;
+    }
+    
+    .terminal-body {
+        padding: 12px;
+        min-height: 250px;
         max-height: 400px;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
+    }
+    
+    .terminal-line {
+        padding-left: 10px;
+        margin-bottom: 6px;
+    }
+    
+    .terminal-line::before {
+        display: none; /* Hide line numbers on small screens */
+    }
+    
+    .terminal-output {
+        margin-left: 15px;
+        padding: 8px;
     }
     
     .terminal-prompt-symbol {
+        margin-right: 6px;
         font-size: 0.9rem;
     }
     
     .terminal-input {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
     }
     
     .ascii-art {
-        font-size: 0.6rem;
+        font-size: 0.5rem;
+        line-height: 1;
+    }
+    
+    .terminal-table-cell {
+        padding: 4px 8px;
+        font-size: 0.8rem;
+    }
+    
+    /* Simplify animations on mobile */
+    .terminal-body::before,
+    .terminal-section::before {
+        animation: none;
     }
 }
 
-/* Light Theme Adjustments */
+/* Ultra Small Devices */
+@media (max-width: 320px) {
+    .terminal-container {
+        margin: 0 5px;
+    }
+    
+    .terminal-body {
+        min-height: 200px;
+        max-height: 350px;
+        font-size: 0.8rem;
+    }
+    
+    .terminal-controls {
+        gap: 4px;
+    }
+    
+    .control {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+/* High Resolution Displays */
+@media (min-width: 1921px) {
+    .terminal-container {
+        max-width: 1200px;
+    }
+    
+    .terminal-body {
+        min-height: 500px;
+        max-height: 700px;
+        font-size: 1.1rem;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .terminal-container {
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+    
+    .terminal-body {
+        max-height: none;
+        overflow: visible;
+    }
+    
+    .terminal-controls {
+        display: none;
+    }
+    
+    @page {
+        margin: 2cm;
+    }
+}
+
+/* ===============================================
+   LIGHT THEME ADJUSTMENTS - ENHANCED
+   =============================================== */
+
+body.light-theme {
+    /* Override dark terminal colors for light mode */
+    --terminal-bg: #1e1e1e;  /* Keep dark background for terminal */
+    --terminal-bg-alt: #252525;
+    --terminal-header-gradient: linear-gradient(135deg, #2a2a2a 0%, #333333 50%, #2a2a2a 100%);
+    --terminal-border: rgba(0, 0, 0, 0.2);
+    
+    /* Adjusted terminal colors for better contrast */
+    --terminal-green: #00ff00;
+    --terminal-cyan: #00e5ff;
+    --terminal-blue: #4fc3f7;
+    --terminal-yellow: #ffd600;
+    --terminal-red: #ff5252;
+    --terminal-purple: #e040fb;
+    --terminal-orange: #ff9100;
+    --terminal-gray: #b0bec5;
+    --terminal-comment: #90a4ae;
+}
+
+/* Terminal stays dark even in light theme for authenticity */
 body.light-theme .terminal-container {
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    background: var(--terminal-bg);
+    border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 body.light-theme .terminal-body {
-    background: #0a0e14;
+    background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+    color: var(--terminal-green);
 }
 
-/* Loading Animation */
-.terminal-loading {
-    display: inline-block;
+body.light-theme .terminal-header {
+    background: var(--terminal-header-gradient);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
 }
 
-.terminal-loading::after {
-    content: '...';
-    animation: loading 1.5s infinite;
+body.light-theme .terminal-title {
+    color: #a0a0a0;
 }
 
-@keyframes loading {
-    0% { content: '.'; }
-    33% { content: '..'; }
-    66% { content: '...'; }
+body.light-theme .terminal-cursor {
+    background: var(--terminal-green);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.6);
+}
+
+/* Scrollbar for light theme */
+body.light-theme .terminal-body::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+body.light-theme .terminal-body::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #333333, #555555);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.light-theme .terminal-body::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #555555, #777777);
+}
+
+/* Enhanced text colors for light theme */
+body.light-theme .terminal-prompt {
+    color: var(--terminal-cyan);
+    text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+}
+
+body.light-theme .terminal-comment {
+    color: var(--terminal-comment);
+    opacity: 0.9;
+}
+
+body.light-theme .terminal-error {
+    color: var(--terminal-red);
+    text-shadow: 0 0 5px rgba(255, 82, 82, 0.3);
+}
+
+body.light-theme .terminal-success {
+    color: #69f0ae;
+}
+
+body.light-theme .terminal-warning {
+    color: var(--terminal-yellow);
+}
+
+body.light-theme .terminal-info {
+    color: var(--terminal-blue);
+}
+
+body.light-theme .terminal-command {
+    color: var(--terminal-green);
+    text-shadow: 0 0 3px rgba(0, 255, 0, 0.3);
+}
+
+body.light-theme .terminal-output {
+    color: var(--terminal-gray);
+    background: rgba(255, 255, 255, 0.03);
+    border-left-color: var(--terminal-cyan);
+}
+
+body.light-theme .ascii-art {
+    color: var(--terminal-cyan);
+    text-shadow: 0 0 5px rgba(0, 229, 255, 0.5);
+}
+
+/* Input styling for light theme */
+body.light-theme .terminal-input {
+    color: var(--terminal-green);
+}
+
+body.light-theme .terminal-input::selection {
+    background: rgba(0, 229, 255, 0.3);
+    color: white;
+}
+
+/* Table styling for light theme */
+body.light-theme .terminal-table {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+body.light-theme .terminal-table-row:hover {
+    background: rgba(0, 229, 255, 0.08);
+}
+
+body.light-theme .terminal-table-cell {
+    color: var(--terminal-gray);
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+body.light-theme .terminal-table-header {
+    color: var(--terminal-cyan);
+    border-bottom-color: var(--terminal-cyan);
+    background: rgba(0, 229, 255, 0.1);
+}
+
+/* Hint styling for light theme */
+body.light-theme .terminal-hint {
+    color: #666666; /* Darker color for hint text on light background */
+}
+
+body.light-theme .terminal-hint code {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.1), rgba(0, 229, 255, 0.1));
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    color: #000000; /* Black text for better readability */
+    font-weight: 500;
+}
+
+body.light-theme .terminal-hint code:hover {
+    background: linear-gradient(135deg, rgba(0, 229, 255, 0.2), rgba(0, 229, 255, 0.15));
+    box-shadow: 0 5px 15px rgba(0, 229, 255, 0.4);
+}
+
+/* Alternative Pure Light Terminal Theme (Optional Class) */
+.terminal-container.light-terminal {
+    background: #ffffff !important;
+    border: 2px solid #e0e0e0 !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1) !important;
+}
+
+.terminal-container.light-terminal .terminal-header {
+    background: linear-gradient(135deg, #f5f5f5 0%, #eeeeee 100%) !important;
+    border-bottom: 2px solid #e0e0e0 !important;
+}
+
+.terminal-container.light-terminal .terminal-body {
+    background: #ffffff !important;
+    color: #000000 !important;
+}
+
+.terminal-container.light-terminal .terminal-prompt {
+    color: #0066cc !important;
+    text-shadow: none !important;
+}
+
+.terminal-container.light-terminal .terminal-command {
+    color: #008800 !important;
+    text-shadow: none !important;
+}
+
+.terminal-container.light-terminal .terminal-output {
+    color: #333333 !important;
+    background: #f8f8f8 !important;
+    border-left-color: #0066cc !important;
+}
+
+.terminal-container.light-terminal .terminal-error {
+    color: #cc0000 !important;
+    text-shadow: none !important;
+}
+
+.terminal-container.light-terminal .terminal-success {
+    color: #00aa00 !important;
+}
+
+.terminal-container.light-terminal .terminal-warning {
+    color: #ff8800 !important;
+}
+
+.terminal-container.light-terminal .terminal-info {
+    color: #0066cc !important;
+}
+
+.terminal-container.light-terminal .terminal-input {
+    color: #000000 !important;
+    caret-color: #0066cc !important;
+}
+
+.terminal-container.light-terminal .terminal-cursor {
+    background: #0066cc !important;
+    box-shadow: none !important;
+}
+
+.terminal-container.light-terminal .ascii-art {
+    color: #0066cc !important;
+    text-shadow: none !important;
+}
+
+/* ===============================================
+   ACCESSIBILITY ENHANCEMENTS
+   =============================================== */
+
+/* Focus Styles */
+.terminal-input:focus,
+.control:focus {
+    outline: 2px solid var(--terminal-cyan);
+    outline-offset: 2px;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .terminal-cursor {
+        animation: none;
+        opacity: 1;
+    }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    .terminal-container {
+        border: 2px solid white;
+    }
+    
+    .terminal-body {
+        background: black;
+        color: white;
+    }
+    
+    .terminal-prompt,
+    .terminal-cyan {
+        color: cyan;
+    }
+}
+
+/* Dark Mode Preference */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --terminal-bg: #0a0e14;
+        --terminal-green: #00ff00;
+    }
+}
+
+/* ===============================================
+   PERFORMANCE OPTIMIZATIONS
+   =============================================== */
+
+/* Use GPU acceleration for animations */
+.terminal-container,
+.terminal-line,
+.terminal-cursor,
+.control {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* Optimize text rendering */
+.terminal-body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* Reduce paint areas */
+.terminal-content {
+    contain: layout style paint;
+}
+
+/* Lazy loading for heavy elements */
+.terminal-table[data-lazy="true"] {
+    content-visibility: auto;
+    contain-intrinsic-size: 0 500px;
 }
