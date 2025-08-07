@@ -8,7 +8,7 @@
     <meta name="keywords" content="data analyst, web scraping, automation, python, bot development">
     <meta name="author" content="Bijay Koirala">
 
-    <title>Bijay Koirala | Protfolio</title>
+    <title>Bijay Koirala | Portfolio</title>
 
     <!-- Preconnect to external domains for faster loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -98,6 +98,51 @@
             display: block;
             opacity: 1;
         }
+
+        /* Project Image Styles */
+        .project-image {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #1e1e1f, #141415);
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+
+        /* Fallback for missing images */
+        .project-image.no-image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1e1e1f, #141415);
+        }
+
+        .project-image.no-image i {
+            font-size: 4rem;
+            color: #6366f1;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
     </style>
 
     <!-- Load Google Fonts with display=swap for better performance -->
@@ -142,10 +187,14 @@
 
     <!-- Preload critical images -->
     <link rel="preload" as="image" href="assets/images/profile.jpg">
+    <link rel="preload" as="image" href="assets/projects/project1.png">
+    <link rel="preload" as="image" href="assets/projects/project2.png">
+    <link rel="preload" as="image" href="assets/projects/project3.png">
+    <link rel="preload" as="image" href="assets/projects/project4.png">
+    <link rel="preload" as="image" href="assets/projects/project5.png">
 
     <!-- Script to handle CSS loading -->
     <script>
-        // Polyfill for rel=preload
         !function (e) { "use strict"; e.loadCSS || (e.loadCSS = function () { }); var t = loadCSS.relpreload = {}; if (t.support = function () { var t; try { t = e.document.createElement("link").relList.supports("preload") } catch (e) { t = !1 } return function () { return t } }(), t.bindMediaToggle = function (e) { function t() { e.media = a } var a = e.media || "all"; e.addEventListener ? e.addEventListener("load", t) : e.attachEvent && e.attachEvent("onload", t), setTimeout(function () { e.rel = "stylesheet", e.media = "only x" }), setTimeout(t, 3e3) }, t.poly = function () { if (!t.support()) for (var a = e.document.getElementsByTagName("link"), n = 0; n < a.length; n++) { var o = a[n]; "preload" !== o.rel || "style" !== o.getAttribute("as") || o.getAttribute("data-loadcss") || (o.setAttribute("data-loadcss", !0), t.bindMediaToggle(o)) } }, !t.support()) { t.poly(); var a = e.setInterval(t.poly, 500); e.addEventListener ? e.addEventListener("load", function () { t.poly(), e.clearInterval(a) }) : e.attachEvent && e.attachEvent("onload", function () { t.poly(), e.clearInterval(a) }) } "undefined" != typeof exports ? exports.loadCSS = loadCSS : e.loadCSS = loadCSS }("undefined" != typeof global ? global : this);
     </script>
 </head>
@@ -208,9 +257,11 @@
     <section id="home" class="hero">
         <div class="hero-container">
             <div class="hero-bg-animation">
-                <div class="floating-square"></div>
-                <div class="floating-square"></div>
-                <div class="floating-square"></div>
+                <div class="floating-cube"></div>
+                <div class="floating-cube"></div>
+                <div class="floating-cube"></div>
+                <div class="floating-sphere"></div>
+                <div class="floating-sphere"></div>
             </div>
 
             <div class="hero-content" data-aos="fade-up">
@@ -218,6 +269,7 @@
                 <h1 class="hero-name">Bijay Koirala</h1>
                 <h2 class="hero-title">
                     <span class="typed-text" id="typed-text"></span>
+                    <span class="typed-cursor">|</span>
                 </h2>
                 <p class="hero-description">
                     I build automation tools that make workflows smarter and faster.<br>
@@ -264,7 +316,7 @@
     <section id="about" class="about">
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">
-                About Me
+                <span class="section-number">01.</span> About Me
             </h2>
 
             <div class="about-content">
@@ -275,9 +327,8 @@
                     </p>
                     <p>
                         Self-taught with a passion for web scraping, bot development, and creating tools that save hours
-                        of manual work.
-                        When I'm not coding, you'll find me sleeping (48hrs/day if possible!), gaming, or watching
-                        anime.
+                        of manual work. When I'm not coding, you'll find me sleeping (48hrs/day if possible!), gaming,
+                        or watching anime.
                     </p>
                     <p>
                         <strong>Tech Stack I work with:</strong>
@@ -295,7 +346,7 @@
 
                 <div class="about-image" data-aos="fade-left">
                     <div class="image-wrapper">
-                        <img src="assets/images/profile.jpg" alt="Bijay Koirala">
+                        <img src="assets/images/profile.jpg" alt="Bijay Koirala" loading="lazy">
                         <div class="image-border"></div>
                     </div>
                 </div>
@@ -307,7 +358,7 @@
     <section id="skills" class="skills">
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">
-                Skills & Technologies
+                <span class="section-number">02.</span> Skills & Technologies
             </h2>
 
             <div class="skills-grid">
@@ -317,25 +368,25 @@
                     </h3>
                     <div class="skill-items">
                         <div class="skill-item">
-                            <span><i class="fab fa-python"></i> Python</span>
+                            <span>Python <span class="skill-level">85%</span></span>
                             <div class="skill-bar">
                                 <div class="skill-progress" style="width: 85%"></div>
                             </div>
                         </div>
                         <div class="skill-item">
-                            <span><i class="fab fa-js"></i> JavaScript</span>
+                            <span>JavaScript <span class="skill-level">75%</span></span>
                             <div class="skill-bar">
                                 <div class="skill-progress" style="width: 75%"></div>
                             </div>
                         </div>
                         <div class="skill-item">
-                            <span><i class="fab fa-html5"></i> HTML/CSS</span>
+                            <span>HTML/CSS <span class="skill-level">90%</span></span>
                             <div class="skill-bar">
                                 <div class="skill-progress" style="width: 90%"></div>
                             </div>
                         </div>
                         <div class="skill-item">
-                            <span><i class="fab fa-php"></i> PHP</span>
+                            <span>PHP <span class="skill-level">60%</span></span>
                             <div class="skill-bar">
                                 <div class="skill-progress" style="width: 60%"></div>
                             </div>
@@ -349,25 +400,25 @@
                     </h3>
                     <div class="skill-items">
                         <div class="skill-item">
-                            <span><i class="fas fa-spider"></i> Web Scraping</span>
+                            <span>Web Scraping <span class="skill-level">95%</span></span>
                             <div class="skill-bar">
                                 <div class="skill-progress" style="width: 95%"></div>
                             </div>
                         </div>
                         <div class="skill-item">
-                            <span><i class="fas fa-chrome"></i> Selenium</span>
+                            <span>Selenium <span class="skill-level">90%</span></span>
                             <div class="skill-bar">
                                 <div class="skill-progress" style="width: 90%"></div>
                             </div>
                         </div>
                         <div class="skill-item">
-                            <span><i class="fas fa-code-branch"></i> Beautiful Soup</span>
+                            <span>Beautiful Soup <span class="skill-level">85%</span></span>
                             <div class="skill-bar">
                                 <div class="skill-progress" style="width: 85%"></div>
                             </div>
                         </div>
                         <div class="skill-item">
-                            <span><i class="fab fa-discord"></i> Bot Development</span>
+                            <span>Bot Development <span class="skill-level">80%</span></span>
                             <div class="skill-bar">
                                 <div class="skill-progress" style="width: 80%"></div>
                             </div>
@@ -381,25 +432,25 @@
                     </h3>
                     <div class="skill-items">
                         <div class="skill-item">
-                            <span><i class="fas fa-chart-bar"></i> Power BI</span>
+                            <span>Power BI <span class="skill-level">75%</span></span>
                             <div class="skill-bar">
                                 <div class="skill-progress" style="width: 75%"></div>
                             </div>
                         </div>
                         <div class="skill-item">
-                            <span><i class="fas fa-file-excel"></i> Excel</span>
+                            <span>Excel <span class="skill-level">85%</span></span>
                             <div class="skill-bar">
                                 <div class="skill-progress" style="width: 85%"></div>
                             </div>
                         </div>
                         <div class="skill-item">
-                            <span><i class="fas fa-database"></i> MySQL/MongoDB</span>
+                            <span>MySQL/MongoDB <span class="skill-level">70%</span></span>
                             <div class="skill-bar">
                                 <div class="skill-progress" style="width: 70%"></div>
                             </div>
                         </div>
                         <div class="skill-item">
-                            <span><i class="fab fa-github"></i> Git & GitHub</span>
+                            <span>Git & GitHub <span class="skill-level">80%</span></span>
                             <div class="skill-bar">
                                 <div class="skill-progress" style="width: 80%"></div>
                             </div>
@@ -410,15 +461,14 @@
         </div>
     </section>
 
-    <!-- Terminal Section - Add this after Skills section in your index.html -->
+    <!-- Terminal Section -->
     <section id="terminal" class="terminal-section">
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">
-                <span class="section-number"> </span> Interactive Terminal
+                <span class="section-number">03.</span> Interactive Terminal
             </h2>
 
             <div class="terminal-container" data-aos="fade-up" data-aos-delay="100">
-                <!-- Terminal Header -->
                 <div class="terminal-header">
                     <div class="terminal-controls">
                         <span class="control close"></span>
@@ -428,10 +478,8 @@
                     <div class="terminal-title">bijay@portfolio: ~</div>
                 </div>
 
-                <!-- Terminal Body -->
                 <div class="terminal-body" id="terminal-body">
                     <div class="terminal-content" id="terminal-content">
-                        <!-- ASCII Art Welcome -->
                         <div class="ascii-art">
                             ____ _ _
                             | _ \(_)(_) __ _ _ _
@@ -447,7 +495,6 @@
                                 </div>
                         </div>
 
-                        <!-- Terminal Input Line -->
                         <div class="terminal-input-line">
                             <span class="terminal-prompt-symbol">bijay@portfolio:~$</span>
                             <input type="text" id="terminal-input" class="terminal-input" autofocus>
@@ -456,31 +503,31 @@
                     </div>
                 </div>
 
-                <!-- Terminal Hint -->
                 <div class="terminal-hint" data-aos="fade-up" data-aos-delay="200">
                     <p>💡 Pro tip: Try these commands: <code>help</code>, <code>about</code>, <code>skills</code>,
-                        <code>projects</code>, <code>matrix</code>, <code>joke</code></p>
+                        <code>projects</code>, <code>matrix</code>, <code>joke</code>
+                    </p>
                 </div>
             </div>
     </section>
 
-    <!-- Projects Section -->
+    <!-- Projects Section - UPDATED WITH IMAGES -->
     <section id="projects" class="projects">
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">
-                Featured Projects
+                <span class="section-number">04.</span> Featured Projects
             </h2>
 
             <div class="projects-grid">
                 <!-- Project 1: API/Web Scraping Suite -->
                 <div class="project-card featured" data-aos="fade-up" data-aos-delay="100">
+                    <div class="featured-badge">Featured</div>
                     <div class="project-image">
-                        <div class="project-icon-display">
-                            <i class="fas fa-spider"></i>
-                        </div>
+                        <img src="assets/images/project1.png" alt="API/Web Scraping Suite" loading="lazy"
+                            onerror="this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='<i class=\'fas fa-spider\'></i>';">
                         <div class="project-overlay">
                             <div class="project-links">
-                                <span class="private-badge">
+                                <span style="color: white; font-size: 14px;">
                                     <i class="fas fa-lock"></i> Private Repository
                                 </span>
                             </div>
@@ -511,9 +558,8 @@
                 <!-- Project 2: Bot Ecosystem -->
                 <div class="project-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="project-image">
-                        <div class="project-icon-display">
-                            <i class="fas fa-robot"></i>
-                        </div>
+                        <img src="assets/projects/project2.png" alt="Bot Ecosystem" loading="lazy"
+                            onerror="this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='<i class=\'fas fa-robot\'></i>';">
                         <div class="project-overlay">
                             <div class="project-links">
                                 <a href="https://github.com/bijay085/Projects/tree/master/Bots" target="_blank"
@@ -542,9 +588,8 @@
                 <!-- Project 3: CMS Platform -->
                 <div class="project-card" data-aos="fade-up" data-aos-delay="300">
                     <div class="project-image">
-                        <div class="project-icon-display">
-                            <i class="fas fa-globe"></i>
-                        </div>
+                        <img src="assets/projects/project3.png" alt="CMS Platform" loading="lazy"
+                            onerror="this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='<i class=\'fas fa-globe\'></i>';">
                         <div class="project-overlay">
                             <div class="project-links">
                                 <a href="https://github.com/bijay085/Projects/tree/master/CMS%20Site" target="_blank"
@@ -577,9 +622,8 @@
                 <!-- Project 4: FraudShield System -->
                 <div class="project-card" data-aos="fade-up" data-aos-delay="400">
                     <div class="project-image">
-                        <div class="project-icon-display">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
+                        <img src="assets/projects/project4.png" alt="FraudShield System" loading="lazy"
+                            onerror="this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='<i class=\'fas fa-shield-alt\'></i>';">
                         <div class="project-overlay">
                             <div class="project-links">
                                 <a href="https://github.com/bijay085/College-Project" target="_blank"
@@ -608,9 +652,8 @@
                 <!-- Project 5: Gamified Learning Tracker -->
                 <div class="project-card" data-aos="fade-up" data-aos-delay="500">
                     <div class="project-image">
-                        <div class="project-icon-display">
-                            <i class="fas fa-gamepad"></i>
-                        </div>
+                        <img src="assets/projects/project5.png" alt="Gamified Learning Tracker" loading="lazy"
+                            onerror="this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='<i class=\'fas fa-gamepad\'></i>';">
                         <div class="project-overlay">
                             <div class="project-links">
                                 <a href="https://github.com/bijay085/Projects/tree/master/Gamified%20Learning%20Progress%20Tracker"
@@ -635,12 +678,19 @@
                         </ul>
                     </div>
                 </div>
-
+                
                 <!-- Project 6: More Projects -->
                 <div class="project-card more-projects" data-aos="fade-up" data-aos-delay="600">
                     <div class="project-image">
-                        <div class="project-icon-display">
-                            <i class="fas fa-plus"></i>
+                        <img src="assets/projects/project6.png" alt="More Projects" loading="lazy"
+                            onerror="this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='<i class=\'fas fa-plus\'></i>';">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://github.com/bijay085?tab=repositories" target="_blank"
+                                    aria-label="View All Projects">
+                                    <i class="fas fa-folder-open"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                     <div class="project-content">
@@ -650,7 +700,7 @@
                             Check out my GitHub for more projects including automation scripts,
                             web applications, and experimental tools.
                         </p>
-                        <div class="project-cta">
+                        <div class="project-cta" style="margin-top: 20px; text-align: center;">
                             <a href="https://github.com/bijay085?tab=repositories" target="_blank"
                                 class="btn btn-outline">
                                 <i class="fab fa-github"></i> View on GitHub
@@ -662,14 +712,14 @@
         </div>
     </section>
 
-    <!-- GitHub Stats Section - OPTIMIZED FOR LAZY LOADING -->
+    <!-- GitHub Stats Section -->
     <section id="github" class="github-section">
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">
-                GitHub Activity
+                <span class="section-number">05.</span> GitHub Activity
             </h2>
 
-            <!-- Compact Stats Row - Shows immediately -->
+            <!-- Compact Stats Row -->
             <div class="github-stats-compact" data-aos="fade-up">
                 <div class="stats-row">
                     <div class="stat-item">
@@ -695,11 +745,10 @@
                 </div>
             </div>
 
-            <!-- GitHub Charts Grid - Images will be lazy loaded by JavaScript -->
+            <!-- GitHub Charts Grid -->
             <div class="github-charts-grid" data-aos="fade-up" data-aos-delay="100">
                 <div class="github-card main-stats">
                     <div class="card-content">
-                        <!-- No src attribute - will be added by JavaScript when in viewport -->
                         <img id="github-chart" alt="GitHub Stats" style="display: none;" />
                         <div class="card-loading">
                             <i class="fas fa-spinner fa-spin"></i>
@@ -710,7 +759,6 @@
 
                 <div class="github-card lang-stats">
                     <div class="card-content">
-                        <!-- No src attribute - will be added by JavaScript when in viewport -->
                         <img id="language-chart" alt="Top Languages" style="display: none;" />
                         <div class="card-loading">
                             <i class="fas fa-spinner fa-spin"></i>
@@ -720,11 +768,10 @@
                 </div>
             </div>
 
-            <!-- Streak Stats - Will be lazy loaded -->
+            <!-- Streak Stats -->
             <div class="github-streak-section" data-aos="fade-up" data-aos-delay="200">
                 <div class="github-card streak-stats">
                     <div class="card-content">
-                        <!-- No src attribute - will be added by JavaScript when in viewport -->
                         <img id="streak-chart" alt="GitHub Streak" style="display: none;" />
                         <div class="card-loading">
                             <i class="fas fa-spinner fa-spin"></i>
@@ -746,7 +793,7 @@
     <section id="services" class="services">
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">
-                Services I Offer
+                <span class="section-number">06.</span> Services I Offer
             </h2>
 
             <div class="services-grid">
@@ -756,6 +803,13 @@
                     </div>
                     <h3>Web Scraping</h3>
                     <p>Data extraction from any website with custom scrapers and automation tools</p>
+                    <div class="service-features">
+                        <ul>
+                            <li>Data Mining</li>
+                            <li>API Integration</li>
+                            <li>Real-time Scraping</li>
+                        </ul>
+                    </div>
                 </div>
 
                 <div class="service-card" data-aos="fade-up" data-aos-delay="200">
@@ -764,6 +818,13 @@
                     </div>
                     <h3>Bot Development</h3>
                     <p>Custom Telegram and Discord bots for automation and user engagement</p>
+                    <div class="service-features">
+                        <ul>
+                            <li>Custom Commands</li>
+                            <li>API Integration</li>
+                            <li>24/7 Hosting</li>
+                        </ul>
+                    </div>
                 </div>
 
                 <div class="service-card" data-aos="fade-up" data-aos-delay="300">
@@ -772,6 +833,13 @@
                     </div>
                     <h3>Process Automation</h3>
                     <p>Workflow automation to save time and increase productivity</p>
+                    <div class="service-features">
+                        <ul>
+                            <li>Task Automation</li>
+                            <li>Data Processing</li>
+                            <li>Report Generation</li>
+                        </ul>
+                    </div>
                 </div>
 
                 <div class="service-card" data-aos="fade-up" data-aos-delay="400">
@@ -780,6 +848,13 @@
                     </div>
                     <h3>API Development</h3>
                     <p>RESTful API design and integration with third-party services</p>
+                    <div class="service-features">
+                        <ul>
+                            <li>RESTful Design</li>
+                            <li>Documentation</li>
+                            <li>Third-party Integration</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -789,7 +864,7 @@
     <section id="contact" class="contact">
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">
-                Get In Touch
+                <span class="section-number">07.</span> Get In Touch
             </h2>
 
             <div class="contact-content">
@@ -820,7 +895,7 @@
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-check-circle"></i>
-                            <span>Available for Freelance | Intern | Part-time Job | Remote Job</span>
+                            <span>Available for Freelance | Intern | Part-time | Remote</span>
                         </div>
                     </div>
 
@@ -860,8 +935,9 @@
                         <textarea id="message" name="message" rows="5" placeholder=" " required></textarea>
                         <label for="message">Your Message</label>
                     </div>
+
                     <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-envelope"></i> Send Message
+                        <i class="fas fa-paper-plane"></i> Send Message
                     </button>
                 </form>
             </div>
@@ -887,18 +963,35 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <!-- JavaScript Files - OPTIMIZED LOADING -->
-    <!-- Load main.js first (contains typing effect and core functionality) -->
+    <!-- JavaScript Files -->
     <script src="assets/js/main.js"></script>
-
-    <!-- Load AOS asynchronously and initialize when loaded -->
     <script async src="https://unpkg.com/aos@2.3.1/dist/aos.js"
         onload="AOS.init({duration: 1000, once: true, offset: 100});"></script>
-
-    <!-- Defer loading of enhancement scripts -->
     <script defer src="assets/js/terminal.js"></script>
     <script defer src="assets/js/bubble-trail.js"></script>
     <script defer src="assets/js/github-stats.js"></script>
+
+    <!-- Additional Script for Project Image Handling -->
+    <script>
+        // Handle project images with fallback
+        document.addEventListener('DOMContentLoaded', function () {
+            const projectImages = document.querySelectorAll('.project-image img');
+
+            projectImages.forEach(img => {
+                // Add loading class
+                img.parentElement.classList.add('loading');
+
+                img.addEventListener('load', function () {
+                    this.parentElement.classList.remove('loading');
+                });
+
+                img.addEventListener('error', function () {
+                    console.log('Failed to load image:', this.src);
+                    this.parentElement.classList.remove('loading');
+                });
+            });
+        });
+    </script>
 
 </body>
 
