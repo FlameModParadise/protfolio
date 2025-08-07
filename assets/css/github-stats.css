@@ -2,7 +2,7 @@
 /* Location: /htdocs/assets/css/github-stats.css */
 
 /* ===============================================
-   GITHUB STATS SECTION - CLEAN & MINIMAL
+   GITHUB STATS SECTION - COMPACT & MINIMAL
    =============================================== */
 
 .github-section {
@@ -10,253 +10,170 @@
     padding: var(--section-padding);
 }
 
-/* Stats Grid */
-.github-stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 3rem;
-}
-
-/* Stat Card */
-.stat-card {
+/* Compact Stats Row */
+.github-stats-compact {
+    max-width: 700px;
+    margin: 0 auto 3rem;
     background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
     border-radius: 12px;
     padding: 1.5rem;
-    text-align: center;
-    transition: all var(--transition-fast);
-    position: relative;
-    overflow: hidden;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.stat-card::before {
+.stats-row {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1rem;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0 1rem;
+    position: relative;
+    transition: transform var(--transition-fast);
+    cursor: default;
+}
+
+.stat-item:not(:last-child)::after {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
-    transform: translateX(-100%);
-    transition: transform 0.5s ease;
+    right: -0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 35px;
+    width: 1px;
+    background: var(--border-color);
+    opacity: 0.5;
 }
 
-.stat-card:hover::before {
-    transform: translateX(0);
-}
-
-.stat-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--accent-primary);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
-
-.stat-icon {
-    font-size: 2rem;
-    color: var(--accent-primary);
-    margin-bottom: 1rem;
-}
-
-.stat-number {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin: 0;
-    font-family: 'Fira Code', monospace;
-}
-
-.stat-label {
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-    margin: 0.5rem 0 0;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-/* Contribution Graph */
-.github-contribution-graph {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 2rem;
-    margin-bottom: 3rem;
-}
-
-.graph-title,
-.card-title,
-.activity-title {
-    font-size: 1.2rem;
-    color: var(--text-primary);
-    margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.graph-title::before {
-    content: '';
-    width: 4px;
-    height: 20px;
-    background: var(--accent-primary);
-    border-radius: 2px;
-}
-
-.graph-container {
-    position: relative;
-    width: 100%;
-    min-height: 150px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.graph-container img,
-.language-chart img,
-.streak-chart img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    display: none;
-}
-
-.graph-container img.loaded,
-.language-chart img.loaded,
-.streak-chart img.loaded {
-    display: block;
-}
-
-.graph-loading,
-.language-loading,
-.streak-loading,
-.activity-loading {
-    text-align: center;
-    color: var(--text-secondary);
-    padding: 2rem;
-}
-
-.graph-loading i,
-.language-loading i,
-.streak-loading i,
-.activity-loading i {
-    font-size: 2rem;
-    color: var(--accent-primary);
-    margin-bottom: 1rem;
-}
-
-/* Extra Stats Grid */
-.github-extra-stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-bottom: 3rem;
-}
-
-.language-card,
-.streak-card {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 1.5rem;
-    transition: all var(--transition-fast);
-}
-
-.language-card:hover,
-.streak-card:hover {
-    border-color: var(--accent-primary);
+.stat-item:hover {
     transform: translateY(-3px);
 }
 
-.language-chart,
-.streak-chart {
-    position: relative;
-    min-height: 150px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.stat-item i {
+    font-size: 1.3rem;
+    color: var(--accent-primary);
+    margin-bottom: 0.3rem;
+    transition: color var(--transition-fast);
 }
 
-/* Recent Activity */
-.recent-activity {
+.stat-item:hover i {
+    color: var(--accent-hover);
+}
+
+.stat-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    font-family: 'Fira Code', monospace;
+    line-height: 1;
+    transition: color var(--transition-fast);
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+}
+
+/* GitHub Charts Grid */
+.github-charts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.github-card {
     background: var(--bg-secondary);
     border: 1px solid var(--border-color);
     border-radius: 12px;
-    padding: 2rem;
-    margin-bottom: 3rem;
-}
-
-.activity-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.activity-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    padding: 1rem;
-    background: var(--bg-primary);
-    border-radius: 8px;
+    overflow: hidden;
     transition: all var(--transition-fast);
 }
 
-.activity-item:hover {
-    background: var(--bg-tertiary);
-    transform: translateX(5px);
+.github-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-primary);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
 }
 
-.activity-icon {
-    width: 32px;
-    height: 32px;
+.card-content {
+    position: relative;
+    padding: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--accent-primary);
-    color: white;
-    border-radius: 50%;
-    flex-shrink: 0;
-    font-size: 0.9rem;
+    min-height: 200px;
 }
 
-.activity-content {
-    flex: 1;
+.card-content img {
+    width: 100%;
+    height: auto;
+    display: none;
+    border-radius: 8px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
 }
 
-.activity-text {
-    color: var(--text-primary);
-    font-size: 0.95rem;
-    margin: 0 0 0.5rem;
-    line-height: 1.5;
+.card-content img.loaded {
+    display: block;
+    opacity: 1;
 }
 
-.activity-text a {
+.card-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
     color: var(--accent-primary);
-    text-decoration: none;
-    font-weight: 600;
 }
 
-.activity-text a:hover {
-    text-decoration: underline;
+.card-loading i {
+    font-size: 2rem;
+    animation: spin 1s linear infinite;
 }
 
-.activity-time {
-    color: var(--text-tertiary);
-    font-size: 0.85rem;
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
-.activity-repo {
-    color: var(--text-secondary);
-    font-size: 0.85rem;
-    font-family: 'Fira Code', monospace;
+/* Hide loading spinner when image loads */
+.card-content img.loaded ~ .card-loading {
+    display: none;
+}
+
+/* Streak Section */
+.github-streak-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+}
+
+.streak-stats {
+    max-width: 600px;
+    width: 100%;
 }
 
 /* GitHub Footer */
 .github-footer {
     text-align: center;
+    margin-top: 2rem;
 }
 
-/* Animations */
+/* Animation for counting numbers */
 @keyframes countUp {
     from {
         opacity: 0;
@@ -268,95 +185,112 @@
     }
 }
 
-.stat-number {
-    animation: countUp 0.5s ease-out;
+.stat-value {
+    animation: countUp 0.6s ease-out;
 }
 
-/* Loading States */
-.loading-shimmer {
-    background: linear-gradient(
-        90deg,
-        var(--bg-secondary) 25%,
-        var(--bg-tertiary) 50%,
-        var(--bg-secondary) 75%
-    );
-    background-size: 200% 100%;
-    animation: shimmer 1.5s infinite;
-}
-
-@keyframes shimmer {
-    0% {
-        background-position: 200% 0;
-    }
-    100% {
-        background-position: -200% 0;
-    }
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .github-stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-    }
-    
-    .stat-card {
-        padding: 1rem;
-    }
-    
-    .stat-number {
-        font-size: 1.5rem;
-    }
-    
-    .github-extra-stats {
-        grid-template-columns: 1fr;
-    }
-    
-    .github-contribution-graph,
-    .language-card,
-    .streak-card,
-    .recent-activity {
-        padding: 1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .github-stats-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .activity-item {
-        flex-direction: column;
-    }
-    
-    .activity-icon {
-        align-self: flex-start;
-    }
-}
-
-/* Light Theme Adjustments */
-body.light-theme .stat-card {
-    background: var(--bg-secondary);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-}
-
-body.light-theme .github-contribution-graph,
-body.light-theme .language-card,
-body.light-theme .streak-card,
-body.light-theme .recent-activity {
-    background: white;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-}
-
-body.light-theme .activity-item {
-    background: var(--bg-secondary);
-}
-
-/* Dark Mode GitHub Chart Filters */
+/* Dark mode image filter */
 .github-section img {
-    filter: brightness(0.9);
+    filter: brightness(0.95);
 }
 
 body.light-theme .github-section img {
     filter: none;
+}
+
+/* Light Theme Adjustments */
+body.light-theme .github-stats-compact {
+    background: white;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+}
+
+body.light-theme .github-card {
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+body.light-theme .github-card:hover {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .github-stats-compact {
+        padding: 1rem;
+        margin-bottom: 2rem;
+    }
+    
+    .stats-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+    }
+    
+    .stat-item {
+        padding: 0.5rem;
+    }
+    
+    .stat-item:not(:last-child)::after {
+        display: none;
+    }
+    
+    .stat-item:nth-child(2)::after {
+        content: '';
+        position: absolute;
+        right: -0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 35px;
+        width: 1px;
+        background: var(--border-color);
+        opacity: 0.5;
+        display: block;
+    }
+    
+    .stat-value {
+        font-size: 1.5rem;
+    }
+    
+    .stat-label {
+        font-size: 0.75rem;
+    }
+    
+    .github-charts-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .card-content {
+        padding: 1rem;
+        min-height: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    .stats-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .stat-item {
+        flex-direction: row;
+        justify-content: center;
+        gap: 1rem;
+    }
+    
+    .stat-item:nth-child(2)::after {
+        display: none;
+    }
+    
+    .stat-item i {
+        font-size: 1.5rem;
+    }
+    
+    .stat-value {
+        font-size: 1.3rem;
+    }
+    
+    .github-streak-section {
+        padding: 0 1rem;
+    }
 }
