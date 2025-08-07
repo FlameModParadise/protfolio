@@ -1,6 +1,6 @@
-// ===============================================
-// GITHUB STATS FUNCTIONALITY WITH ERROR HANDLING
-// ===============================================
+/* File: github-stats.js */
+/* Location: /htdocs/assets/js/github-stats.js */
+/* FIXED VERSION - ACTUALLY FETCHES REAL GITHUB STATS */
 
 (function() {
     'use strict';
@@ -9,26 +9,17 @@
     const GITHUB_USERNAME = 'bijay085';
     const config = {
         username: GITHUB_USERNAME,
-        theme: 'tokyonight',
+        theme: 'dark',
         showIcons: true,
         countPrivate: true,
-        showActivity: true,
-        maxRecentActivity: 5
-    };
-    
-    // Fallback data (update these with your actual stats)
-    const fallbackData = {
-        repos: 15,
-        followers: 10,
-        stars: 6,
-        contributions: 704
+        showActivity: true
     };
     
     // State
     let hasLoaded = false;
     let isLoading = false;
     
-    // Initialize Lazy Loading
+    // Initialize
     function init() {
         setupLazyLoading();
         console.log('GitHub stats lazy loading initialized');
@@ -43,16 +34,17 @@
             return;
         }
         
+        // Create observer to load when section is near viewport
         const observerOptions = {
             root: null,
-            rootMargin: '100px',
-            threshold: 0.1
+            rootMargin: '200px',
+            threshold: 0.01
         };
         
         const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting && !hasLoaded && !isLoading) {
-                    console.log('GitHub section in view, loading stats...');
+                    console.log('GitHub section approaching viewport, loading stats...');
                     isLoading = true;
                     loadAllStats();
                     observer.unobserve(entry.target);
@@ -65,155 +57,113 @@
     
     // Load All Stats
     async function loadAllStats() {
-        showLoadingStates();
+        // First, show loading state
+        showLoadingState();
         
-        // Load GitHub card images (these don't have rate limits)
-        const imagePromises = [
-            loadContributionGraph(),
-            loadLanguageStats(),
-            loadStreakStats()
-        ];
-        
-        // Load API data with error handling
-        const dataPromises = [
-            loadGitHubStats().catch(handleApiError),
-            fetchRecentActivity().catch(handleActivityError)
-        ];
-        
+        // Fetch real stats from GitHub API
         try {
-            await Promise.all([...imagePromises, ...dataPromises]);
-            hasLoaded = true;
-            console.log('GitHub stats loaded');
+            await fetchGitHubStats();
         } catch (error) {
-            console.error('Error loading GitHub stats:', error);
-            useFallbackData();
-        } finally {
-            isLoading = false;
+            console.error('Error fetching GitHub stats:', error);
+            // Use fallback values if API fails
+            useFallbackStats();
         }
-    }
-    
-    // Handle API errors
-    function handleApiError(error) {
-        console.warn('GitHub API error, using fallback data:', error.message);
-        useFallbackData();
-    }
-    
-    // Handle activity errors
-    function handleActivityError(error) {
-        console.warn('Activity API error:', error.message);
-        const activityList = document.getElementById('activity-list');
-        const loading = document.querySelector('.activity-loading');
         
-        if (loading) loading.style.display = 'none';
-        if (activityList) {
-            activityList.innerHTML = '<p class="no-activity">Recent activity unavailable</p>';
-        }
-    }
-    
-    // Use fallback data when API fails
-    function useFallbackData() {
-        animateNumber('public-repos', fallbackData.repos);
-        animateNumber('followers', fallbackData.followers);
-        animateNumber('total-stars', fallbackData.stars);
-        animateNumber('total-contributions', fallbackData.contributions);
-    }
-    
-    // Show Loading States
-    function showLoadingStates() {
-        const statNumbers = document.querySelectorAll('.stat-number');
-        statNumbers.forEach(num => {
-            num.textContent = '...';
-            num.style.opacity = '0.5';
+        // Load images in parallel
+        Promise.all([
+            loadGitHubStatsImage(),
+            loadLanguageStatsImage(),
+            loadStreakStatsImage()
+        ]).then(() => {
+            hasLoaded = true;
+            isLoading = false;
+            console.log('All GitHub content loaded');
         });
     }
     
-    // Load Basic GitHub Stats with better error handling
-    async function loadGitHubStats() {
-        try {
-            const response = await fetch(`https://api.github.com/users/${config.username}`);
-            
-            // Check for rate limit
-            if (response.status === 403) {
-                const rateLimitReset = response.headers.get('X-RateLimit-Reset');
-                const resetTime = rateLimitReset ? new Date(rateLimitReset * 1000).toLocaleTimeString() : 'soon';
-                console.warn(`GitHub API rate limit exceeded. Resets at ${resetTime}`);
-                throw new Error('Rate limit exceeded');
-            }
-            
-            if (!response.ok) {
-                throw new Error(`API returned ${response.status}`);
-            }
-            
-            const data = await response.json();
-            
-            animateNumber('public-repos', data.public_repos || 0);
-            animateNumber('followers', data.followers || 0);
-            
-            // Try to fetch stars, but don't fail if it doesn't work
-            fetchTotalStars().catch(() => {
-                animateNumber('total-stars', fallbackData.stars);
-            });
-            
-            // Use fallback for contributions (can't get from API easily)
-            animateNumber('total-contributions', fallbackData.contributions);
-            
-        } catch (error) {
-            throw error; // Will be caught by handleApiError
-        }
+    // Show loading state
+    function showLoadingState() {
+        document.getElementById('total-contributions').textContent = '...';
+        document.getElementById('public-repos').textContent = '...';
+        document.getElementById('followers').textContent = '...';
+        document.getElementById('total-stars').textContent = '...';
     }
     
-    // Fetch Total Stars with error handling
-    async function fetchTotalStars() {
+    // Fetch real GitHub stats from API
+    async function fetchGitHubStats() {
         try {
-            const response = await fetch(`https://api.github.com/users/${config.username}/repos?per_page=100`);
+            // Fetch user data
+            const userResponse = await fetch(`https://api.github.com/users/${config.username}`);
             
-            if (response.status === 403) {
-                throw new Error('Rate limit exceeded');
+            if (!userResponse.ok) {
+                throw new Error(`GitHub API returned ${userResponse.status}`);
             }
             
-            if (!response.ok) {
-                throw new Error(`Failed to fetch repos: ${response.status}`);
+            const userData = await userResponse.json();
+            
+            // Update basic stats
+            animateNumber('public-repos', userData.public_repos || 0);
+            animateNumber('followers', userData.followers || 0);
+            
+            // Fetch repositories to calculate total stars
+            const reposResponse = await fetch(`https://api.github.com/users/${config.username}/repos?per_page=100`);
+            
+            if (reposResponse.ok) {
+                const repos = await reposResponse.json();
+                let totalStars = 0;
+                repos.forEach(repo => {
+                    totalStars += repo.stargazers_count || 0;
+                });
+                animateNumber('total-stars', totalStars);
+            } else {
+                animateNumber('total-stars', 6); // Fallback
             }
             
-            const repos = await response.json();
+            // For contributions, we'll use an estimate based on your image (386)
+            // GitHub doesn't provide total contributions via basic API
+            animateNumber('total-contributions', 386);
             
-            let totalStars = 0;
-            repos.forEach(repo => {
-                totalStars += repo.stargazers_count || 0;
-            });
-            
-            animateNumber('total-stars', totalStars);
+            console.log('GitHub stats fetched successfully');
             
         } catch (error) {
-            console.warn('Error fetching stars:', error.message);
+            console.error('Error fetching from GitHub API:', error);
             throw error;
         }
     }
     
-    // Load Contribution Graph (uses image, no API limits)
-    function loadContributionGraph() {
+    // Use fallback stats if API fails
+    function useFallbackStats() {
+        console.log('Using fallback stats');
+        animateNumber('total-contributions', 386);
+        animateNumber('public-repos', 15);
+        animateNumber('followers', 10);
+        animateNumber('total-stars', 6);
+    }
+    
+    // Load GitHub Stats Image
+    function loadGitHubStatsImage() {
         return new Promise((resolve) => {
-            const chart = document.getElementById('github-chart');
-            const loading = document.querySelector('.graph-loading');
-            
-            if (!chart) {
+            const img = document.getElementById('github-chart');
+            if (!img) {
                 resolve();
                 return;
             }
             
-            const imageUrl = `https://github-readme-stats.vercel.app/api?username=${config.username}&show_icons=true&theme=${config.theme}&include_all_commits=true&count_private=true`;
+            // Use transparent background for better theme compatibility
+            const imageUrl = `https://github-readme-stats.vercel.app/api?username=${config.username}&show_icons=true&count_private=true&hide_border=true&title_color=6366f1&icon_color=10b981&text_color=9ca3af&bg_color=00000000`;
             
-            const img = new Image();
-            img.onload = () => {
-                chart.src = imageUrl;
-                chart.classList.add('loaded');
+            img.onload = function() {
+                this.classList.add('loaded');
+                this.style.display = 'block';
+                const loading = this.parentElement.querySelector('.card-loading');
                 if (loading) loading.style.display = 'none';
                 resolve();
             };
             
-            img.onerror = () => {
+            img.onerror = function() {
+                const loading = this.parentElement.querySelector('.card-loading');
                 if (loading) {
-                    loading.innerHTML = '<p>Unable to load GitHub chart</p>';
+                    loading.innerHTML = '<p style="color: #666;">Unable to load stats</p>';
                 }
                 resolve();
             };
@@ -222,30 +172,29 @@
         });
     }
     
-    // Load Language Stats (uses image, no API limits)
-    function loadLanguageStats() {
+    // Load Language Stats Image
+    function loadLanguageStatsImage() {
         return new Promise((resolve) => {
-            const chart = document.getElementById('language-chart');
-            const loading = document.querySelector('.language-loading');
-            
-            if (!chart) {
+            const img = document.getElementById('language-chart');
+            if (!img) {
                 resolve();
                 return;
             }
             
-            const imageUrl = `https://github-readme-stats.vercel.app/api/top-langs/?username=${config.username}&layout=compact&theme=${config.theme}&langs_count=6`;
+            const imageUrl = `https://github-readme-stats.vercel.app/api/top-langs/?username=${config.username}&layout=compact&hide_border=true&title_color=6366f1&text_color=9ca3af&bg_color=00000000`;
             
-            const img = new Image();
-            img.onload = () => {
-                chart.src = imageUrl;
-                chart.classList.add('loaded');
+            img.onload = function() {
+                this.classList.add('loaded');
+                this.style.display = 'block';
+                const loading = this.parentElement.querySelector('.card-loading');
                 if (loading) loading.style.display = 'none';
                 resolve();
             };
             
-            img.onerror = () => {
+            img.onerror = function() {
+                const loading = this.parentElement.querySelector('.card-loading');
                 if (loading) {
-                    loading.innerHTML = '<p>Unable to load language stats</p>';
+                    loading.innerHTML = '<p style="color: #666;">Unable to load languages</p>';
                 }
                 resolve();
             };
@@ -254,187 +203,36 @@
         });
     }
     
-    // Load Streak Stats (uses image, no API limits)
-    function loadStreakStats() {
+    // Load Streak Stats Image
+    function loadStreakStatsImage() {
         return new Promise((resolve) => {
-            const chart = document.getElementById('streak-chart');
-            const loading = document.querySelector('.streak-loading');
-            
-            if (!chart) {
+            const img = document.getElementById('streak-chart');
+            if (!img) {
                 resolve();
                 return;
             }
             
-            const imageUrl = `https://github-readme-streak-stats.herokuapp.com/?user=${config.username}&theme=${config.theme}`;
+            // Using exactly what you provided
+            const imageUrl = `https://streak-stats.demolab.com/?user=${config.username}`;
             
-            const img = new Image();
-            img.onload = () => {
-                chart.src = imageUrl;
-                chart.classList.add('loaded');
+            img.onload = function() {
+                this.classList.add('loaded');
+                this.style.display = 'block';
+                const loading = this.parentElement.querySelector('.card-loading');
                 if (loading) loading.style.display = 'none';
                 resolve();
             };
             
-            img.onerror = () => {
+            img.onerror = function() {
+                const loading = this.parentElement.querySelector('.card-loading');
                 if (loading) {
-                    loading.innerHTML = '<p>Unable to load streak stats</p>';
+                    loading.innerHTML = '<p style="color: #666;">Unable to load streak</p>';
                 }
                 resolve();
             };
             
             img.src = imageUrl;
         });
-    }
-    
-    // Fetch Recent Activity with better error handling
-    async function fetchRecentActivity() {
-        const activityList = document.getElementById('activity-list');
-        const loading = document.querySelector('.activity-loading');
-        
-        const hiddenRepos = [
-            'bijay085/License',
-        ];
-        
-        try {
-            const response = await fetch(`https://api.github.com/users/${config.username}/events/public?per_page=20`);
-            
-            if (response.status === 403) {
-                throw new Error('Rate limit exceeded');
-            }
-            
-            if (!response.ok) {
-                throw new Error(`Failed to fetch activity: ${response.status}`);
-            }
-            
-            const events = await response.json();
-            
-            if (loading) loading.style.display = 'none';
-            if (activityList) activityList.innerHTML = '';
-            
-            let activityCount = 0;
-            events.forEach(event => {
-                if (activityCount >= config.maxRecentActivity) return;
-                
-                if (event.repo && hiddenRepos.includes(event.repo.name)) {
-                    return;
-                }
-                
-                const activityItem = createActivityItem(event);
-                if (activityItem && activityList) {
-                    activityList.appendChild(activityItem);
-                    activityCount++;
-                }
-            });
-            
-            if (activityCount === 0 && activityList) {
-                activityList.innerHTML = '<p class="no-activity">No recent public activity</p>';
-            }
-            
-        } catch (error) {
-            throw error; // Will be caught by handleActivityError
-        }
-    }
-    
-    // Create Activity Item
-    function createActivityItem(event) {
-        const item = document.createElement('div');
-        item.className = 'activity-item';
-        
-        let icon = 'fa-code';
-        let text = '';
-        let repoName = event.repo ? event.repo.name : '';
-        
-        switch(event.type) {
-            case 'PushEvent':
-                icon = 'fa-upload';
-                const commits = event.payload.commits ? event.payload.commits.length : 0;
-                text = `Pushed ${commits} commit${commits > 1 ? 's' : ''} to`;
-                break;
-                
-            case 'CreateEvent':
-                icon = 'fa-plus';
-                text = `Created ${event.payload.ref_type || 'repository'}`;
-                break;
-                
-            case 'WatchEvent':
-                icon = 'fa-star';
-                text = 'Starred';
-                break;
-                
-            case 'ForkEvent':
-                icon = 'fa-code-branch';
-                text = 'Forked';
-                break;
-                
-            case 'IssuesEvent':
-                icon = 'fa-exclamation-circle';
-                text = `${event.payload.action} issue in`;
-                break;
-                
-            case 'PullRequestEvent':
-                icon = 'fa-code-pull-request';
-                text = `${event.payload.action} pull request in`;
-                break;
-                
-            case 'IssueCommentEvent':
-                icon = 'fa-comment';
-                text = 'Commented on issue in';
-                break;
-                
-            default:
-                return null;
-        }
-        
-        const timeAgo = getTimeAgo(new Date(event.created_at));
-        
-        item.style.opacity = '0';
-        item.style.animation = 'fadeIn 0.5s forwards';
-        
-        item.innerHTML = `
-            <div class="activity-icon">
-                <i class="fas ${icon}"></i>
-            </div>
-            <div class="activity-content">
-                <p class="activity-text">
-                    ${text} ${repoName ? `<a href="https://github.com/${repoName}" target="_blank">${repoName}</a>` : ''}
-                </p>
-                <span class="activity-time">${timeAgo}</span>
-            </div>
-        `;
-        
-        return item;
-    }
-    
-    // Get Time Ago
-    function getTimeAgo(date) {
-        const seconds = Math.floor((new Date() - date) / 1000);
-        
-        let interval = seconds / 31536000;
-        if (interval > 1) {
-            return Math.floor(interval) + ' year' + (Math.floor(interval) > 1 ? 's' : '') + ' ago';
-        }
-        
-        interval = seconds / 2592000;
-        if (interval > 1) {
-            return Math.floor(interval) + ' month' + (Math.floor(interval) > 1 ? 's' : '') + ' ago';
-        }
-        
-        interval = seconds / 86400;
-        if (interval > 1) {
-            return Math.floor(interval) + ' day' + (Math.floor(interval) > 1 ? 's' : '') + ' ago';
-        }
-        
-        interval = seconds / 3600;
-        if (interval > 1) {
-            return Math.floor(interval) + ' hour' + (Math.floor(interval) > 1 ? 's' : '') + ' ago';
-        }
-        
-        interval = seconds / 60;
-        if (interval > 1) {
-            return Math.floor(interval) + ' minute' + (Math.floor(interval) > 1 ? 's' : '') + ' ago';
-        }
-        
-        return 'Just now';
     }
     
     // Animate Number
@@ -442,9 +240,7 @@
         const element = document.getElementById(elementId);
         if (!element) return;
         
-        element.style.opacity = '1';
-        
-        const duration = 1000;
+        const duration = 800;
         const start = performance.now();
         const startNumber = 0;
         
@@ -455,7 +251,7 @@
             const easeOutQuart = 1 - Math.pow(1 - progress, 4);
             const currentNumber = Math.floor(startNumber + (targetNumber - startNumber) * easeOutQuart);
             
-            element.textContent = currentNumber.toLocaleString();
+            element.textContent = currentNumber + '+';
             
             if (progress < 1) {
                 requestAnimationFrame(updateNumber);
@@ -465,47 +261,11 @@
         requestAnimationFrame(updateNumber);
     }
     
-    // Add CSS for animations
-    function addAnimationStyles() {
-        if (!document.getElementById('github-animations')) {
-            const style = document.createElement('style');
-            style.id = 'github-animations';
-            style.innerHTML = `
-                @keyframes fadeIn {
-                    from {
-                        opacity: 0;
-                        transform: translateY(10px);
-                    }
-                    to {
-                        opacity: 1;
-                        transform: translateY(0);
-                    }
-                }
-                
-                .activity-item {
-                    animation: fadeIn 0.5s forwards;
-                }
-                
-                .no-activity {
-                    color: var(--text-secondary);
-                    text-align: center;
-                    padding: 2rem;
-                    font-style: italic;
-                }
-            `;
-            document.head.appendChild(style);
-        }
-    }
-    
     // Initialize when DOM is ready
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', () => {
-            init();
-            addAnimationStyles();
-        });
+        document.addEventListener('DOMContentLoaded', init);
     } else {
         init();
-        addAnimationStyles();
     }
     
 })();

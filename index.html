@@ -1,783 +1,851 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Bijay Koirala - Data Analyst | Automation Enthusiast | Web Developer">
-    <meta name="keywords" content="data analyst, web scraping, automation, python, bot development">
-    <meta name="author" content="Bijay Koirala">
-    
-    <title>Bijay Koirala | Data Analyst & Automation Expert</title>
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
-    
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-    
-    <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/terminal.css">
-    <link rel="stylesheet" href="assets/css/bubble-trail.css">
-    <link rel="stylesheet" href="assets/css/github-stats.css">
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="description" content="Bijay Koirala - Data Analyst | Automation Enthusiast | Web Developer">
+   <meta name="keywords" content="data analyst, web scraping, automation, python, bot development">
+   <meta name="author" content="Bijay Koirala">
+
+   <title>Bijay Koirala | Data Analyst & Automation Expert</title>
+
+   <!-- Preconnect to external domains for faster loading -->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+   <link rel="preconnect" href="https://github-readme-stats.vercel.app">
+   <link rel="preconnect" href="https://github-readme-streak-stats.herokuapp.com">
+
+   <!-- Favicon -->
+   <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+
+   <!-- Critical CSS - Inline for faster initial render -->
+   <style>
+       /* Critical CSS for above-the-fold content */
+       * {
+           margin: 0;
+           padding: 0;
+           box-sizing: border-box;
+       }
+
+       body {
+           background: #0a0a0b;
+           color: #f3f4f6;
+           font-family: 'Inter', -apple-system, sans-serif;
+       }
+
+       #preloader {
+           position: fixed;
+           top: 0;
+           left: 0;
+           width: 100%;
+           height: 100vh;
+           background: #0a0a0b;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           z-index: 9999;
+       }
+
+       .loader {
+           display: flex;
+           gap: 10px;
+       }
+
+       .loader-dot {
+           width: 15px;
+           height: 15px;
+           background: #6366f1;
+           border-radius: 50%;
+           animation: loaderDot 1.4s ease-in-out infinite;
+       }
+
+       @keyframes loaderDot {
+
+           0%,
+           80%,
+           100% {
+               transform: scale(0);
+               opacity: 0.5;
+           }
+
+           40% {
+               transform: scale(1);
+               opacity: 1;
+           }
+       }
+
+       .loader-dot:nth-child(1) {
+           animation-delay: -0.32s;
+       }
+
+       .loader-dot:nth-child(2) {
+           animation-delay: -0.16s;
+       }
+
+       #preloader.hide {
+           opacity: 0;
+           visibility: hidden;
+           transition: opacity 0.5s, visibility 0.5s;
+       }
+
+       /* Hide GitHub images initially */
+       .github-card img {
+           display: none;
+           opacity: 0;
+           transition: opacity 0.5s ease;
+       }
+
+       .github-card img.loaded {
+           display: block;
+           opacity: 1;
+       }
+   </style>
+
+   <!-- Load Google Fonts with display=swap for better performance -->
+   <link
+       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap"
+       rel="stylesheet">
+
+   <!-- Defer non-critical CSS -->
+   <link rel="preload" href="assets/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+   <noscript>
+       <link rel="stylesheet" href="assets/css/style.css">
+   </noscript>
+
+   <link rel="preload" href="assets/css/terminal.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+   <noscript>
+       <link rel="stylesheet" href="assets/css/terminal.css">
+   </noscript>
+
+   <link rel="preload" href="assets/css/bubble-trail.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+   <noscript>
+       <link rel="stylesheet" href="assets/css/bubble-trail.css">
+   </noscript>
+
+   <link rel="preload" href="assets/css/github-stats.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+   <noscript>
+       <link rel="stylesheet" href="assets/css/github-stats.css">
+   </noscript>
+
+   <!-- Font Awesome - Load asynchronously -->
+   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style"
+       onload="this.onload=null;this.rel='stylesheet'">
+   <noscript>
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+   </noscript>
+
+   <!-- AOS CSS - Load asynchronously since it's not critical -->
+   <link rel="preload" href="https://unpkg.com/aos@2.3.1/dist/aos.css" as="style"
+       onload="this.onload=null;this.rel='stylesheet'">
+   <noscript>
+       <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+   </noscript>
+
+   <!-- Preload critical images -->
+   <link rel="preload" as="image" href="assets/images/profile.jpg">
+
+   <!-- Script to handle CSS loading -->
+   <script>
+       // Polyfill for rel=preload
+       !function (e) { "use strict"; e.loadCSS || (e.loadCSS = function () { }); var t = loadCSS.relpreload = {}; if (t.support = function () { var t; try { t = e.document.createElement("link").relList.supports("preload") } catch (e) { t = !1 } return function () { return t } }(), t.bindMediaToggle = function (e) { function t() { e.media = a } var a = e.media || "all"; e.addEventListener ? e.addEventListener("load", t) : e.attachEvent && e.attachEvent("onload", t), setTimeout(function () { e.rel = "stylesheet", e.media = "only x" }), setTimeout(t, 3e3) }, t.poly = function () { if (!t.support()) for (var a = e.document.getElementsByTagName("link"), n = 0; n < a.length; n++) { var o = a[n]; "preload" !== o.rel || "style" !== o.getAttribute("as") || o.getAttribute("data-loadcss") || (o.setAttribute("data-loadcss", !0), t.bindMediaToggle(o)) } }, !t.support()) { t.poly(); var a = e.setInterval(t.poly, 500); e.addEventListener ? e.addEventListener("load", function () { t.poly(), e.clearInterval(a) }) : e.attachEvent && e.attachEvent("onload", function () { t.poly(), e.clearInterval(a) }) } "undefined" != typeof exports ? exports.loadCSS = loadCSS : e.loadCSS = loadCSS }("undefined" != typeof global ? global : this);
+   </script>
 </head>
+
 <body>
-    <!-- Bubble Trail Container -->
-    <div class="bubble-trail-container" id="bubble-trail-container"></div>
-    
-    <!-- Preloader -->
-    <div id="preloader">
-        <div class="loader">
-            <div class="loader-dot"></div>
-            <div class="loader-dot"></div>
-            <div class="loader-dot"></div>
-        </div>
-    </div>
+   <!-- Bubble Trail Container -->
+   <div class="bubble-trail-container" id="bubble-trail-container"></div>
 
-    <!-- Navigation Bar -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <a href="#home">&lt;Bijay/&gt;</a>
-            </div>
-            
-            <ul class="nav-menu" id="nav-menu">
-                <li class="nav-item">
-                    <a href="#home" class="nav-link">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#about" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#skills" class="nav-link">Skills</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#projects" class="nav-link">Projects</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#github" class="nav-link">GitHub</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#contact" class="nav-link">Contact</a>
-                </li>
-            </ul>
-            
-            <div class="nav-buttons">
-                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
-        </div>
-    </nav>
+   <!-- Preloader -->
+   <div id="preloader">
+       <div class="loader">
+           <div class="loader-dot"></div>
+           <div class="loader-dot"></div>
+           <div class="loader-dot"></div>
+       </div>
+   </div>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-container">
-            <div class="hero-bg-animation">
-                <div class="floating-square"></div>
-                <div class="floating-square"></div>
-                <div class="floating-square"></div>
-            </div>
-            
-            <div class="hero-content" data-aos="fade-up">
-                <p class="hero-greeting">Hey there! I'm</p>
-                <h1 class="hero-name">Bijay Koirala</h1>
-                <h2 class="hero-title">
-                    <span class="typed-text" id="typed-text"></span>
-                </h2>
-                <p class="hero-description">
-                    Data Analyst | Automation Enthusiast | Professional Sleeper<br>
-                    I build automation tools, scrape websites, develop bots, and can sleep 48hrs/day! 
-                    Currently working on 12+ private automation tools and loving every bit of it.
-                </p>
-                
-                <div class="hero-buttons">
-                    <a href="#projects" class="btn btn-primary">
-                        <i class="fas fa-code"></i> View My Work
-                    </a>
-                    <a href="assets/resume/resume.pdf" class="btn btn-outline" download>
-                        <i class="fas fa-download"></i> Download CV
-                    </a>
-                </div>
-                
-                <div class="hero-socials">
-                    <a href="https://github.com/bijay085" target="_blank" aria-label="GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/bijay-koirala/" target="_blank" aria-label="LinkedIn">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="https://bijaykoirala0.com.np" target="_blank" aria-label="Portfolio">
-                        <i class="fas fa-globe"></i>
-                    </a>
-                    <a href="mailto:bijaykoirala003@gmail.com" aria-label="Email">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="scroll-indicator">
-                <a href="#about">
-                    <div class="mouse">
-                        <div class="wheel"></div>
-                    </div>
-                    <div class="scroll-text">Scroll Down</div>
-                </a>
-            </div>
-        </div>
-    </section>
+   <!-- Navigation Bar -->
+   <nav class="navbar" id="navbar">
+       <div class="nav-container">
+           <div class="nav-logo">
+               <a href="#home">&lt;Bijay/&gt;</a>
+           </div>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">
-                <span class="section-number">01.</span> About Me
-            </h2>
-            
-            <div class="about-content">
-                <div class="about-text" data-aos="fade-right">
-                    <p>
-                        Hello! I'm Bijay Koirala, a passionate Data Analyst and Automation Expert based in Nepal 🇳🇵. 
-                        I specialize in building automation tools that make life easier and workflows more efficient.
-                    </p>
-                    <p>
-                        My journey started with curiosity about how to automate repetitive tasks, and it has evolved into 
-                        creating sophisticated web scraping tools, bots, and API integrations. I've built <strong>15+ private 
-                        automation tools</strong> for various platforms including Netflix, Outlook, and ChatGPT.
-                    </p>
-                    <p>
-                        When I'm not coding, you'll find me sleeping (I can sleep 48 hours a day if allowed!), 
-                        playing fighting games, or watching anime. I'm a self-taught developer who believes in 
-                        learning by doing - YouTube University & Documentation Diving are my alma maters!
-                    </p>
-                    <p>
-                        Here are the technologies I work with:
-                    </p>
-                    
-                    <ul class="tech-list">
-                        <li><i class="fas fa-caret-right"></i> Python & Flask</li>
-                        <li><i class="fas fa-caret-right"></i> JavaScript & React</li>
-                        <li><i class="fas fa-caret-right"></i> Web Scraping (Selenium, BeautifulSoup)</li>
-                        <li><i class="fas fa-caret-right"></i> Bot Development (Discord, Telegram)</li>
-                        <li><i class="fas fa-caret-right"></i> MySQL & MongoDB</li>
-                        <li><i class="fas fa-caret-right"></i> Power BI & Excel</li>
-                    </ul>
-                </div>
-                
-                <div class="about-image" data-aos="fade-left">
-                    <div class="image-wrapper">
-                        <img src="assets/images/profile.jpg" alt="Bijay Koirala">
-                        <div class="image-border"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+           <ul class="nav-menu" id="nav-menu">
+               <li class="nav-item">
+                   <a href="#home" class="nav-link">Home</a>
+               </li>
+               <li class="nav-item">
+                   <a href="#about" class="nav-link">About</a>
+               </li>
+               <li class="nav-item">
+                   <a href="#skills" class="nav-link">Skills</a>
+               </li>
+               <li class="nav-item">
+                   <a href="#projects" class="nav-link">Projects</a>
+               </li>
+               <li class="nav-item">
+                   <a href="#github" class="nav-link">GitHub</a>
+               </li>
+               <li class="nav-item">
+                   <a href="#contact" class="nav-link">Contact</a>
+               </li>
+           </ul>
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">
-                <span class="section-number">02.</span> Skills & Technologies
-            </h2>
-            
-            <div class="skills-grid">
-                <div class="skill-category" data-aos="fade-up" data-aos-delay="100">
-                    <h3 class="category-title">
-                        <i class="fas fa-code"></i> Programming Languages
-                    </h3>
-                    <div class="skill-items">
-                        <div class="skill-item">
-                            <span><i class="fab fa-python"></i> Python</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span><i class="fab fa-js"></i> JavaScript</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 75%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span><i class="fab fa-html5"></i> HTML/CSS</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span><i class="fab fa-php"></i> PHP</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 60%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="skill-category" data-aos="fade-up" data-aos-delay="200">
-                    <h3 class="category-title">
-                        <i class="fas fa-robot"></i> Automation & Scraping
-                    </h3>
-                    <div class="skill-items">
-                        <div class="skill-item">
-                            <span><i class="fas fa-spider"></i> Web Scraping</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 95%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span><i class="fas fa-chrome"></i> Selenium</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span><i class="fas fa-code-branch"></i> Beautiful Soup</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span><i class="fab fa-discord"></i> Bot Development</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 80%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="skill-category" data-aos="fade-up" data-aos-delay="300">
-                    <h3 class="category-title">
-                        <i class="fas fa-database"></i> Data & Tools
-                    </h3>
-                    <div class="skill-items">
-                        <div class="skill-item">
-                            <span><i class="fas fa-chart-bar"></i> Power BI</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 75%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span><i class="fas fa-file-excel"></i> Excel</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span><i class="fas fa-database"></i> MySQL/MongoDB</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 70%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span><i class="fab fa-github"></i> Git & GitHub</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 80%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+           <div class="nav-buttons">
+               <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                   <i class="fas fa-moon"></i>
+               </button>
+               <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                   <span></span>
+                   <span></span>
+                   <span></span>
+               </button>
+           </div>
+       </div>
+   </nav>
 
-    <!-- Projects Section - UPDATED WITH YOUR ACTUAL PROJECTS -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">
-                <span class="section-number">03.</span> Featured Projects
-            </h2>
-            
-            <div class="projects-grid">
-                <!-- Project 1: API/Web Scraping Suite -->
-                <div class="project-card featured" data-aos="fade-up" data-aos-delay="100">
-                    <div class="project-image">
-                        <div class="project-icon-display">
-                            <i class="fas fa-spider"></i>
-                        </div>
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <span class="private-badge">
-                                    <i class="fas fa-lock"></i> Private Repository
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <p class="project-overline">Featured Collection</p>
-                        <h3 class="project-title">API/Web Scraping Suite</h3>
-                        <p class="project-description">
-                            <strong>15+ Private Automation Tools</strong> including Netflix, Outlook, ChatGPT integrations. 
-                            Professional-grade web scraping and API automation solutions for various platforms.
-                        </p>
-                        <ul class="project-tech-list">
-                            <li>Python</li>
-                            <li>Selenium</li>
-                            <li>BeautifulSoup</li>
-                            <li>Requests</li>
-                            <li>API Integration</li>
-                        </ul>
-                        <div class="project-stats">
-                            <span><i class="fas fa-tools"></i> 15+ Tools</span>
-                            <span><i class="fas fa-lock"></i> Private</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project 2: Bot Ecosystem -->
-                <div class="project-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="project-image">
-                        <div class="project-icon-display">
-                            <i class="fas fa-robot"></i>
-                        </div>
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="https://github.com/bijay085/Projects/tree/master/Bots" target="_blank" aria-label="GitHub">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <p class="project-overline">Automation</p>
-                        <h3 class="project-title">Bot Ecosystem</h3>
-                        <p class="project-description">
-                            Telegram & Discord bots for workflow automation and enhanced user experience. 
-                            Custom bot solutions for various automation needs.
-                        </p>
-                        <ul class="project-tech-list">
-                            <li>Python</li>
-                            <li>Telebot</li>
-                            <li>Discord.py</li>
-                            <li>API Integration</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <!-- Project 3: CMS Platform -->
-                <div class="project-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="project-image">
-                        <div class="project-icon-display">
-                            <i class="fas fa-globe"></i>
-                        </div>
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="https://github.com/bijay085/Projects/tree/master/CMS%20Site" target="_blank" aria-label="GitHub">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                                <a href="https://flamemodparadise.github.io/My-Site/" target="_blank" aria-label="Live Demo">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <p class="project-overline">Web Development</p>
-                        <h3 class="project-title">CMS Platform</h3>
-                        <p class="project-description">
-                            Full-featured Content Management System with modern UI/UX. 
-                            Dynamic content loading with JSON-based data management.
-                        </p>
-                        <ul class="project-tech-list">
-                            <li>HTML/CSS</li>
-                            <li>JavaScript</li>
-                            <li>JSON</li>
-                            <li>Frontend</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <!-- Project 4: FraudShield System -->
-                <div class="project-card" data-aos="fade-up" data-aos-delay="400">
-                    <div class="project-image">
-                        <div class="project-icon-display">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="https://github.com/bijay085/College-Project" target="_blank" aria-label="GitHub">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <p class="project-overline">College Project</p>
-                        <h3 class="project-title">FraudShield System</h3>
-                        <p class="project-description">
-                            E-commerce fraud detection system with rule-based transaction monitoring. 
-                            Protects online transactions using intelligent pattern recognition.
-                        </p>
-                        <ul class="project-tech-list">
-                            <li>Python</li>
-                            <li>Flask</li>
-                            <li>MongoDB</li>
-                            <li>Frontend</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <!-- Project 5: Gamified Learning Tracker -->
-                <div class="project-card" data-aos="fade-up" data-aos-delay="500">
-                    <div class="project-image">
-                        <div class="project-icon-display">
-                            <i class="fas fa-gamepad"></i>
-                        </div>
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="https://github.com/bijay085/Projects/tree/master/Gamified%20Learning%20Progress%20Tracker" target="_blank" aria-label="GitHub">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <p class="project-overline">Educational</p>
-                        <h3 class="project-title">Gamified Learning Tracker</h3>
-                        <p class="project-description">
-                            Interactive progress tracking system with gamification elements for enhanced motivation. 
-                            Makes learning fun and engaging.
-                        </p>
-                        <ul class="project-tech-list">
-                            <li>PHP</li>
-                            <li>MySQL</li>
-                            <li>HTML/CSS</li>
-                            <li>JavaScript</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <!-- Project 6: More Projects -->
-                <div class="project-card more-projects" data-aos="fade-up" data-aos-delay="600">
-                    <div class="project-image">
-                        <div class="project-icon-display">
-                            <i class="fas fa-plus"></i>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <p class="project-overline">Explore More</p>
-                        <h3 class="project-title">View All Projects</h3>
-                        <p class="project-description">
-                            Check out my GitHub for more projects including automation scripts, 
-                            web applications, and experimental tools.
-                        </p>
-                        <div class="project-cta">
-                            <a href="https://github.com/bijay085?tab=repositories" target="_blank" class="btn btn-outline">
-                                <i class="fab fa-github"></i> View on GitHub
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+   <!-- Hero Section -->
+   <section id="home" class="hero">
+       <div class="hero-container">
+           <div class="hero-bg-animation">
+               <div class="floating-square"></div>
+               <div class="floating-square"></div>
+               <div class="floating-square"></div>
+           </div>
 
-    <!-- GitHub Stats Section - COMPACT VERSION -->
-    <section id="github" class="github-section">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">
-                <span class="section-number">04.</span> GitHub Activity
-            </h2>
-            
-            <!-- Compact Stats Row -->
-            <div class="github-stats-compact" data-aos="fade-up">
-                <div class="stats-row">
-                    <div class="stat-item">
-                        <i class="fas fa-code-branch"></i>
-                        <span class="stat-value" id="total-contributions">700+</span>
-                        <span class="stat-label">Contributions</span>
-                    </div>
-                    <div class="stat-item">
-                        <i class="fas fa-book"></i>
-                        <span class="stat-value" id="public-repos">15+</span>
-                        <span class="stat-label">Repositories</span>
-                    </div>
-                    <div class="stat-item">
-                        <i class="fas fa-users"></i>
-                        <span class="stat-value" id="followers">20+</span>
-                        <span class="stat-label">Followers</span>
-                    </div>
-                    <div class="stat-item">
-                        <i class="fas fa-star"></i>
-                        <span class="stat-value" id="total-stars">10+</span>
-                        <span class="stat-label">Stars</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- GitHub Charts Grid -->
-            <div class="github-charts-grid" data-aos="fade-up" data-aos-delay="100">
-                <div class="github-card main-stats">
-                    <div class="card-content">
-                        <img id="github-chart" 
-                             src="https://github-readme-stats.vercel.app/api?username=bijay085&show_icons=true&count_private=true&hide_border=true&title_color=00ADB5&icon_color=00ADB5&text_color=c9d1d9&bg_color=0d1117" 
-                             alt="GitHub Stats" 
-                             onload="this.classList.add('loaded')" />
-                        <div class="card-loading">
-                            <i class="fas fa-spinner fa-spin"></i>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="github-card lang-stats">
-                    <div class="card-content">
-                        <img id="language-chart" 
-                             src="https://github-readme-stats.vercel.app/api/top-langs/?username=bijay085&layout=compact&hide_border=true&title_color=00ADB5&text_color=c9d1d9&bg_color=0d1117" 
-                             alt="Top Languages" 
-                             onload="this.classList.add('loaded')" />
-                        <div class="card-loading">
-                            <i class="fas fa-spinner fa-spin"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Streak Stats -->
-            <div class="github-streak-section" data-aos="fade-up" data-aos-delay="200">
-                <div class="github-card streak-stats">
-                    <div class="card-content">
-                        <img id="streak-chart" 
-                             src="https://github-readme-streak-stats.herokuapp.com/?user=bijay085&theme=dark&hide_border=true&stroke=00ADB5&ring=00ADB5&fire=00ADB5&currStreakLabel=00ADB5" 
-                             alt="GitHub Streak" 
-                             onload="this.classList.add('loaded')" />
-                        <div class="card-loading">
-                            <i class="fas fa-spinner fa-spin"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="github-footer" data-aos="fade-up" data-aos-delay="300">
-                <a href="https://github.com/bijay085" target="_blank" class="btn btn-outline">
-                    <i class="fab fa-github"></i> View Full Profile on GitHub
-                </a>
-            </div>
-        </div>
-    </section>
+           <div class="hero-content" data-aos="fade-up">
+               <p class="hero-greeting">Hey there! I'm</p>
+               <h1 class="hero-name">Bijay Koirala</h1>
+               <h2 class="hero-title">
+                   <span class="typed-text" id="typed-text"></span>
+               </h2>
+               <p class="hero-description">
+                   I build automation tools that make workflows smarter and faster.<br>
+                   Currently crafting 15+ private automation solutions for Netflix, Outlook, ChatGPT & more!
+               </p>
 
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">
-                <span class="section-number">05.</span> Services I Offer
-            </h2>
-            
-            <div class="services-grid">
-                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="service-icon">
-                        <i class="fas fa-spider"></i>
-                    </div>
-                    <h3>Web Scraping</h3>
-                    <p>Data extraction from any website with custom scrapers and automation tools</p>
-                </div>
-                
-                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="service-icon">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <h3>Bot Development</h3>
-                    <p>Custom Telegram and Discord bots for automation and user engagement</p>
-                </div>
-                
-                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="service-icon">
-                        <i class="fas fa-cogs"></i>
-                    </div>
-                    <h3>Process Automation</h3>
-                    <p>Workflow automation to save time and increase productivity</p>
-                </div>
-                
-                <div class="service-card" data-aos="fade-up" data-aos-delay="400">
-                    <div class="service-icon">
-                        <i class="fas fa-plug"></i>
-                    </div>
-                    <h3>API Development</h3>
-                    <p>RESTful API design and integration with third-party services</p>
-                </div>
-            </div>
-        </div>
-    </section>
+               <div class="hero-buttons">
+                   <a href="#projects" class="btn btn-primary">
+                       <i class="fas fa-code"></i> View My Work
+                   </a>
+                   <a href="assets/resume/resume.pdf" class="btn btn-outline" download>
+                       <i class="fas fa-download"></i> Download CV
+                   </a>
+               </div>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">
-                <span class="section-number">06.</span> Get In Touch
-            </h2>
-            
-            <div class="contact-content">
-                <div class="contact-info" data-aos="fade-right">
-                    <h3>Let's Connect!</h3>
-                    <p>
-                        I'm currently looking for new opportunities and my inbox is always open. 
-                        Whether you need automation tools, web scraping solutions, or just want to say hi, 
-                        I'll get back to you within 24 hours!
-                    </p>
-                    
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <a href="mailto:bijaykoirala003@gmail.com">bijaykoirala003@gmail.com</a>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-globe"></i>
-                            <a href="https://bijaykoirala0.com.np" target="_blank">bijaykoirala0.com.np</a>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Nepal 🇳🇵 (GMT+5:45)</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Available for Freelance</span>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-socials">
-                        <a href="https://github.com/bijay085" target="_blank" class="social-link">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/in/bijay-koirala/" target="_blank" class="social-link">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                        <a href="https://bijaykoirala0.com.np" target="_blank" class="social-link">
-                            <i class="fas fa-globe"></i>
-                        </a>
-                        <a href="mailto:bijaykoirala003@gmail.com" class="social-link">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <form class="contact-form" data-aos="fade-left" id="contact-form">
-                    <div class="form-group">
-                        <input type="text" id="name" name="name" placeholder=" " required>
-                        <label for="name">Your Name</label>
-                    </div>
-                    
-                    <div class="form-group">
-                        <input type="email" id="email" name="email" placeholder=" " required>
-                        <label for="email">Your Email</label>
-                    </div>
-                    
-                    <div class="form-group">
-                        <input type="text" id="subject" name="subject" placeholder=" " required>
-                        <label for="subject">Subject</label>
-                    </div>
-                    
-                    <div class="form-group">
-                        <textarea id="message" name="message" rows="5" placeholder=" " required></textarea>
-                        <label for="message">Your Message</label>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-paper-plane"></i> Send Message
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
+               <div class="hero-socials">
+                   <a href="https://github.com/bijay085" target="_blank" aria-label="GitHub">
+                       <i class="fab fa-github"></i>
+                   </a>
+                   <a href="https://www.linkedin.com/in/bijay-koirala/" target="_blank" aria-label="LinkedIn">
+                       <i class="fab fa-linkedin"></i>
+                   </a>
+                   <a href="https://wa.me/9746665541" target="_blank" aria-label="WhatsApp">
+                       <i class="fab fa-whatsapp"></i>
+                   </a>
+                   <a href="mailto:bijaykoirala003@gmail.com" aria-label="Email">
+                       <i class="fas fa-envelope"></i>
+                   </a>
+               </div>
+           </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <p class="footer-text">
-                    Built with ☕ & ❤️ by <span class="highlight">Bijay Koirala</span>
-                </p>
-                <p class="footer-quote">
-                    "First, solve the problem. Then, write the code." – John Johnson
-                </p>
-                <p class="footer-year">
-                    <i class="far fa-copyright"></i> <span id="year">2024</span> All rights reserved.
-                </p>
-            </div>
-        </div>
-    </footer>
+           <div class="scroll-indicator">
+               <a href="#about">
+                   <div class="mouse">
+                       <div class="wheel"></div>
+                   </div>
+                   <div class="scroll-text">Scroll Down</div>
+               </a>
+           </div>
+       </div>
+   </section>
 
-    <!-- Back to Top Button -->
-    <button class="back-to-top" id="back-to-top" aria-label="Back to top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
+   <!-- About Section -->
+   <section id="about" class="about">
+       <div class="container">
+           <h2 class="section-title" data-aos="fade-up">
+               About Me
+           </h2>
 
-    <!-- JavaScript Files -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/terminal.js"></script>
-    <script src="assets/js/bubble-trail.js"></script>
-    <script src="assets/js/github-stats.js"></script>
-    
-    <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 1000,
-            once: true,
-            offset: 100
-        });
-        
-        // Update typing effect with your actual roles
-        document.addEventListener('DOMContentLoaded', function() {
-            const typedTextElement = document.getElementById('typed-text');
-            if (typedTextElement) {
-                const textArray = [
-                    'Data Analyst 📊',
-                    'Web Based Analyzer 💻',
-                    'Automation Expert 🤖',
-                    'Web Scraping Specialist 🕷️',
-                    'Bot Developer 🤖',
-                    'Professional Sleeper 😴'
-                ];
-                
-                let textArrayIndex = 0;
-                let charIndex = 0;
-                let isDeleting = false;
-                let typingSpeed = 100;
-                
-                function type() {
-                    const currentText = textArray[textArrayIndex];
-                    
-                    if (isDeleting) {
-                        typedTextElement.textContent = currentText.substring(0, charIndex - 1);
-                        charIndex--;
-                        typingSpeed = 50;
-                    } else {
-                        typedTextElement.textContent = currentText.substring(0, charIndex + 1);
-                        charIndex++;
-                        typingSpeed = 100;
-                    }
-                    
-                    if (!isDeleting && charIndex === currentText.length) {
-                        typingSpeed = 2000;
-                        isDeleting = true;
-                    } else if (isDeleting && charIndex === 0) {
-                        isDeleting = false;
-                        textArrayIndex++;
-                        if (textArrayIndex >= textArray.length) {
-                            textArrayIndex = 0;
-                        }
-                        typingSpeed = 500;
-                    }
-                    
-                    setTimeout(type, typingSpeed);
-                }
-                
-                type();
-            }
-        });
-    </script>
+           <div class="about-content">
+               <div class="about-text" data-aos="fade-right">
+                   <p>
+                       I'm Bijay Koirala from Nepal 🇳🇵, wanna be a Data Analyst and Automation Expert who turns repetitive tasks into automated workflows.
+                   </p>
+                   <p>
+                       Self-taught with a passion for web scraping, bot development, and creating tools that save hours of manual work. 
+                       When I'm not coding, you'll find me sleeping (48hrs/day if possible!), gaming, or watching anime.
+                   </p>
+                   <p>
+                       <strong>Tech Stack I work with:</strong>
+                   </p>
+
+                   <ul class="tech-list">
+                       <li><i class="fas fa-caret-right"></i> Python & Flask</li>
+                       <li><i class="fas fa-caret-right"></i> JavaScript & React</li>
+                       <li><i class="fas fa-caret-right"></i> Selenium & BeautifulSoup</li>
+                       <li><i class="fas fa-caret-right"></i> Discord & Telegram Bots</li>
+                       <li><i class="fas fa-caret-right"></i> MySQL & MongoDB</li>
+                       <li><i class="fas fa-caret-right"></i> Power BI & Excel</li>
+                   </ul>
+               </div>
+
+               <div class="about-image" data-aos="fade-left">
+                   <div class="image-wrapper">
+                       <img src="assets/images/profile.jpg" alt="Bijay Koirala">
+                       <div class="image-border"></div>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </section>
+
+   <!-- Skills Section -->
+   <section id="skills" class="skills">
+       <div class="container">
+           <h2 class="section-title" data-aos="fade-up">
+               Skills & Technologies
+           </h2>
+
+           <div class="skills-grid">
+               <div class="skill-category" data-aos="fade-up" data-aos-delay="100">
+                   <h3 class="category-title">
+                       <i class="fas fa-code"></i> Programming Languages
+                   </h3>
+                   <div class="skill-items">
+                       <div class="skill-item">
+                           <span><i class="fab fa-python"></i> Python</span>
+                           <div class="skill-bar">
+                               <div class="skill-progress" style="width: 85%"></div>
+                           </div>
+                       </div>
+                       <div class="skill-item">
+                           <span><i class="fab fa-js"></i> JavaScript</span>
+                           <div class="skill-bar">
+                               <div class="skill-progress" style="width: 75%"></div>
+                           </div>
+                       </div>
+                       <div class="skill-item">
+                           <span><i class="fab fa-html5"></i> HTML/CSS</span>
+                           <div class="skill-bar">
+                               <div class="skill-progress" style="width: 90%"></div>
+                           </div>
+                       </div>
+                       <div class="skill-item">
+                           <span><i class="fab fa-php"></i> PHP</span>
+                           <div class="skill-bar">
+                               <div class="skill-progress" style="width: 60%"></div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+
+               <div class="skill-category" data-aos="fade-up" data-aos-delay="200">
+                   <h3 class="category-title">
+                       <i class="fas fa-robot"></i> Automation & Scraping
+                   </h3>
+                   <div class="skill-items">
+                       <div class="skill-item">
+                           <span><i class="fas fa-spider"></i> Web Scraping</span>
+                           <div class="skill-bar">
+                               <div class="skill-progress" style="width: 95%"></div>
+                           </div>
+                       </div>
+                       <div class="skill-item">
+                           <span><i class="fas fa-chrome"></i> Selenium</span>
+                           <div class="skill-bar">
+                               <div class="skill-progress" style="width: 90%"></div>
+                           </div>
+                       </div>
+                       <div class="skill-item">
+                           <span><i class="fas fa-code-branch"></i> Beautiful Soup</span>
+                           <div class="skill-bar">
+                               <div class="skill-progress" style="width: 85%"></div>
+                           </div>
+                       </div>
+                       <div class="skill-item">
+                           <span><i class="fab fa-discord"></i> Bot Development</span>
+                           <div class="skill-bar">
+                               <div class="skill-progress" style="width: 80%"></div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+
+               <div class="skill-category" data-aos="fade-up" data-aos-delay="300">
+                   <h3 class="category-title">
+                       <i class="fas fa-database"></i> Data & Tools
+                   </h3>
+                   <div class="skill-items">
+                       <div class="skill-item">
+                           <span><i class="fas fa-chart-bar"></i> Power BI</span>
+                           <div class="skill-bar">
+                               <div class="skill-progress" style="width: 75%"></div>
+                           </div>
+                       </div>
+                       <div class="skill-item">
+                           <span><i class="fas fa-file-excel"></i> Excel</span>
+                           <div class="skill-bar">
+                               <div class="skill-progress" style="width: 85%"></div>
+                           </div>
+                       </div>
+                       <div class="skill-item">
+                           <span><i class="fas fa-database"></i> MySQL/MongoDB</span>
+                           <div class="skill-bar">
+                               <div class="skill-progress" style="width: 70%"></div>
+                           </div>
+                       </div>
+                       <div class="skill-item">
+                           <span><i class="fab fa-github"></i> Git & GitHub</span>
+                           <div class="skill-bar">
+                               <div class="skill-progress" style="width: 80%"></div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </section>
+
+   <!-- Projects Section -->
+   <section id="projects" class="projects">
+       <div class="container">
+           <h2 class="section-title" data-aos="fade-up">
+               Featured Projects
+           </h2>
+
+           <div class="projects-grid">
+               <!-- Project 1: API/Web Scraping Suite -->
+               <div class="project-card featured" data-aos="fade-up" data-aos-delay="100">
+                   <div class="project-image">
+                       <div class="project-icon-display">
+                           <i class="fas fa-spider"></i>
+                       </div>
+                       <div class="project-overlay">
+                           <div class="project-links">
+                               <span class="private-badge">
+                                   <i class="fas fa-lock"></i> Private Repository
+                               </span>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="project-content">
+                       <p class="project-overline">Featured Collection</p>
+                       <h3 class="project-title">API/Web Scraping Suite</h3>
+                       <p class="project-description">
+                           <strong>15+ Private Automation Tools</strong> including Netflix, Outlook, ChatGPT
+                           integrations.
+                           Professional-grade web scraping and API automation solutions for various platforms.
+                       </p>
+                       <ul class="project-tech-list">
+                           <li>Python</li>
+                           <li>Selenium</li>
+                           <li>BeautifulSoup</li>
+                           <li>Requests</li>
+                           <li>API Integration</li>
+                       </ul>
+                       <div class="project-stats">
+                           <span><i class="fas fa-tools"></i> 15+ Tools</span>
+                           <span><i class="fas fa-lock"></i> Private</span>
+                       </div>
+                   </div>
+               </div>
+
+               <!-- Project 2: Bot Ecosystem -->
+               <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+                   <div class="project-image">
+                       <div class="project-icon-display">
+                           <i class="fas fa-robot"></i>
+                       </div>
+                       <div class="project-overlay">
+                           <div class="project-links">
+                               <a href="https://github.com/bijay085/Projects/tree/master/Bots" target="_blank"
+                                   aria-label="GitHub">
+                                   <i class="fab fa-github"></i>
+                               </a>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="project-content">
+                       <p class="project-overline">Automation</p>
+                       <h3 class="project-title">Bot Ecosystem</h3>
+                       <p class="project-description">
+                           Telegram & Discord bots for workflow automation and enhanced user experience.
+                           Custom bot solutions for various automation needs.
+                       </p>
+                       <ul class="project-tech-list">
+                           <li>Python</li>
+                           <li>Telebot</li>
+                           <li>Discord.py</li>
+                           <li>API Integration</li>
+                       </ul>
+                   </div>
+               </div>
+
+               <!-- Project 3: CMS Platform -->
+               <div class="project-card" data-aos="fade-up" data-aos-delay="300">
+                   <div class="project-image">
+                       <div class="project-icon-display">
+                           <i class="fas fa-globe"></i>
+                       </div>
+                       <div class="project-overlay">
+                           <div class="project-links">
+                               <a href="https://github.com/bijay085/Projects/tree/master/CMS%20Site" target="_blank"
+                                   aria-label="GitHub">
+                                   <i class="fab fa-github"></i>
+                               </a>
+                               <a href="https://flamemodparadise.github.io/My-Site/" target="_blank"
+                                   aria-label="Live Demo">
+                                   <i class="fas fa-external-link-alt"></i>
+                               </a>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="project-content">
+                       <p class="project-overline">Web Development</p>
+                       <h3 class="project-title">CMS Platform</h3>
+                       <p class="project-description">
+                           Full-featured Content Management System with modern UI/UX.
+                           Dynamic content loading with JSON-based data management.
+                       </p>
+                       <ul class="project-tech-list">
+                           <li>HTML/CSS</li>
+                           <li>JavaScript</li>
+                           <li>JSON</li>
+                           <li>Frontend</li>
+                       </ul>
+                   </div>
+               </div>
+
+               <!-- Project 4: FraudShield System -->
+               <div class="project-card" data-aos="fade-up" data-aos-delay="400">
+                   <div class="project-image">
+                       <div class="project-icon-display">
+                           <i class="fas fa-shield-alt"></i>
+                       </div>
+                       <div class="project-overlay">
+                           <div class="project-links">
+                               <a href="https://github.com/bijay085/College-Project" target="_blank"
+                                   aria-label="GitHub">
+                                   <i class="fab fa-github"></i>
+                               </a>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="project-content">
+                       <p class="project-overline">College Project</p>
+                       <h3 class="project-title">FraudShield System</h3>
+                       <p class="project-description">
+                           E-commerce fraud detection system with rule-based transaction monitoring.
+                           Protects online transactions using intelligent pattern recognition.
+                       </p>
+                       <ul class="project-tech-list">
+                           <li>Python</li>
+                           <li>Flask</li>
+                           <li>MongoDB</li>
+                           <li>Frontend</li>
+                       </ul>
+                   </div>
+               </div>
+
+               <!-- Project 5: Gamified Learning Tracker -->
+               <div class="project-card" data-aos="fade-up" data-aos-delay="500">
+                   <div class="project-image">
+                       <div class="project-icon-display">
+                           <i class="fas fa-gamepad"></i>
+                       </div>
+                       <div class="project-overlay">
+                           <div class="project-links">
+                               <a href="https://github.com/bijay085/Projects/tree/master/Gamified%20Learning%20Progress%20Tracker"
+                                   target="_blank" aria-label="GitHub">
+                                   <i class="fab fa-github"></i>
+                               </a>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="project-content">
+                       <p class="project-overline">Educational</p>
+                       <h3 class="project-title">Gamified Learning Tracker</h3>
+                       <p class="project-description">
+                           Interactive progress tracking system with gamification elements for enhanced motivation.
+                           Makes learning fun and engaging.
+                       </p>
+                       <ul class="project-tech-list">
+                           <li>PHP</li>
+                           <li>MySQL</li>
+                           <li>HTML/CSS</li>
+                           <li>JavaScript</li>
+                       </ul>
+                   </div>
+               </div>
+
+               <!-- Project 6: More Projects -->
+               <div class="project-card more-projects" data-aos="fade-up" data-aos-delay="600">
+                   <div class="project-image">
+                       <div class="project-icon-display">
+                           <i class="fas fa-plus"></i>
+                       </div>
+                   </div>
+                   <div class="project-content">
+                       <p class="project-overline">Explore More</p>
+                       <h3 class="project-title">View All Projects</h3>
+                       <p class="project-description">
+                           Check out my GitHub for more projects including automation scripts,
+                           web applications, and experimental tools.
+                       </p>
+                       <div class="project-cta">
+                           <a href="https://github.com/bijay085?tab=repositories" target="_blank"
+                               class="btn btn-outline">
+                               <i class="fab fa-github"></i> View on GitHub
+                           </a>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </section>
+
+   <!-- GitHub Stats Section - OPTIMIZED FOR LAZY LOADING -->
+   <section id="github" class="github-section">
+       <div class="container">
+           <h2 class="section-title" data-aos="fade-up">
+               GitHub Activity
+           </h2>
+
+           <!-- Compact Stats Row - Shows immediately -->
+           <div class="github-stats-compact" data-aos="fade-up">
+               <div class="stats-row">
+                   <div class="stat-item">
+                       <i class="fas fa-code-branch"></i>
+                       <span class="stat-value" id="total-contributions">...</span>
+                       <span class="stat-label">Contributions</span>
+                   </div>
+                   <div class="stat-item">
+                       <i class="fas fa-book"></i>
+                       <span class="stat-value" id="public-repos">...</span>
+                       <span class="stat-label">Repositories</span>
+                   </div>
+                   <div class="stat-item">
+                       <i class="fas fa-users"></i>
+                       <span class="stat-value" id="followers">...</span>
+                       <span class="stat-label">Followers</span>
+                   </div>
+                   <div class="stat-item">
+                       <i class="fas fa-star"></i>
+                       <span class="stat-value" id="total-stars">...</span>
+                       <span class="stat-label">Stars</span>
+                   </div>
+               </div>
+           </div>
+
+           <!-- GitHub Charts Grid - Images will be lazy loaded by JavaScript -->
+           <div class="github-charts-grid" data-aos="fade-up" data-aos-delay="100">
+               <div class="github-card main-stats">
+                   <div class="card-content">
+                       <!-- No src attribute - will be added by JavaScript when in viewport -->
+                       <img id="github-chart" alt="GitHub Stats" style="display: none;" />
+                       <div class="card-loading">
+                           <i class="fas fa-spinner fa-spin"></i>
+                           <p>Loading stats...</p>
+                       </div>
+                   </div>
+               </div>
+
+               <div class="github-card lang-stats">
+                   <div class="card-content">
+                       <!-- No src attribute - will be added by JavaScript when in viewport -->
+                       <img id="language-chart" alt="Top Languages" style="display: none;" />
+                       <div class="card-loading">
+                           <i class="fas fa-spinner fa-spin"></i>
+                           <p>Loading languages...</p>
+                       </div>
+                   </div>
+               </div>
+           </div>
+
+           <!-- Streak Stats - Will be lazy loaded -->
+           <div class="github-streak-section" data-aos="fade-up" data-aos-delay="200">
+               <div class="github-card streak-stats">
+                   <div class="card-content">
+                       <!-- No src attribute - will be added by JavaScript when in viewport -->
+                       <img id="streak-chart" alt="GitHub Streak" style="display: none;" />
+                       <div class="card-loading">
+                           <i class="fas fa-spinner fa-spin"></i>
+                           <p>Loading streak...</p>
+                       </div>
+                   </div>
+               </div>
+           </div>
+
+           <div class="github-footer" data-aos="fade-up" data-aos-delay="300">
+               <a href="https://github.com/bijay085" target="_blank" class="btn btn-outline">
+                   <i class="fab fa-github"></i> View Full Profile on GitHub
+               </a>
+           </div>
+       </div>
+   </section>
+
+   <!-- Services Section -->
+   <section id="services" class="services">
+       <div class="container">
+           <h2 class="section-title" data-aos="fade-up">
+               Services I Offer
+           </h2>
+
+           <div class="services-grid">
+               <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                   <div class="service-icon">
+                       <i class="fas fa-spider"></i>
+                   </div>
+                   <h3>Web Scraping</h3>
+                   <p>Data extraction from any website with custom scrapers and automation tools</p>
+               </div>
+
+               <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                   <div class="service-icon">
+                       <i class="fas fa-robot"></i>
+                   </div>
+                   <h3>Bot Development</h3>
+                   <p>Custom Telegram and Discord bots for automation and user engagement</p>
+               </div>
+
+               <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                   <div class="service-icon">
+                       <i class="fas fa-cogs"></i>
+                   </div>
+                   <h3>Process Automation</h3>
+                   <p>Workflow automation to save time and increase productivity</p>
+               </div>
+
+               <div class="service-card" data-aos="fade-up" data-aos-delay="400">
+                   <div class="service-icon">
+                       <i class="fas fa-plug"></i>
+                   </div>
+                   <h3>API Development</h3>
+                   <p>RESTful API design and integration with third-party services</p>
+               </div>
+           </div>
+       </div>
+   </section>
+
+   <!-- Contact Section -->
+   <section id="contact" class="contact">
+       <div class="container">
+           <h2 class="section-title" data-aos="fade-up">
+               Get In Touch
+           </h2>
+
+           <div class="contact-content">
+               <div class="contact-info" data-aos="fade-right">
+                   <h3>Let's Connect!</h3>
+                   <p>
+                       I'm currently looking for new opportunities and my inbox is always open.
+                       Whether you need automation tools, web scraping solutions, or just want to say hi,
+                       I'll get back to you within 24 hours!
+                   </p>
+
+                   <div class="contact-details">
+                       <div class="contact-item">
+                           <i class="fas fa-envelope"></i>
+                           <a href="mailto:bijaykoirala003@gmail.com">bijaykoirala003@gmail.com</a>
+                       </div>
+                       <div class="contact-item">
+                           <i class="fas fa-phone"></i>
+                           <a href="tel:+9746665541">+974 666 5541</a>
+                       </div>
+                       <div class="contact-item">
+                           <i class="fas fa-globe"></i>
+                           <a href="https://bijaykoirala0.com.np" target="_blank">bijaykoirala0.com.np</a>
+                       </div>
+                       <div class="contact-item">
+                           <i class="fas fa-map-marker-alt"></i>
+                           <span>Nepal 🇳🇵 (GMT+5:45)</span>
+                       </div>
+                       <div class="contact-item">
+                           <i class="fas fa-check-circle"></i>
+                           <span>Available for Freelance | Intern | Part-time Job | Remote Job</span>
+                       </div>
+                   </div>
+
+                   <div class="contact-socials">
+                       <a href="https://github.com/bijay085" target="_blank" class="social-link">
+                           <i class="fab fa-github"></i>
+                       </a>
+                       <a href="https://www.linkedin.com/in/bijay-koirala/" target="_blank" class="social-link">
+                           <i class="fab fa-linkedin"></i>
+                       </a>
+                       <a href="https://wa.me/9746665541" target="_blank" class="social-link">
+                           <i class="fab fa-whatsapp"></i>
+                       </a>
+                       <a href="mailto:bijaykoirala003@gmail.com" class="social-link">
+                           <i class="fas fa-envelope"></i>
+                       </a>
+                   </div>
+               </div>
+
+               <form class="contact-form" data-aos="fade-left" id="contact-form">
+                   <div class="form-group">
+                       <input type="text" id="name" name="name" placeholder=" " required>
+                       <label for="name">Your Name</label>
+                   </div>
+
+                   <div class="form-group">
+                       <input type="email" id="email" name="email" placeholder=" " required>
+                       <label for="email">Your Email</label>
+                   </div>
+
+                   <div class="form-group">
+                       <input type="text" id="subject" name="subject" placeholder=" " required>
+                       <label for="subject">Subject</label>
+                   </div>
+
+                   <div class="form-group">
+                       <textarea id="message" name="message" rows="5" placeholder=" " required></textarea>
+                       <label for="message">Your Message</label>
+                   </div>
+                   <button type="submit" class="btn btn-primary">
+                       <i class="fas fa-envelope"></i> Send Message
+                   </button>
+               </form>
+           </div>
+       </div>
+   </section>
+
+   <!-- Footer -->
+   <footer class="footer">
+       <div class="container">
+           <div class="footer-content">
+               <p class="footer-text">
+                   Built with ☕ & ❤️ by <span class="highlight">Bijay Koirala</span>
+               </p>
+               <p class="footer-year">
+                   <i class="far fa-copyright"></i> <span id="year">2024</span> All rights reserved.
+               </p>
+           </div>
+       </div>
+   </footer>
+
+   <!-- Back to Top Button -->
+   <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+       <i class="fas fa-arrow-up"></i>
+   </button>
+
+   <!-- JavaScript Files - OPTIMIZED LOADING -->
+   <!-- Load main.js first (contains typing effect and core functionality) -->
+   <script src="assets/js/main.js"></script>
+
+   <!-- Load AOS asynchronously and initialize when loaded -->
+   <script async src="https://unpkg.com/aos@2.3.1/dist/aos.js"
+       onload="AOS.init({duration: 1000, once: true, offset: 100});"></script>
+
+   <!-- Defer loading of enhancement scripts -->
+   <script defer src="assets/js/terminal.js"></script>
+   <script defer src="assets/js/bubble-trail.js"></script>
+   <script defer src="assets/js/github-stats.js"></script>
+
 </body>
+
 </html>

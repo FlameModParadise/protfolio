@@ -1,5 +1,6 @@
 /* File: main.js */
 /* Location: /htdocs/assets/js/main.js */
+/* COMPLETE FULL FILE WITH FIXED TYPING EFFECT */
 
 // ===============================================
 // 1. GLOBAL VARIABLES & DOM ELEMENTS
@@ -171,60 +172,64 @@ if (backToTopBtn) {
 }
 
 // ===============================================
-// 6. TYPING EFFECT
+// 6. TYPING EFFECT - FIXED VERSION
 // ===============================================
 
-const typedTextElement = document.getElementById('typed-text');
-if (typedTextElement) {
-    const textArray = [
-        'Web Developer',
-        'Programmer',
-        'Problem Solver',
-        'Tech Enthusiast',
-        'Continuous Learner'
-    ];
+document.addEventListener('DOMContentLoaded', function() {
+    const typedTextElement = document.getElementById('typed-text');
     
-    let textArrayIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    let typingSpeed = 100;
-    
-    function type() {
-        const currentText = textArray[textArrayIndex];
+    if (typedTextElement) {
+        const textArray = [
+            'Data Analyst 📊',
+            'Web Based Analyzer 💻',
+            'Automation Expert 🤖',
+            'Web Scraping Specialist 🕷️',
+            'Bot Developer 🤖',
+            'Professional Sleeper 😴'
+        ];
         
-        if (isDeleting) {
-            // Remove characters
-            typedTextElement.textContent = currentText.substring(0, charIndex - 1);
-            charIndex--;
-            typingSpeed = 50;
-        } else {
-            // Add characters
-            typedTextElement.textContent = currentText.substring(0, charIndex + 1);
-            charIndex++;
-            typingSpeed = 100;
-        }
+        let textArrayIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typingSpeed = 100;
         
-        // Check if word is complete
-        if (!isDeleting && charIndex === currentText.length) {
-            // Pause at end of word
-            typingSpeed = 2000;
-            isDeleting = true;
-        } else if (isDeleting && charIndex === 0) {
-            // Move to next word
-            isDeleting = false;
-            textArrayIndex++;
-            if (textArrayIndex >= textArray.length) {
-                textArrayIndex = 0;
+        function type() {
+            const currentText = textArray[textArrayIndex];
+            
+            if (isDeleting) {
+                // Remove characters
+                typedTextElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+                typingSpeed = 50;
+            } else {
+                // Add characters
+                typedTextElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+                typingSpeed = 100;
             }
-            typingSpeed = 500;
+            
+            // Check if word is complete
+            if (!isDeleting && charIndex === currentText.length) {
+                // Pause at end of word
+                typingSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                // Move to next word
+                isDeleting = false;
+                textArrayIndex++;
+                if (textArrayIndex >= textArray.length) {
+                    textArrayIndex = 0;
+                }
+                typingSpeed = 500;
+            }
+            
+            setTimeout(type, typingSpeed);
         }
         
-        setTimeout(type, typingSpeed);
+        // Start typing effect
+        type();
     }
-    
-    // Start typing effect
-    type();
-}
+});
 
 // ===============================================
 // 7. FORM HANDLING
@@ -653,7 +658,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
-
 
 // ===============================================
 // END OF SCRIPT
