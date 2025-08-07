@@ -1,0 +1,284 @@
+/* File: terminal.css */
+/* Location: /htdocs/assets/css/terminal.css */
+
+/* ===============================================
+   INTERACTIVE TERMINAL STYLES
+   =============================================== */
+
+.terminal-section {
+    background: var(--bg-primary);
+    padding: var(--section-padding);
+}
+
+.terminal-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #0a0e14;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-family: 'Fira Code', monospace;
+}
+
+/* Terminal Header */
+.terminal-header {
+    background: linear-gradient(to right, #1e1e2e, #2a2a3e);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.terminal-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.control {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: block;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.control:hover {
+    opacity: 0.8;
+}
+
+.control.close {
+    background: #ff5f56;
+}
+
+.control.minimize {
+    background: #ffbd2e;
+}
+
+.control.maximize {
+    background: #27c93f;
+}
+
+.terminal-title {
+    color: #8892b0;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Terminal Body */
+.terminal-body {
+    background: #0a0e14;
+    padding: 20px;
+    min-height: 400px;
+    max-height: 500px;
+    overflow-y: auto;
+    color: #00ff00;
+}
+
+/* Custom Scrollbar for Terminal */
+.terminal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.terminal-body::-webkit-scrollbar-track {
+    background: #1a1a2e;
+}
+
+.terminal-body::-webkit-scrollbar-thumb {
+    background: #16213e;
+    border-radius: 4px;
+}
+
+.terminal-body::-webkit-scrollbar-thumb:hover {
+    background: #0f3460;
+}
+
+/* Terminal Content */
+.terminal-content {
+    margin-bottom: 20px;
+}
+
+.terminal-line {
+    margin-bottom: 10px;
+    line-height: 1.4;
+    word-wrap: break-word;
+}
+
+.terminal-prompt {
+    color: #64ffda;
+}
+
+.terminal-comment {
+    color: #546e7a;
+    font-style: italic;
+}
+
+.terminal-error {
+    color: #ff5370;
+}
+
+.terminal-success {
+    color: #c3e88d;
+}
+
+.terminal-warning {
+    color: #ffcb6b;
+}
+
+.terminal-info {
+    color: #82aaff;
+}
+
+.terminal-command {
+    color: #00ff00;
+}
+
+.terminal-output {
+    color: #8892b0;
+    margin-left: 20px;
+}
+
+/* Terminal Input */
+.terminal-input-line {
+    display: flex;
+    align-items: center;
+    color: #00ff00;
+}
+
+.terminal-prompt-symbol {
+    color: #64ffda;
+    margin-right: 10px;
+    user-select: none;
+}
+
+.terminal-input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #00ff00;
+    font-family: 'Fira Code', monospace;
+    font-size: 1rem;
+    flex: 1;
+    caret-color: transparent;
+}
+
+.terminal-cursor {
+    display: inline-block;
+    width: 10px;
+    height: 20px;
+    background: #00ff00;
+    animation: blink 1s infinite;
+    margin-left: 2px;
+}
+
+@keyframes blink {
+    0%, 50% {
+        opacity: 1;
+    }
+    51%, 100% {
+        opacity: 0;
+    }
+}
+
+/* ASCII Art Styling */
+.ascii-art {
+    color: #64ffda;
+    font-size: 0.8rem;
+    line-height: 1.2;
+    white-space: pre;
+    font-family: monospace;
+}
+
+/* Terminal Hint */
+.terminal-hint {
+    text-align: center;
+    margin-top: 20px;
+    color: var(--text-secondary);
+}
+
+.terminal-hint code {
+    background: var(--bg-tertiary);
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: var(--accent-primary);
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9rem;
+    margin: 0 5px;
+}
+
+/* Table Output Styling */
+.terminal-table {
+    display: table;
+    width: 100%;
+    margin: 10px 0;
+}
+
+.terminal-table-row {
+    display: table-row;
+}
+
+.terminal-table-cell {
+    display: table-cell;
+    padding: 5px 15px 5px 0;
+    color: #8892b0;
+}
+
+.terminal-table-header {
+    color: #64ffda;
+    border-bottom: 1px solid #64ffda;
+    font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .terminal-container {
+        border-radius: 8px;
+        margin: 0 10px;
+    }
+    
+    .terminal-body {
+        padding: 15px;
+        min-height: 300px;
+        max-height: 400px;
+        font-size: 0.9rem;
+    }
+    
+    .terminal-prompt-symbol {
+        font-size: 0.9rem;
+    }
+    
+    .terminal-input {
+        font-size: 0.9rem;
+    }
+    
+    .ascii-art {
+        font-size: 0.6rem;
+    }
+}
+
+/* Light Theme Adjustments */
+body.light-theme .terminal-container {
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+body.light-theme .terminal-body {
+    background: #0a0e14;
+}
+
+/* Loading Animation */
+.terminal-loading {
+    display: inline-block;
+}
+
+.terminal-loading::after {
+    content: '...';
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% { content: '.'; }
+    33% { content: '..'; }
+    66% { content: '...'; }
+}

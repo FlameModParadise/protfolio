@@ -1,0 +1,144 @@
+/* File: bubble-trail.css */
+/* Location: /htdocs/assets/css/bubble-trail.css */
+
+/* ===============================================
+   BUBBLE TRAIL STYLES
+   =============================================== */
+
+/* Bubble Trail Container */
+.bubble-trail-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    overflow: hidden;
+}
+
+/* Individual Bubble */
+.bubble {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: bubble-rise 4s ease-out forwards;
+    opacity: 0;
+}
+
+/* Bubble Animation */
+@keyframes bubble-rise {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+    }
+    10% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.7;
+    }
+    100% {
+        transform: translate(-50%, -250%) scale(0.3);
+        opacity: 0;
+    }
+}
+
+/* Alternative Float Animation */
+@keyframes bubble-float {
+    0% {
+        transform: translate(-50%, -50%) translateY(0) scale(0);
+        opacity: 0;
+    }
+    20% {
+        transform: translate(-50%, -50%) translateY(-20px) scale(1);
+        opacity: 0.6;
+    }
+    100% {
+        transform: translate(-50%, -50%) translateY(-150px) scale(0.2);
+        opacity: 0;
+    }
+}
+
+/* Bubble Variants */
+.bubble.small {
+    animation: bubble-float 2s ease-out forwards;
+}
+
+.bubble.medium {
+    animation: bubble-rise 3s ease-out forwards;
+}
+
+.bubble.large {
+    animation: bubble-rise 4s ease-out forwards;
+}
+
+/* Color Variants */
+.bubble.purple {
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.6), rgba(99, 102, 241, 0.2));
+    box-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
+}
+
+.bubble.green {
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.6), rgba(16, 185, 129, 0.2));
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+}
+
+.bubble.blue {
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.6), rgba(59, 130, 246, 0.2));
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+}
+
+.bubble.pink {
+    background: radial-gradient(circle, rgba(236, 72, 153, 0.6), rgba(236, 72, 153, 0.2));
+    box-shadow: 0 0 10px rgba(236, 72, 153, 0.3);
+}
+
+/* Glow Effect */
+.bubble.glow {
+    filter: blur(1px);
+}
+
+/* Click Bubble - Bigger and Different Animation */
+.bubble.click-bubble {
+    animation: bubble-pop 0.6s ease-out forwards;
+}
+
+@keyframes bubble-pop {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0.8;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 0.4;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(2);
+        opacity: 0;
+    }
+}
+
+/* Disable on Mobile */
+@media (hover: none) and (pointer: coarse) {
+    .bubble-trail-container {
+        display: none;
+    }
+}
+
+/* Performance Mode / Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    .bubble {
+        animation: none !important;
+        opacity: 0 !important;
+    }
+}
+
+/* Light Theme Adjustments */
+body.light-theme .bubble.purple {
+    background: radial-gradient(circle, rgba(79, 70, 229, 0.5), rgba(79, 70, 229, 0.1));
+    box-shadow: 0 0 8px rgba(79, 70, 229, 0.2);
+}
+
+body.light-theme .bubble.green {
+    background: radial-gradient(circle, rgba(5, 150, 105, 0.5), rgba(5, 150, 105, 0.1));
+    box-shadow: 0 0 8px rgba(5, 150, 105, 0.2);
+}
