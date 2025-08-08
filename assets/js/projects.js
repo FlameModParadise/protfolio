@@ -4,7 +4,7 @@
  * Handles project display, filtering, and modal views
  */
 
-(function() {
+(function () {
     'use strict';
 
     // Configuration
@@ -161,7 +161,7 @@
                     PROJECTS_DATA.push(...data.projects); // Add JSON data
                     filteredProjects = [...PROJECTS_DATA];
                     console.log('Projects loaded from portfolio.json');
-                    
+
                     // Re-render if already initialized
                     if (elements.projectsGrid) {
                         displayedProjects = 0;
@@ -181,23 +181,23 @@
     function init() {
         // Cache elements
         cacheElements();
-        
+
         // Try to load from JSON first
         loadProjectsFromJSON();
-        
+
         // Render initial projects (will use fallback data)
         if (elements.projectsGrid) {
             renderProjects();
         }
-        
+
         // Set up event listeners
         setupEventListeners();
-        
+
         // Create modal if enabled
         if (CONFIG.enableModal) {
             createModal();
         }
-        
+
         console.log('Projects section initialized');
     }
 
@@ -216,42 +216,42 @@
      */
     function renderProjects(append = false) {
         if (!elements.projectsGrid || isLoading) return;
-        
+
         isLoading = true;
-        
+
         // Calculate projects to show
         const startIndex = append ? displayedProjects : 0;
         const endIndex = Math.min(startIndex + CONFIG.projectsPerLoad, filteredProjects.length);
         const projectsToShow = filteredProjects.slice(startIndex, endIndex);
-        
+
         // Clear grid if not appending
         if (!append) {
             elements.projectsGrid.innerHTML = '';
             displayedProjects = 0;
         }
-        
+
         // Render each project
         projectsToShow.forEach((project, index) => {
             const projectElement = createProjectElement(project);
             elements.projectsGrid.appendChild(projectElement);
-            
+
             // Animate entrance
             setTimeout(() => {
                 projectElement.classList.add('visible');
             }, index * CONFIG.animationDelay);
         });
-        
+
         // Update displayed count
         displayedProjects = endIndex;
-        
+
         // Update load more button
         updateLoadMoreButton();
-        
+
         // Set up lazy loading for images
         if (CONFIG.enableLazyLoad) {
             lazyLoadImages();
         }
-        
+
         isLoading = false;
     }
 
@@ -263,7 +263,7 @@
         article.className = 'project-card';
         article.dataset.category = project.category;
         article.dataset.projectId = project.id;
-        
+
         // Build project HTML
         article.innerHTML = `
             <div class="project-image">
@@ -305,9 +305,9 @@
                 <h3 class="project-title">${project.title}</h3>
                 <p class="project-description">${project.description}</p>
                 <div class="project-tech">
-                    ${project.technologies.map(tech => 
-                        `<span class="tech-tag">${tech}</span>`
-                    ).join('')}
+                    ${project.technologies.map(tech =>
+            `<span class="tech-tag">${tech}</span>`
+        ).join('')}
                 </div>
                 <div class="project-meta">
                     <span class="project-date">${formatDate(project.date)}</span>
@@ -315,7 +315,7 @@
                 </div>
             </div>
         `;
-        
+
         return article;
     }
 
@@ -327,17 +327,17 @@
         elements.filterButtons.forEach(button => {
             button.addEventListener('click', handleFilterClick);
         });
-        
+
         // Load more button
         if (elements.loadMoreBtn) {
             elements.loadMoreBtn.addEventListener('click', loadMoreProjects);
         }
-        
+
         // Search input
         if (elements.searchInput) {
             elements.searchInput.addEventListener('input', debounce(handleSearch, 300));
         }
-        
+
         // Project details buttons (delegated)
         document.addEventListener('click', (e) => {
             if (e.target.closest('.project-details-btn')) {
@@ -354,14 +354,14 @@
     function handleFilterClick(e) {
         const button = e.currentTarget;
         const filter = button.dataset.filter;
-        
+
         if (filter === currentFilter) return;
-        
+
         // Update active state
         elements.filterButtons.forEach(btn => {
             btn.classList.toggle('active', btn === button);
         });
-        
+
         // Apply filter
         currentFilter = filter;
         filterProjects();
@@ -374,11 +374,11 @@
         if (currentFilter === 'all') {
             filteredProjects = [...PROJECTS_DATA];
         } else {
-            filteredProjects = PROJECTS_DATA.filter(project => 
+            filteredProjects = PROJECTS_DATA.filter(project =>
                 project.category === currentFilter
             );
         }
-        
+
         // Re-render projects
         displayedProjects = 0;
         renderProjects();
@@ -396,7 +396,7 @@
      */
     function updateLoadMoreButton() {
         if (!elements.loadMoreBtn) return;
-        
+
         if (displayedProjects >= filteredProjects.length) {
             elements.loadMoreBtn.style.display = 'none';
         } else {
@@ -410,18 +410,18 @@
      */
     function handleSearch(e) {
         const searchTerm = e.target.value.toLowerCase();
-        
+
         if (searchTerm === '') {
             filterProjects();
             return;
         }
-        
-        filteredProjects = PROJECTS_DATA.filter(project => 
+
+        filteredProjects = PROJECTS_DATA.filter(project =>
             project.title.toLowerCase().includes(searchTerm) ||
             project.description.toLowerCase().includes(searchTerm) ||
             project.technologies.some(tech => tech.toLowerCase().includes(searchTerm))
         );
-        
+
         displayedProjects = 0;
         renderProjects();
     }
@@ -436,20 +436,20 @@
         modal.innerHTML = `
             <div class="modal-overlay"></div>
             <div class="modal-content">
-                <button class="modal-close" aria-label="Close modal">
-                    <i class="fas fa-times"></i>
+                <button class="modal-close" aria-label="Close modal">&times;</button>
+                    ×
                 </button>
                 <div class="modal-body"></div>
             </div>
         `;
-        
+
         document.body.appendChild(modal);
         elements.projectModal = modal;
-        
+
         // Close modal events
         modal.querySelector('.modal-overlay').addEventListener('click', closeModal);
         modal.querySelector('.modal-close').addEventListener('click', closeModal);
-        
+
         // ESC key to close
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && modal.classList.contains('active')) {
@@ -464,9 +464,9 @@
     function showProjectModal(projectId) {
         const project = PROJECTS_DATA.find(p => p.id == projectId);
         if (!project || !elements.projectModal) return;
-        
+
         const modalBody = elements.projectModal.querySelector('.modal-body');
-        
+
         modalBody.innerHTML = `
             <div class="modal-header">
                 <img src="${project.image}" alt="${project.title}" class="modal-image">
@@ -482,9 +482,9 @@
                 <div class="modal-tech">
                     <h3>Technologies Used:</h3>
                     <div class="tech-list">
-                        ${project.technologies.map(tech => 
-                            `<span class="tech-tag">${tech}</span>`
-                        ).join('')}
+                        ${project.technologies.map(tech =>
+            `<span class="tech-tag">${tech}</span>`
+        ).join('')}
                     </div>
                 </div>
                 <div class="modal-actions">
@@ -507,7 +507,7 @@
                 </div>
             </div>
         `;
-        
+
         // Show modal
         elements.projectModal.classList.add('active');
         document.body.style.overflow = 'hidden';
@@ -518,7 +518,7 @@
      */
     function closeModal() {
         if (!elements.projectModal) return;
-        
+
         elements.projectModal.classList.remove('active');
         document.body.style.overflow = '';
     }
@@ -528,7 +528,7 @@
      */
     function lazyLoadImages() {
         const images = elements.projectsGrid.querySelectorAll('img[loading="lazy"]');
-        
+
         if ('IntersectionObserver' in window) {
             const imageObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -539,7 +539,7 @@
                     }
                 });
             });
-            
+
             images.forEach(img => imageObserver.observe(img));
         }
     }
@@ -549,9 +549,9 @@
      */
     function formatDate(dateString) {
         const date = new Date(dateString + '-01');
-        return date.toLocaleDateString('en-US', { 
-            month: 'short', 
-            year: 'numeric' 
+        return date.toLocaleDateString('en-US', {
+            month: 'short',
+            year: 'numeric'
         });
     }
 
