@@ -24,38 +24,35 @@
  
   "skills": {
     "Programming Languages": [
-      {"name": "Python (Core)", "level": 60, "icon": "fab fa-python", "color": "#3776ab", "experience": "7 months"},
-      {"name": "JavaScript", "level": 30, "icon": "fab fa-js", "color": "#f7df1e", "experience": "2 months"},
+      {"name": "Core Python", "level": 60, "icon": "fab fa-python", "color": "#3776ab", "experience": "Intermediate"},
+      {"name": "JavaScript", "level": 30, "icon": "fab fa-js", "color": "#f7df1e", "experience": "Basic"},
       {"name": "PHP", "level": 10, "icon": "fab fa-php", "color": "#777bb4", "experience": "Learnt At College"},
-      {"name": "HTML/CSS", "level": 50, "icon": "fab fa-html5", "color": "#e34c26", "experience": "5 months"}
+      {"name": "HTML/CSS", "level": 50, "icon": "fab fa-html5", "color": "#e34c26", "experience": "Intermediate"}
     ],
     "Automation & Scraping": [
-      {"name": "Selenium", "level": 60, "icon": "fas fa-browser", "color": "#43b02a", "experience": "1 months"},
-      {"name": "BeautifulSoup", "level": 30, "icon": "fas fa-spider", "color": "#306998", "experience": "1 months"},
+      {"name": "Selenium", "level": 30, "icon": "fas fa-browser", "color": "#43b02a", "experience": "Basic"},
+      {"name": "BeautifulSoup", "level": 30, "icon": "fas fa-spider", "color": "#306998", "experience": "Basic"},
       {"name": "Scrapy", "level": 10, "icon": "fas fa-network-wired", "color": "#60a839", "experience": "<1 months"},
       {"name": "Requests", "level": 50, "icon": "fas fa-globe", "color": "#3776ab", "experience": "5 months"}
     ],
     "Frameworks & Libraries": [
-      {"name": "Flask", "level": 5, "icon": "fas fa-flask", "color": "#000000", "experience": "<1 months"},
-      {"name": "FastAPI", "level": 55, "experience": "3 months"},
-      {"name": "Django", "level": 30, "experience": "Planning to learn"}
+      {"name": "Flask", "level": 5, "icon": "fas fa-flask", "color": "#000000", "experience": "Just Started"},
+      {"name": "Django", "level": 0, "experience": "Planning to learn"}
     ],
     "Databases": [
-      {"name": "MySQL", "level": 60, "experience": "5 months"},
-      {"name": "MongoDB", "level": 55, "experience": "4 months"},
-      {"name": "SQLite", "level": 65, "experience": "6 months"}
+      {"name": "MySQL", "level": 40, "experience": "Basic"},
+      {"name": "MongoDB", "level": 35, "experience": "Basic"}
     ],
     "Tools & Technologies": [
-      {"name": "Git & GitHub", "level": 60, "icon": "fab fa-git-alt", "color": "#f05032", "experience": "5 months"},
-      {"name": "VS Code", "level": 80, "icon": "fas fa-code", "color": "#007acc", "experience": "8 months"},
-      {"name": "ChatGPT", "level": 75, "experience": "6 months"},
-      {"name": "Chat Bots", "level": 55, "icon": "fas fa-robot", "color": "#74aa9c", "experience": "6 months"}
+      {"name": "Git & GitHub", "level": 60, "icon": "fab fa-git-alt", "color": "#f05032", "experience": "Intermediate"},
+      {"name": "VS Code", "level": 80, "icon": "fas fa-code", "color": "#007acc", "experience": "2+ years"},
+      {"name": "Chat Bots", "level": 55, "icon": "fas fa-robot", "color": "#74aa9c", "experience": "6+ months"}
     ],
     "Data Analysis": [
       {"name": "Pandas", "level": 10, "icon": "fas fa-chart-line", "color": "#130754", "experience": "<1 months"},
       {"name": "NumPy", "level": 10, "icon": "fas fa-calculator", "color": "#013243", "experience": "<1 months"},
       {"name": "Power BI", "level": 30, "icon": "fas fa-chart-bar", "color": "#f2c811", "experience": "<1 months"},
-      {"name": "Excel", "level": 40, "icon": "fas fa-file-excel", "color": "#217346", "experience": "6 months"}
+      {"name": "Excel", "level": 40, "icon": "fas fa-file-excel", "color": "#217346", "experience": "Intermediate"}
     ]
   },
  
@@ -64,19 +61,19 @@
       "id": 1,
       "title": "API/Web Scraping Suite",
       "category": "automation",
-      "description": "15+ Private automation tools for Netflix, Outlook, ChatGPT and more.",
+      "description": "16+ Private automation tools for Netflix, Outlook, ChatGPT and more.",
       "features": [
         "Netflix automation",
         "Outlook automation",
         "ChatGPT integration",
         "15+ private tools"
       ],
-      "technologies": ["Python", "Requests", "Selenium", "API"],
+      "technologies": ["Python", "Requests", "Undecteted", "Selenium", "API"],
       "github": null,
       "demo": null,
       "image": "/assets/images/projects/api-suite.jpg",
       "status": "private",
-      "date": "2024-01",
+      "date": "2025-01",
       "featured": true,
       "private": true
     },
@@ -84,7 +81,7 @@
       "id": 2,
       "title": "Bot Ecosystem",
       "category": "bot",
-      "description": "Telegram & Discord bots for workflow automation and UX enhancement.",
+      "description": "Telegram & Discord bots for workflow automation, giveaways, moderations and games.",
       "features": [
         "Workflow automation",
         "User experience enhancement",
@@ -104,19 +101,20 @@
       "id": 3,
       "title": "CMS Platform",
       "category": "web",
-      "description": "Full-featured Content Management System web platform.",
+      "description": "Static but full fledge Content Management System web platform. It is fully json based so easy to update items in site.",
       "features": [
         "Content management",
         "JSON-based data",
         "Responsive design",
-        "Easy updates"
+        "Easy updates",
+        "Static"
       ],
-      "technologies": ["Frontend", "JSON"],
+      "technologies": ["Frontend", "JSON", "Github"],
       "github": "https://github.com/bijay085/Projects/tree/master/CMS%20Site",
       "demo": "https://flamemodparadise.github.io/My-Site/",
       "image": "/assets/images/projects/cms-platform.jpg",
       "status": "completed",
-      "date": "2023-11",
+      "date": "2025-01",
       "featured": true,
       "private": false
     },
@@ -124,7 +122,7 @@
       "id": 4,
       "title": "Gamified Learning Progress Tracker",
       "category": "web",
-      "description": "Interactive progress tracking with gamification elements for motivation.",
+      "description": "Interactive progress tracking with gamification elements like automatic badges, modern profiles and charts for motivation and refreshment.",
       "features": [
         "Gamification elements",
         "Progress tracking",
@@ -144,7 +142,7 @@
       "id": 5,
       "title": "FraudShield System",
       "category": "web",
-      "description": "E-commerce fraud detection with rule-based transaction monitoring.",
+      "description": "E-commerce fraud detection with rule-based transaction monitoring which return fraud score and reasons.",
       "features": [
         "Fraud detection",
         "Transaction monitoring",
@@ -156,7 +154,7 @@
       "demo": null,
       "image": "/assets/images/projects/fraudshield.jpg",
       "status": "completed",
-      "date": "2024-01",
+      "date": "2025-09",
       "featured": true,
       "private": false
     }
@@ -174,7 +172,7 @@
         "Real-time monitoring",
         "Data cleaning"
       ],
-      "price_range": "$200 - $2000"
+      "price_range": "$15 to $200"
     },
     {
       "id": 2,
@@ -187,7 +185,7 @@
         "Auto-moderation",
         "Analytics"
       ],
-      "price_range": "$300 - $1500"
+      "price_range": "$15 to $100"
     },
     {
       "id": 3,
@@ -200,20 +198,20 @@
         "Integration setup",
         "Monitoring"
       ],
-      "price_range": "$150 - $1000"
+      "price_range": "$20 - $200"
     },
     {
       "id": 4,
       "title": "Data Analysis",
       "icon": "fas fa-chart-line",
-      "description": "Transform raw data into actionable insights with Python-based analysis.",
+      "description": "Transform raw data into actionable insights with Python-based analysis or excel or powerbi (used as required).",
       "features": [
         "Data cleaning",
         "Statistical analysis",
         "Visualization",
         "Reporting"
       ],
-      "price_range": "$200 - $800"
+      "price_range": "$100 - $800"
     },
     {
       "id": 5,
@@ -224,9 +222,11 @@
         "RESTful design",
         "Authentication",
         "Documentation",
-        "Testing"
+        "Testing",
+        "API pentesting",
+        "Website pentesting"
       ],
-      "price_range": "$500 - $2500"
+      "price_range": "$100 - $800"
     },
     {
       "id": 6,
@@ -237,7 +237,7 @@
         "Strategy planning",
         "Tool selection",
         "Code review",
-        "Training"
+        "Idea Sharing"
       ],
       "price_range": "$50 - $150/hour"
     }
@@ -248,22 +248,22 @@
       "title": "Freelance Developer",
       "company": "Self-Employed",
       "period": "2024 - Present",
-      "description": "Building automation tools and web scraping solutions for clients.",
+      "description": "Building automation tools, web scraping solutions, bots, scripts for clients.",
       "achievements": [
-        "Completed 5+ projects",
+        "Completed 18+ projects",
         "Earned $200+ in revenue",
-        "Developed automation tools that save hours of manual work"
+        "Developed many python tools and scripts as client requirements."
       ]
     }
   ],
  
   "education": [
     {
-      "degree": "Bachelor in Computer Science",
-      "institution": "University Name",
-      "period": "2020 - 2024",
+      "degree": "Bachelor in Computer Application",
+      "institution": "Nepal Mega College",
+      "period": "2021 - 2026",
       "status": "Pursuing",
-      "focus": "Data Science & Automation"
+      "focus": "Application"
     }
   ],
  
@@ -271,45 +271,24 @@
     {
       "name": "Python Programming",
       "issuer": "Coursera",
-      "date": "2022",
-      "credential": "CERT123456"
-    },
-    {
-      "name": "Web Scraping with Python",
-      "issuer": "Udemy",
-      "date": "2022",
-      "credential": "UC-abc123"
-    },
-    {
-      "name": "Data Analysis with Pandas",
-      "issuer": "DataCamp",
       "date": "2023",
-      "credential": "DC-xyz789"
-    }
-  ],
- 
-  "testimonials": [
-    {
-      "name": "Client Name",
-      "position": "CEO, Company",
-      "text": "Bijay delivered exceptional automation solutions that saved us countless hours.",
-      "rating": 5
+      "credential": ""
     },
     {
-      "name": "Another Client",
-      "position": "Marketing Manager",
-      "text": "The web scraping tool Bijay built helped us gather competitive intelligence efficiently.",
-      "rating": 5
+      "name": "Data Analysis Beginner",
+      "issuer": "Coursera",
+      "date": "2024",
+      "credential": ""
     }
   ],
  
   "stats": {
-    "projects_completed": 5,
-    "clients_served": 3,
+    "projects_completed": 20,
+    "clients_served": 35,
     "revenue_earned": 200,
     "months_experience": 8,
     "response_time": "< 24 hours",
-    "availability": "Available for hire"
+    "availability": "Available for hire or job"
   },
  
   "settings": {

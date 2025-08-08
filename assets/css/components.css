@@ -157,7 +157,7 @@
 .service-features li:hover i,
 .skill-category:hover .category-title i,
 .stat-card:hover i {
-    transform: scale(1.2) rotate(360deg);
+    transform: scale(1.1);
 }
 
 /* Shared gradient text */
@@ -692,7 +692,7 @@
 }
 
 .project-link:hover {
-    transform: scale(1.2) rotate(360deg);
+    transform: scale(1.2) ;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
@@ -804,10 +804,9 @@
 .service-card:hover .service-icon {
     background: var(--gradient-primary);
     color: white;
-    transform: rotateY(360deg) scale(1.1);
+    transform: scale(1.1);  /* Removed rotateY(360deg) */
     box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
 }
-
 .service-title {
     font-size: var(--text-xl);
     font-weight: var(--font-semibold);
@@ -1480,7 +1479,7 @@
 .contact-item:hover i {
     background: var(--gradient-primary);
     color: white;
-    transform: rotate(360deg) scale(1.1);
+    transform: scale(1.1);
 }
 
 .item-info {

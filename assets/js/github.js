@@ -3,10 +3,9 @@
  * File: /htdocs/assets/js/github.js
  * Handles GitHub API integration and stats display
  */
-
 (function() {
     'use strict';
-
+    
     // Configuration
     const CONFIG = {
         username: 'bijay085',
@@ -15,6 +14,8 @@
         enableCache: true,
         retryAttempts: 3,
         retryDelay: 1000,
+        // Hidden repositories (won't show in activity or recent repos)
+        hiddenRepos: ['License'],
         // GitHub Stats Card Configuration
         statsTheme: 'radical',
         statsOptions: {
@@ -24,7 +25,6 @@
             include_all_commits: true
         }
     };
-
     // Cache DOM elements
     const elements = {
         repoCount: null,
@@ -37,39 +37,39 @@
         recentRepos: null,
         activityFeed: null
     };
-
+    
     // State management
     let userData = null;
     let reposData = null;
     let statsCache = null;
     let isLoading = false;
-
+    
     /**
      * Initialize GitHub integration
      */
     async function init() {
         // Cache elements
         cacheElements();
-        
+       
         // Check for cached data
         if (CONFIG.enableCache) {
             loadCachedData();
         }
-        
+       
         // Fetch fresh data
         await fetchGitHubData();
-        
+       
         // Render stats
         renderStats();
-        
+       
         // Set up refresh interval
         setInterval(() => {
             fetchGitHubData();
         }, CONFIG.cacheTime);
-        
+       
         console.log('GitHub integration initialized');
     }
-
+    
     /**
      * Cache DOM elements
      */
@@ -84,7 +84,7 @@
         elements.recentRepos = document.getElementById('recent-repos');
         elements.activityFeed = document.getElementById('activity-feed');
     }
-
+    
     /**
      * Load cached data from localStorage
      */
@@ -94,7 +94,7 @@
             if (cached) {
                 const data = JSON.parse(cached);
                 const now = Date.now();
-                
+               
                 if (now - data.timestamp < CONFIG.cacheTime) {
                     statsCache = data;
                     userData = data.user;
@@ -107,13 +107,13 @@
             console.error('Error loading cached data:', error);
         }
     }
-
+    
     /**
      * Save data to cache
      */
     function saveToCache() {
         if (!CONFIG.enableCache) return;
-        
+       
         try {
             const data = {
                 timestamp: Date.now(),
@@ -125,16 +125,16 @@
             console.error('Error saving to cache:', error);
         }
     }
-
+    
     /**
      * Fetch GitHub data with retry logic
      */
     async function fetchGitHubData() {
         if (isLoading) return;
-        
+       
         isLoading = true;
         let attempts = 0;
-        
+       
         while (attempts < CONFIG.retryAttempts) {
             try {
                 // Fetch user data
@@ -142,67 +142,67 @@
                     `${CONFIG.apiUrl}/users/${CONFIG.username}`
                 );
                 userData = await userResponse.json();
-                
+               
                 // Fetch repositories
                 const reposResponse = await fetchWithTimeout(
                     `${CONFIG.apiUrl}/users/${CONFIG.username}/repos?per_page=100&sort=updated`
                 );
                 reposData = await reposResponse.json();
-                
+               
                 // Calculate additional stats
                 calculateStats();
-                
+               
                 // Save to cache
                 saveToCache();
-                
+               
                 // Render stats
                 renderStats();
-                
+               
                 isLoading = false;
                 return;
-                
+               
             } catch (error) {
                 attempts++;
                 console.error(`GitHub API attempt ${attempts} failed:`, error);
-                
+               
                 if (attempts < CONFIG.retryAttempts) {
                     await sleep(CONFIG.retryDelay * attempts);
                 }
             }
         }
-        
+       
         isLoading = false;
         console.error('Failed to fetch GitHub data after all attempts');
     }
-
+    
     /**
      * Fetch with timeout
      */
     function fetchWithTimeout(url, timeout = 5000) {
         return Promise.race([
             fetch(url),
-            new Promise((_, reject) => 
+            new Promise((_, reject) =>
                 setTimeout(() => reject(new Error('Request timeout')), timeout)
             )
         ]);
     }
-
+    
     /**
      * Calculate additional statistics
      */
     function calculateStats() {
         if (!reposData || !Array.isArray(reposData)) return;
-        
+       
         // Calculate total stars
-        const totalStars = reposData.reduce((sum, repo) => 
+        const totalStars = reposData.reduce((sum, repo) =>
             sum + (repo.stargazers_count || 0), 0
         );
-        
+       
         // Calculate total forks
-        const totalForks = reposData.reduce((sum, repo) => 
+        const totalForks = reposData.reduce((sum, repo) =>
             sum + (repo.forks_count || 0), 0
         );
-        
+       
         // Get language statistics
         const languages = {};
         reposData.forEach(repo => {
@@ -210,7 +210,7 @@
                 languages[repo.language] = (languages[repo.language] || 0) + 1;
             }
         });
-        
+       
         // Store calculated stats
         if (userData) {
             userData.total_stars = totalStars;
@@ -218,76 +218,76 @@
             userData.languages = languages;
         }
     }
-
+    
     /**
      * Render statistics to DOM
      */
     function renderStats() {
         if (!userData) return;
-        
+       
         // Update stat cards
         updateStatCard(elements.repoCount, userData.public_repos);
         updateStatCard(elements.starCount, userData.total_stars || 0);
         updateStatCard(elements.forkCount, userData.total_forks || 0);
         updateStatCard(elements.followerCount, userData.followers);
-        
+       
         // Update GitHub stats images
         updateGitHubCharts();
-        
+       
         // Render recent repositories
         if (reposData && elements.recentRepos) {
             renderRecentRepos();
         }
-        
+       
         // Render activity feed
         if (elements.activityFeed) {
             renderActivityFeed();
         }
-        
+       
         // Dispatch custom event
         window.dispatchEvent(new CustomEvent('githubStatsLoaded', {
             detail: { user: userData, repos: reposData }
         }));
     }
-
+    
     /**
      * Update stat card with animation
      */
     function updateStatCard(element, value) {
         if (!element) return;
-        
+       
         const currentValue = parseInt(element.textContent) || 0;
         const targetValue = value || 0;
-        
+       
         // Animate counter
         animateCounter(element, currentValue, targetValue, 1000);
     }
-
+    
     /**
      * Animate counter from current to target value
      */
     function animateCounter(element, from, to, duration) {
         const start = Date.now();
         const range = to - from;
-        
+       
         const update = () => {
             const elapsed = Date.now() - start;
             const progress = Math.min(elapsed / duration, 1);
-            
+           
             // Easing function
             const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-            
+           
             const current = Math.floor(from + range * easeOutQuart);
             element.textContent = formatNumber(current);
-            
+           
             if (progress < 1) {
                 requestAnimationFrame(update);
             }
         };
-        
+       
         update();
     }
-
+    
     /**
      * Format number with K/M suffix
      */
@@ -299,7 +299,7 @@
         }
         return num.toString();
     }
-
+    
     /**
      * Update GitHub chart images
      */
@@ -309,7 +309,7 @@
             const statsUrl = `https://github-readme-stats.vercel.app/api?username=${CONFIG.username}&theme=${CONFIG.statsTheme}&show_icons=true&count_private=true&include_all_commits=true`;
             elements.githubChart.src = statsUrl;
             elements.githubChart.alt = 'GitHub Stats';
-            
+           
             // Handle load error
             elements.githubChart.onerror = () => {
                 elements.githubChart.style.display = 'none';
@@ -319,14 +319,14 @@
                 elements.githubChart.parentElement.appendChild(fallback);
             };
         }
-        
+       
         // Language Stats Card
         if (elements.languageChart) {
             const langUrl = `https://github-readme-stats.vercel.app/api/top-langs/?username=${CONFIG.username}&layout=compact&theme=${CONFIG.statsTheme}`;
             elements.languageChart.src = langUrl;
             elements.languageChart.alt = 'Top Languages';
         }
-        
+       
         // Contribution Streak Card
         if (elements.contributionsChart) {
             const streakUrl = `https://github-readme-streak-stats.herokuapp.com/?user=${CONFIG.username}&theme=${CONFIG.statsTheme}`;
@@ -334,13 +334,13 @@
             elements.contributionsChart.alt = 'GitHub Streak';
         }
     }
-
+    
     /**
      * Create fallback stats display
      */
     function createStatsFallback() {
         if (!userData) return '';
-        
+       
         return `
             <div class="github-stats-fallback">
                 <h3>${userData.name || CONFIG.username}'s GitHub Stats</h3>
@@ -365,19 +365,19 @@
             </div>
         `;
     }
-
+    
     /**
      * Render recent repositories
      */
     function renderRecentRepos() {
         if (!reposData || !elements.recentRepos) return;
-        
-        // Sort by updated date and get top 6
+       
+        // Sort by updated date, filter out forks and hidden repos, then get top 6
         const recentRepos = reposData
-            .filter(repo => !repo.fork)
+            .filter(repo => !repo.fork && !CONFIG.hiddenRepos.includes(repo.name))
             .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
             .slice(0, 6);
-        
+       
         elements.recentRepos.innerHTML = `
             <h3 class="github-section-title">Recent Repositories</h3>
             <div class="repos-grid">
@@ -385,7 +385,7 @@
             </div>
         `;
     }
-
+    
     /**
      * Create repository card HTML
      */
@@ -420,7 +420,7 @@
             </div>
         `;
     }
-
+    
     /**
      * Get language color
      */
@@ -437,33 +437,40 @@
             Shell: '#89e051',
             Ruby: '#701516'
         };
-        
+       
         return colors[language] || '#586069';
     }
-
+    
     /**
      * Render activity feed
      */
     async function renderActivityFeed() {
         if (!elements.activityFeed) return;
-        
+       
         try {
             const response = await fetch(
-                `${CONFIG.apiUrl}/users/${CONFIG.username}/events/public?per_page=10`
+                `${CONFIG.apiUrl}/users/${CONFIG.username}/events/public?per_page=15`
             );
             const events = await response.json();
             
+            // Filter out events from hidden repositories
+            const filteredEvents = events.filter(event => {
+                // Check if the repository name (without username) is in the hidden list
+                const repoName = event.repo.name.split('/')[1];
+                return !CONFIG.hiddenRepos.includes(repoName);
+            });
+           
             elements.activityFeed.innerHTML = `
                 <h3 class="github-section-title">Recent Activity</h3>
                 <div class="activity-list">
-                    ${events.slice(0, 5).map(event => createActivityItem(event)).join('')}
+                    ${filteredEvents.slice(0, 5).map(event => createActivityItem(event)).join('')}
                 </div>
             `;
         } catch (error) {
             console.error('Error fetching activity:', error);
         }
     }
-
+    
     /**
      * Create activity item HTML
      */
@@ -476,11 +483,11 @@
             IssuesEvent: { icon: 'fa-exclamation-circle', text: 'Opened issue in' },
             PullRequestEvent: { icon: 'fa-code-branch', text: 'Opened PR in' }
         };
-        
+       
         const eventInfo = eventTypes[event.type] || { icon: 'fa-circle', text: 'Activity in' };
         const repoName = event.repo.name;
         const time = formatTime(event.created_at);
-        
+       
         return `
             <div class="activity-item">
                 <i class="fas ${eventInfo.icon} activity-icon"></i>
@@ -494,7 +501,7 @@
             </div>
         `;
     }
-
+    
     /**
      * Format time to relative string
      */
@@ -502,11 +509,11 @@
         const date = new Date(dateString);
         const now = new Date();
         const diff = now - date;
-        
+       
         const minutes = Math.floor(diff / 60000);
         const hours = Math.floor(diff / 3600000);
         const days = Math.floor(diff / 86400000);
-        
+       
         if (minutes < 60) {
             return `${minutes} minute${minutes !== 1 ? 's' : ''} ago`;
         } else if (hours < 24) {
@@ -517,14 +524,14 @@
             return date.toLocaleDateString();
         }
     }
-
+    
     /**
      * Sleep utility function
      */
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
-
+    
     /**
      * Public API
      */
@@ -540,12 +547,11 @@
             followers: userData?.followers || 0
         })
     };
-
+    
     // Auto-initialize when DOM is ready
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
     } else {
         init();
     }
-
 })();

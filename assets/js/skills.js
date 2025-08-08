@@ -20,28 +20,28 @@
     // Hardcoded fallback data (matching your experience level)
     const FALLBACK_SKILLS = {
         'Programming Languages': [
-            { name: 'Python', level: 60, icon: 'fab fa-python', color: '#3776ab', experience: '7 months' },
-            { name: 'JavaScript', level: 30, icon: 'fab fa-js', color: '#f7df1e', experience: '2 months' },
+            { name: 'Python(core)', level: 60, icon: 'fab fa-python', color: '#3776ab', experience: 'Intermediate' },
+            { name: 'JavaScript', level: 30, icon: 'fab fa-js', color: '#f7df1e', experience: 'Basic' },
             { name: 'PHP', level: 10, icon: 'fab fa-php', color: '#777bb4', experience: 'Learnt At College' },
-            { name: 'HTML/CSS', level: 50, icon: 'fab fa-html5', color: '#e34c26', experience: '5 months' }
+            { name: 'HTML/CSS', level: 50, icon: 'fab fa-html5', color: '#e34c26', experience: 'Intermediate' }
         ],
         'Automation & Scraping': [
-            { name: 'Selenium', level: 60, icon: 'fas fa-browser', color: '#43b02a', experience: '1 months' },
-            { name: 'BeautifulSoup', level: 30, icon: 'fas fa-spider', color: '#306998', experience: '1 months' },
+            { name: 'Selenium', level: 60, icon: 'fas fa-browser', color: '#43b02a', experience: 'Basic' },
+            { name: 'BeautifulSoup', level: 30, icon: 'fas fa-spider', color: '#306998', experience: 'Basic' },
             { name: 'Scrapy', level: 10, icon: 'fas fa-network-wired', color: '#60a839', experience: '<1 months' },
             { name: 'Requests', level: 50, icon: 'fas fa-globe', color: '#3776ab', experience: '5 months' }
         ],
         'Tools & Technologies': [
-            { name: 'Git & GitHub', level: 60, icon: 'fab fa-git-alt', color: '#f05032', experience: '5 months' },
-            { name: 'VS Code', level: 80, icon: 'fas fa-code', color: '#007acc', experience: '8 months' },
-            { name: 'Flask', level: 5, icon: 'fas fa-flask', color: '#000000', experience: '<1 months' },
+            { name: 'Git & GitHub', level: 60, icon: 'fab fa-git-alt', color: '#f05032', experience: 'Intermediate' },
+            { name: 'VS Code', level: 80, icon: 'fas fa-code', color: '#007acc', experience: '2+ years' },
+            { name: 'Flask', level: 5, icon: 'fas fa-flask', color: '#000000', experience: 'Just Started' },
             { name: 'Chat Bots', level: 55, icon: 'fas fa-robot', color: '#74aa9c', experience: '6 months' }
         ],
         'Data Analysis': [
             { name: 'Pandas', level: 10, icon: 'fas fa-chart-line', color: '#130754', experience: '<1 months' },
             { name: 'NumPy', level: 10, icon: 'fas fa-calculator', color: '#013243', experience: '<1 months' },
-            { name: 'Power BI', level: 30, icon: 'fas fa-chart-bar', color: '#f2c811', experience: '<1 months' },
-            { name: 'Excel', level: 40, icon: 'fas fa-file-excel', color: '#217346', experience: '6 months' }
+            { name: 'Power BI', level: 30, icon: 'fas fa-chart-bar', color: '#f2c811', experience: 'Basic' },
+            { name: 'Excel', level: 50, icon: 'fas fa-file-excel', color: '#217346', experience: 'Intermediate' }
         ]
     };
 
