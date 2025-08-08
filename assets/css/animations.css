@@ -106,45 +106,6 @@
     }
 }
 
-/* Rotation Animations */
-@keyframes rotate {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-@keyframes rotateIn {
-    from {
-        opacity: 0;
-        transform: rotate(-180deg);
-    }
-    to {
-        opacity: 1;
-        transform: rotate(0deg);
-    }
-}
-
-@keyframes swing {
-    20% {
-        transform: rotate(15deg);
-    }
-    40% {
-        transform: rotate(-10deg);
-    }
-    60% {
-        transform: rotate(5deg);
-    }
-    80% {
-        transform: rotate(-5deg);
-    }
-    100% {
-        transform: rotate(0deg);
-    }
-}
-
 /* Slide Animations */
 @keyframes slideInLeft {
     from {
@@ -238,92 +199,6 @@
     }
     75% {
         transform: scale(1.05, 0.95);
-    }
-}
-
-/* Shake Animations */
-@keyframes shake {
-    10%, 90% {
-        transform: translateX(-1px);
-    }
-    20%, 80% {
-        transform: translateX(2px);
-    }
-    30%, 50%, 70% {
-        transform: translateX(-4px);
-    }
-    40%, 60% {
-        transform: translateX(4px);
-    }
-}
-
-@keyframes jello {
-    0%, 100% {
-        transform: skewX(0deg);
-    }
-    11% {
-        transform: skewX(-12.5deg);
-    }
-    22% {
-        transform: skewX(6.25deg);
-    }
-    33% {
-        transform: skewX(-3.125deg);
-    }
-    44% {
-        transform: skewX(1.5625deg);
-    }
-    55% {
-        transform: skewX(-0.78125deg);
-    }
-    66% {
-        transform: skewX(0.390625deg);
-    }
-    77% {
-        transform: skewX(-0.1953125deg);
-    }
-}
-
-/* Flip Animations */
-@keyframes flipInX {
-    from {
-        transform: perspective(400px) rotateX(90deg);
-        opacity: 0;
-    }
-    40% {
-        transform: perspective(400px) rotateX(-20deg);
-    }
-    60% {
-        transform: perspective(400px) rotateX(10deg);
-        opacity: 1;
-    }
-    80% {
-        transform: perspective(400px) rotateX(-5deg);
-    }
-    to {
-        transform: perspective(400px) rotateX(0deg);
-        opacity: 1;
-    }
-}
-
-@keyframes flipInY {
-    from {
-        transform: perspective(400px) rotateY(90deg);
-        opacity: 0;
-    }
-    40% {
-        transform: perspective(400px) rotateY(-20deg);
-    }
-    60% {
-        transform: perspective(400px) rotateY(10deg);
-        opacity: 1;
-    }
-    80% {
-        transform: perspective(400px) rotateY(-5deg);
-    }
-    to {
-        transform: perspective(400px) rotateY(0deg);
-        opacity: 1;
     }
 }
 
@@ -578,10 +453,6 @@
 
 .animate-jello {
     animation: jello 1s ease-out;
-}
-
-.animate-shake {
-    animation: shake 0.5s ease-out;
 }
 
 /* Hover Animations */
