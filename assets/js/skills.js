@@ -1,5 +1,5 @@
 /**
- * SKILLS SECTION MANAGEMENT
+ * SKILLS SECTION MANAGEMENT - COMPLETE WORKING VERSION
  * File: /htdocs/assets/js/skills.js
  * Handles skills display, animations, and filtering
  */
@@ -81,6 +81,7 @@
                                 'MongoDB': { icon: 'fas fa-database', color: '#47a248' },
                                 'SQLite': { icon: 'fas fa-database', color: '#003b57' },
                                 'ChatGPT': { icon: 'fas fa-robot', color: '#74aa9c' },
+                                'Chat Bots': { icon: 'fas fa-robot', color: '#74aa9c' },
                                 'Pandas': { icon: 'fas fa-chart-line', color: '#130754' },
                                 'NumPy': { icon: 'fas fa-calculator', color: '#013243' },
                                 'Power BI': { icon: 'fas fa-chart-bar', color: '#f2c811' },
@@ -180,6 +181,9 @@
         
         // Cache skill items
         elements.skillItems = document.querySelectorAll('.skill-item');
+        
+        // Initialize progress bars after rendering
+        initializeProgressBars();
     }
 
     /**
@@ -224,15 +228,18 @@
         skillItem.dataset.level = skill.level;
         skillItem.dataset.index = index;
         
-        // Build skill HTML
+        // Build skill HTML with inline styles for progress bar
         skillItem.innerHTML = `
-            <div class="skill-icon" style="background: ${skill.color};">
+            <div class="skill-icon" style="background: ${skill.color}20; color: ${skill.color};">
                 <i class="${skill.icon}"></i>
             </div>
             <div class="skill-info">
                 <h4 class="skill-name">${skill.name}</h4>
-                <div class="skill-bar">
-                    <div class="skill-progress" data-level="${skill.level}"></div>
+                <div class="skill-bar" style="height: 8px; background: rgba(255,255,255,0.1); border-radius: 999px; overflow: hidden; position: relative; margin-top: 8px;">
+                    <div class="skill-progress" 
+                         data-level="${skill.level}" 
+                         style="height: 100%; width: 0%; background: linear-gradient(90deg, ${skill.color}, ${skill.color}dd); border-radius: 999px; transition: width 1.5s ease; position: relative;">
+                    </div>
                 </div>
                 <span class="skill-percent">${skill.level}%</span>
                 ${CONFIG.enableTooltips ? `
@@ -268,6 +275,39 @@
     }
 
     /**
+     * Initialize progress bars
+     */
+    function initializeProgressBars() {
+        const progressBars = document.querySelectorAll('.skill-progress');
+        
+        // Use Intersection Observer for animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const progressBar = entry.target;
+                    const level = progressBar.dataset.level;
+                    
+                    // Trigger animation after a small delay
+                    setTimeout(() => {
+                        progressBar.style.width = level + '%';
+                    }, 200);
+                    
+                    // Stop observing after animation
+                    observer.unobserve(progressBar);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
+        // Observe all progress bars
+        progressBars.forEach(bar => {
+            observer.observe(bar);
+        });
+    }
+
+    /**
      * Set up event listeners
      */
     function setupEventListeners() {
@@ -293,90 +333,7 @@
      * Set up animations
      */
     function setupAnimations() {
-        // Create intersection observer for scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        animationObserver = new IntersectionObserver(handleSkillIntersection, observerOptions);
-        
-        // Observe all skill items
-        elements.skillItems.forEach(item => {
-            animationObserver.observe(item);
-        });
-    }
-
-    /**
-     * Handle skill intersection for animations
-     */
-    function handleSkillIntersection(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting && !isAnimated.has(entry.target)) {
-                const skillItem = entry.target;
-                const delay = skillItem.dataset.index * CONFIG.animationDelay;
-                
-                setTimeout(() => {
-                    animateSkill(skillItem);
-                    isAnimated.add(skillItem);
-                }, delay);
-                
-                animationObserver.unobserve(skillItem);
-            }
-        });
-    }
-
-    /**
-     * Animate individual skill
-     */
-    function animateSkill(skillItem) {
-        // Fade in animation
-        skillItem.style.opacity = '0';
-        skillItem.style.transform = 'translateY(20px)';
-        
-        requestAnimationFrame(() => {
-            skillItem.style.transition = `opacity 0.5s ease, transform 0.5s ease`;
-            skillItem.style.opacity = '1';
-            skillItem.style.transform = 'translateY(0)';
-        });
-        
-        // Animate progress bar
-        const progressBar = skillItem.querySelector('.skill-progress');
-        if (progressBar) {
-            const level = progressBar.dataset.level;
-            
-            setTimeout(() => {
-                progressBar.style.transition = `width ${CONFIG.animationDuration}ms ${CONFIG.progressAnimationEasing}`;
-                progressBar.style.width = `${level}%`;
-            }, 300);
-        }
-        
-        // Animate percentage counter
-        const percentElement = skillItem.querySelector('.skill-percent');
-        if (percentElement) {
-            animatePercentage(percentElement, skillItem.dataset.level);
-        }
-    }
-
-    /**
-     * Animate percentage counter
-     */
-    function animatePercentage(element, target) {
-        let current = 0;
-        const increment = target / (CONFIG.animationDuration / 16);
-        
-        function update() {
-            current += increment;
-            
-            if (current < target) {
-                element.textContent = `${Math.floor(current)}%`;
-                requestAnimationFrame(update);
-            } else {
-                element.textContent = `${target}%`;
-            }
-        }
-        
-        update();
+        // Animation is handled in initializeProgressBars()
     }
 
     /**
@@ -523,7 +480,6 @@
         init: init,
         renderSkills: renderSkills,
         filterSkills: filterSkills,
-        animateSkill: animateSkill,
         getSkillsData: () => SKILLS_DATA,
         updateSkillLevel: (skillName, newLevel) => {
             const skill = document.querySelector(`[data-skill="${skillName.toLowerCase()}"]`);
