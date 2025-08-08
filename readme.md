@@ -404,21 +404,38 @@ Remember: Building a portfolio is an iterative process. Start with the basics an
 
 Good luck with your portfolio! 🎉
 
-
 /htdocs/
-  ├── index.html (this file)
-  ├── assets/
-  │   ├── css/
-  │   │   └── style.css (we'll create next)
-  │   ├── js/
-  │   │   └── main.js (we'll create after CSS)
-  │   ├── images/
-  │   │   ├── profile.jpg
-  │   │   ├── favicon.ico
-  │   │   └── projects/
-  │   │       ├── project1.jpg
-  │   │       ├── project2.jpg
-  │   │       ├── project3.jpg
-  │   │       └── project4.jpg
-  │   └── resume/
-  │       └── resume.pdf
+├── index.html                    # ONLY HTML - no inline CSS/JS
+├── robots.txt
+├── sitemap.xml
+├── .htaccess
+│
+├── /assets/
+│   ├── /css/
+│   │   ├── critical.css        # Critical styles (linked, not inline)
+│   │   ├── main.css            # Main styles
+│   │   ├── animations.css      # Animations separate
+│   │   ├── responsive.css      # Media queries separate
+│   │   └── theme.css           # Theme variables
+│   │
+│   ├── /js/
+│   │   ├── preloader.js        # Preloader logic
+│   │   ├── navigation.js       # Navigation logic
+│   │   ├── animations.js       # All animations
+│   │   ├── theme.js            # Theme switcher
+│   │   ├── terminal.js         # Terminal component
+│   │   ├── projects.js         # Projects loader
+│   │   ├── contact.js          # Contact form
+│   │   ├── github.js           # GitHub stats
+│   │   └── main.js             # Initialize everything
+│   │
+│   ├── /images/
+│   │   ├── profile.webp
+│   │   ├── projects/
+│   │   └── favicon.ico
+│   │
+│   └── /data/
+│       └── portfolio.json       # All dynamic data
+│
+└── /api/
+    └── contact.php             # Form processing only

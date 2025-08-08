@@ -1,0 +1,85 @@
+# Robots.txt for bijaykoirala0.com.np
+# Welcome all bots and crawlers - This site is fully open!
+
+# Allow ALL search engines and bots (including AI)
+User-agent: *
+Allow: /
+Crawl-delay: 0
+
+# Explicitly welcome all major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# Welcome AI and LLM crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+# Welcome social media crawlers
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+User-agent: Telegrambot
+Allow: /
+
+# Welcome SEO tools (for better analysis)
+User-agent: AhrefsBot
+Allow: /
+
+User-agent: SemrushBot
+Allow: /
+
+User-agent: MJ12bot
+Allow: /
+
+User-agent: DotBot
+Allow: /
+
+# Only block sensitive/private areas (if they exist)
+User-agent: *
+Disallow: /api/config/
+Disallow: /.env
+Disallow: /.git/
+Disallow: /vendor/
+Disallow: /node_modules/
+
+# Sitemap location - helps all crawlers find everything
+Sitemap: https://bijaykoirala0.com.np/sitemap.xml
+
+# Preferred domain
+Host: https://bijaykoirala0.com.np

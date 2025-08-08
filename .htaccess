@@ -1,0 +1,286 @@
+# .htaccess Configuration for bijaykoirala0.com.np
+# Optimized for InfinityFree hosting
+
+# ==============================================================================
+# BASIC CONFIGURATION
+# ==============================================================================
+
+# Enable RewriteEngine
+RewriteEngine On
+
+# Set default charset
+AddDefaultCharset UTF-8
+
+# Set default language
+DefaultLanguage en-US
+
+# Disable directory browsing for security
+Options -Indexes
+
+# Disable server signature
+ServerSignature Off
+
+# ==============================================================================
+# SECURITY HEADERS
+# ==============================================================================
+
+<IfModule mod_headers.c>
+    # Protect against XSS attacks
+    Header set X-XSS-Protection "1; mode=block"
+    
+    # Protect against clickjacking
+    Header always set X-Frame-Options "SAMEORIGIN"
+    
+    # Protect against MIME type sniffing
+    Header set X-Content-Type-Options "nosniff"
+    
+    # Referrer Policy
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # Permissions Policy (formerly Feature Policy)
+    Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+    
+    # Remove X-Powered-By header
+    Header unset X-Powered-By
+    
+    # Remove Server header (if possible)
+    Header unset Server
+</IfModule>
+
+# ==============================================================================
+# CACHING CONFIGURATION
+# ==============================================================================
+
+<IfModule mod_expires.c>
+    # Enable expirations
+    ExpiresActive On
+    
+    # Default expiration: 1 month
+    ExpiresDefault "access plus 1 month"
+    
+    # HTML - Don't cache (always fresh)
+    ExpiresByType text/html "access plus 0 seconds"
+    
+    # Data - Don't cache
+    ExpiresByType text/xml "access plus 0 seconds"
+    ExpiresByType application/xml "access plus 0 seconds"
+    ExpiresByType application/json "access plus 0 seconds"
+    
+    # Feed - Don't cache
+    ExpiresByType application/rss+xml "access plus 0 seconds"
+    ExpiresByType application/atom+xml "access plus 0 seconds"
+    
+    # Favicon - 1 week
+    ExpiresByType image/x-icon "access plus 1 week"
+    ExpiresByType image/vnd.microsoft.icon "access plus 1 week"
+    
+    # Images - 1 month
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/jpg "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/webp "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 1 month"
+    
+    # CSS and JavaScript - 1 week
+    ExpiresByType text/css "access plus 1 week"
+    ExpiresByType text/javascript "access plus 1 week"
+    ExpiresByType application/javascript "access plus 1 week"
+    
+    # Fonts - 1 month
+    ExpiresByType font/ttf "access plus 1 month"
+    ExpiresByType font/otf "access plus 1 month"
+    ExpiresByType font/woff "access plus 1 month"
+    ExpiresByType font/woff2 "access plus 1 month"
+    ExpiresByType application/font-woff "access plus 1 month"
+    ExpiresByType application/font-woff2 "access plus 1 month"
+    
+    # PDF - 1 month
+    ExpiresByType application/pdf "access plus 1 month"
+    
+    # Video - 1 month
+    ExpiresByType video/mp4 "access plus 1 month"
+    ExpiresByType video/webm "access plus 1 month"
+</IfModule>
+
+# Cache-Control Headers
+<IfModule mod_headers.c>
+    # 1 Year for static assets
+    <FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|webp|svg|js|css|swf|woff|woff2)$">
+        Header set Cache-Control "max-age=31536000, public, immutable"
+    </FilesMatch>
+    
+    # Don't cache HTML
+    <FilesMatch "\.(html|htm|php)$">
+        Header set Cache-Control "no-cache, no-store, must-revalidate"
+        Header set Pragma "no-cache"
+        Header set Expires 0
+    </FilesMatch>
+</IfModule>
+
+# ==============================================================================
+# COMPRESSION (GZIP)
+# ==============================================================================
+
+<IfModule mod_deflate.c>
+    # Compress HTML, CSS, JavaScript, Text, XML and fonts
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE image/svg+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/json
+    AddOutputFilterByType DEFLATE application/font-woff
+    AddOutputFilterByType DEFLATE application/font-woff2
+    
+    # Remove browser bugs for really old browsers
+    BrowserMatch ^Mozilla/4 gzip-only-text/html
+    BrowserMatch ^Mozilla/4\.0[678] no-gzip
+    BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+    Header append Vary User-Agent
+</IfModule>
+
+# ==============================================================================
+# URL REWRITING
+# ==============================================================================
+
+<IfModule mod_rewrite.c>
+    # Force HTTPS (uncomment when you have SSL)
+    # RewriteCond %{HTTPS} !on
+    # RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+    
+    # Force www (uncomment if you want www)
+    # RewriteCond %{HTTP_HOST} !^www\. [NC]
+    # RewriteRule ^(.*)$ https://www.%{HTTP_HOST}/$1 [R=301,L]
+    
+    # Remove www (uncomment if you don't want www)
+    # RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+    # RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+    
+    # Remove .html extension (clean URLs)
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^([^\.]+)$ $1.html [NC,L]
+    
+    # Remove trailing slash
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)/$ /$1 [L,R=301]
+    
+    # Block access to hidden files and directories
+    RewriteCond %{SCRIPT_FILENAME} -d [OR]
+    RewriteCond %{SCRIPT_FILENAME} -f
+    RewriteRule "(^|/)\." - [F]
+</IfModule>
+
+# ==============================================================================
+# ERROR PAGES (Create these files)
+# ==============================================================================
+
+ErrorDocument 400 /error/400.html
+ErrorDocument 403 /error/403.html
+ErrorDocument 404 /error/404.html
+ErrorDocument 500 /error/500.html
+
+# ==============================================================================
+# FILE ACCESS SECURITY
+# ==============================================================================
+
+# Protect .htaccess file
+<Files .htaccess>
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Protect configuration files
+<FilesMatch "\.(env|json|lock|gitignore|gitattributes|md)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Protect PHP files in specific directories
+<FilesMatch "^(config|vendor|node_modules)">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# ==============================================================================
+# MIME TYPES
+# ==============================================================================
+
+<IfModule mod_mime.c>
+    # JavaScript
+    AddType application/javascript js
+    
+    # Fonts
+    AddType font/woff .woff
+    AddType font/woff2 .woff2
+    AddType application/vnd.ms-fontobject .eot
+    AddType font/ttf .ttf
+    AddType font/otf .otf
+    
+    # Images
+    AddType image/webp .webp
+    AddType image/svg+xml .svg
+    
+    # Video
+    AddType video/mp4 .mp4
+    AddType video/webm .webm
+    
+    # Data
+    AddType application/json .json
+    AddType application/xml .xml
+</IfModule>
+
+# ==============================================================================
+# PERFORMANCE OPTIMIZATIONS
+# ==============================================================================
+
+# ETags (entity tags) for better caching
+FileETag MTime Size
+
+# Keep-Alive for faster subsequent requests
+<IfModule mod_headers.c>
+    Header set Connection keep-alive
+</IfModule>
+
+# ==============================================================================
+# HOTLINK PROTECTION (Prevent others from using your images)
+# ==============================================================================
+
+<IfModule mod_rewrite.c>
+    RewriteCond %{HTTP_REFERER} !^$
+    RewriteCond %{HTTP_REFERER} !^https?://(www\.)?bijaykoirala0\.com\.np [NC]
+    RewriteCond %{HTTP_REFERER} !^https?://(www\.)?google\. [NC]
+    RewriteCond %{HTTP_REFERER} !^https?://(www\.)?bing\. [NC]
+    RewriteCond %{HTTP_REFERER} !^https?://(www\.)?facebook\. [NC]
+    RewriteRule \.(jpg|jpeg|png|gif|webp|svg)$ - [F,L]
+</IfModule>
+
+# ==============================================================================
+# INFINITYFREE SPECIFIC
+# ==============================================================================
+
+# InfinityFree sometimes needs these settings
+<IfModule mod_php5.c>
+    php_value upload_max_filesize 10M
+    php_value post_max_size 10M
+    php_value max_execution_time 300
+    php_value max_input_time 300
+</IfModule>
+
+# ==============================================================================
+# CORS HEADERS (if you need cross-origin requests)
+# ==============================================================================
+
+<IfModule mod_headers.c>
+    # Allow fonts from CDNs
+    <FilesMatch "\.(ttf|ttc|otf|eot|woff|woff2|svg)$">
+        Header set Access-Control-Allow-Origin "*"
+    </FilesMatch>
+</IfModule>

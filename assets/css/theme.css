@@ -1,0 +1,496 @@
+/* ============================================
+   THEME STYLES & COLOR SCHEMES
+   File: /htdocs/assets/css/theme.css
+   ============================================ */
+
+/* ====================
+   DARK THEME (DEFAULT)
+   ==================== */
+
+[data-theme="dark"],
+body:not([data-theme]) {
+    /* Primary Palette */
+    --primary: #6366f1;
+    --primary-light: #818cf8;
+    --primary-dark: #4f46e5;
+    --primary-rgb: 99, 102, 241;
+    
+    /* Secondary Palette */
+    --secondary: #10b981;
+    --secondary-light: #34d399;
+    --secondary-dark: #059669;
+    --secondary-rgb: 16, 185, 129;
+    
+    /* Accent Colors */
+    --accent: #f59e0b;
+    --accent-light: #fbbf24;
+    --accent-dark: #d97706;
+    
+    /* Background Hierarchy */
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #111111;
+    --bg-tertiary: #1a1a1a;
+    --bg-card: #141414;
+    --bg-hover: #1f1f1f;
+    --bg-overlay: rgba(0, 0, 0, 0.7);
+    
+    /* Surface Levels */
+    --surface-1: #141414;
+    --surface-2: #1e1e1e;
+    --surface-3: #282828;
+    --surface-4: #323232;
+    
+    /* Text Hierarchy */
+    --text-primary: #ffffff;
+    --text-secondary: #a3a3a3;
+    --text-tertiary: #737373;
+    --text-muted: #525252;
+    --text-inverse: #0a0a0a;
+    
+    /* Border Colors */
+    --border-primary: #262626;
+    --border-secondary: #404040;
+    --border-light: rgba(255, 255, 255, 0.1);
+    --border-heavy: rgba(255, 255, 255, 0.2);
+    
+    /* Status Colors */
+    --success: #10b981;
+    --warning: #f59e0b;
+    --error: #ef4444;
+    --info: #3b82f6;
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
+    --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.3);
+    
+    /* Glow Effects */
+    --glow-primary: 0 0 30px rgba(99, 102, 241, 0.5);
+    --glow-secondary: 0 0 30px rgba(16, 185, 129, 0.5);
+    --glow-accent: 0 0 30px rgba(245, 158, 11, 0.5);
+    
+    /* Code Block Colors */
+    --code-bg: #1e1e1e;
+    --code-text: #d4d4d4;
+    --code-keyword: #c586c0;
+    --code-string: #ce9178;
+    --code-comment: #6a9955;
+    --code-function: #dcdcaa;
+    --code-number: #b5cea8;
+    
+    /* Scrollbar */
+    --scrollbar-track: #111111;
+    --scrollbar-thumb: #404040;
+    --scrollbar-thumb-hover: #525252;
+}
+
+/* ====================
+   LIGHT THEME
+   ==================== */
+
+[data-theme="light"] {
+    /* Primary Palette */
+    --primary: #4f46e5;
+    --primary-light: #6366f1;
+    --primary-dark: #4338ca;
+    --primary-rgb: 79, 70, 229;
+    
+    /* Secondary Palette */
+    --secondary: #059669;
+    --secondary-light: #10b981;
+    --secondary-dark: #047857;
+    --secondary-rgb: 5, 150, 105;
+    
+    /* Accent Colors */
+    --accent: #d97706;
+    --accent-light: #f59e0b;
+    --accent-dark: #b45309;
+    
+    /* Background Hierarchy */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f9fafb;
+    --bg-tertiary: #f3f4f6;
+    --bg-card: #ffffff;
+    --bg-hover: #f9fafb;
+    --bg-overlay: rgba(0, 0, 0, 0.5);
+    
+    /* Surface Levels */
+    --surface-1: #ffffff;
+    --surface-2: #f9fafb;
+    --surface-3: #f3f4f6;
+    --surface-4: #e5e7eb;
+    
+    /* Text Hierarchy */
+    --text-primary: #111827;
+    --text-secondary: #4b5563;
+    --text-tertiary: #6b7280;
+    --text-muted: #9ca3af;
+    --text-inverse: #ffffff;
+    
+    /* Border Colors */
+    --border-primary: #e5e7eb;
+    --border-secondary: #d1d5db;
+    --border-light: rgba(0, 0, 0, 0.05);
+    --border-heavy: rgba(0, 0, 0, 0.1);
+    
+    /* Status Colors */
+    --success: #059669;
+    --warning: #d97706;
+    --error: #dc2626;
+    --info: #2563eb;
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.08);
+    --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+    --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+    
+    /* Glow Effects */
+    --glow-primary: 0 0 20px rgba(79, 70, 229, 0.3);
+    --glow-secondary: 0 0 20px rgba(5, 150, 105, 0.3);
+    --glow-accent: 0 0 20px rgba(217, 119, 6, 0.3);
+    
+    /* Code Block Colors */
+    --code-bg: #f6f8fa;
+    --code-text: #24292e;
+    --code-keyword: #d73a49;
+    --code-string: #032f62;
+    --code-comment: #6a737d;
+    --code-function: #6f42c1;
+    --code-number: #005cc5;
+    
+    /* Scrollbar */
+    --scrollbar-track: #f3f4f6;
+    --scrollbar-thumb: #d1d5db;
+    --scrollbar-thumb-hover: #9ca3af;
+}
+
+/* ====================
+   THEME TRANSITIONS
+   ==================== */
+
+/* Smooth theme switching */
+* {
+    transition: background-color 0.3s ease,
+                color 0.3s ease,
+                border-color 0.3s ease;
+}
+
+/* Elements that shouldn't transition */
+.no-transition,
+.no-transition * {
+    transition: none !important;
+}
+
+/* ====================
+   ACCENT COLOR VARIATIONS
+   ==================== */
+
+/* Blue Accent */
+[data-accent="blue"] {
+    --primary: #3b82f6;
+    --primary-light: #60a5fa;
+    --primary-dark: #2563eb;
+    --primary-rgb: 59, 130, 246;
+}
+
+/* Purple Accent */
+[data-accent="purple"] {
+    --primary: #8b5cf6;
+    --primary-light: #a78bfa;
+    --primary-dark: #7c3aed;
+    --primary-rgb: 139, 92, 246;
+}
+
+/* Pink Accent */
+[data-accent="pink"] {
+    --primary: #ec4899;
+    --primary-light: #f472b6;
+    --primary-dark: #db2777;
+    --primary-rgb: 236, 72, 153;
+}
+
+/* Green Accent */
+[data-accent="green"] {
+    --primary: #10b981;
+    --primary-light: #34d399;
+    --primary-dark: #059669;
+    --primary-rgb: 16, 185, 129;
+}
+
+/* Orange Accent */
+[data-accent="orange"] {
+    --primary: #f97316;
+    --primary-light: #fb923c;
+    --primary-dark: #ea580c;
+    --primary-rgb: 249, 115, 22;
+}
+
+/* Red Accent */
+[data-accent="red"] {
+    --primary: #ef4444;
+    --primary-light: #f87171;
+    --primary-dark: #dc2626;
+    --primary-rgb: 239, 68, 68;
+}
+
+/* ====================
+   SPECIAL THEMES
+   ==================== */
+
+/* Cyberpunk Theme */
+[data-theme="cyberpunk"] {
+    --primary: #00ff9f;
+    --primary-light: #00ffb3;
+    --primary-dark: #00e68c;
+    --secondary: #ff00ff;
+    --accent: #ffff00;
+    --bg-primary: #0a0014;
+    --bg-secondary: #140028;
+    --text-primary: #00ff9f;
+    --text-secondary: #00b3ff;
+    --border-primary: #00ff9f;
+    
+    /* Neon glow effects */
+    --glow-primary: 0 0 40px rgba(0, 255, 159, 0.8);
+    --glow-secondary: 0 0 40px rgba(255, 0, 255, 0.8);
+}
+
+/* Matrix Theme */
+[data-theme="matrix"] {
+    --primary: #00ff00;
+    --primary-light: #33ff33;
+    --primary-dark: #00cc00;
+    --secondary: #008f00;
+    --accent: #00ff00;
+    --bg-primary: #000000;
+    --bg-secondary: #001100;
+    --text-primary: #00ff00;
+    --text-secondary: #00cc00;
+    --border-primary: #003300;
+    
+    /* Matrix rain effect */
+    --glow-primary: 0 0 20px rgba(0, 255, 0, 0.6);
+}
+
+/* Minimal Theme */
+[data-theme="minimal"] {
+    --primary: #000000;
+    --primary-light: #333333;
+    --primary-dark: #000000;
+    --secondary: #666666;
+    --accent: #000000;
+    --bg-primary: #ffffff;
+    --bg-secondary: #fafafa;
+    --text-primary: #000000;
+    --text-secondary: #666666;
+    --border-primary: #eeeeee;
+    --shadow-sm: none;
+    --shadow-md: none;
+    --shadow-lg: 0 0 0 1px #000000;
+}
+
+/* Ocean Theme */
+[data-theme="ocean"] {
+    --primary: #0891b2;
+    --primary-light: #06b6d4;
+    --primary-dark: #0e7490;
+    --secondary: #0284c7;
+    --accent: #0ea5e9;
+    --bg-primary: #001e3c;
+    --bg-secondary: #002951;
+    --bg-tertiary: #003366;
+    --text-primary: #e0f2fe;
+    --text-secondary: #7dd3fc;
+    --border-primary: #0c4a6e;
+}
+
+/* ====================
+   GRADIENT THEMES
+   ==================== */
+
+[data-theme="gradient-sunset"] {
+    --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --gradient-accent: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+[data-theme="gradient-ocean"] {
+    --gradient-primary: linear-gradient(135deg, #667eea 0%, #22d3ee 100%);
+    --gradient-secondary: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+    --gradient-accent: linear-gradient(135deg, #0891b2 0%, #6366f1 100%);
+}
+
+[data-theme="gradient-forest"] {
+    --gradient-primary: linear-gradient(135deg, #00b09b 0%, #96c93d 100%);
+    --gradient-secondary: linear-gradient(135deg, #134e5e 0%, #71b280 100%);
+    --gradient-accent: linear-gradient(135deg, #0f9b0f 0%, #84d85f 100%);
+}
+
+/* ====================
+   THEME-SPECIFIC COMPONENTS
+   ==================== */
+
+/* Dark theme specific adjustments */
+[data-theme="dark"] {
+    /* Terminal should always be dark */
+    .terminal-container {
+        background: #000000;
+        box-shadow: 0 0 40px rgba(99, 102, 241, 0.1);
+    }
+    
+    /* Code blocks */
+    pre, code {
+        background: var(--code-bg);
+        color: var(--code-text);
+    }
+    
+    /* Glassmorphism effect */
+    .glass {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+}
+
+/* Light theme specific adjustments */
+[data-theme="light"] {
+    /* Terminal stays dark even in light mode */
+    .terminal-container {
+        background: #1e1e1e;
+        color: #d4d4d4;
+    }
+    
+    .terminal-container * {
+        color: #d4d4d4;
+    }
+    
+    /* Glassmorphism effect */
+    .glass {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Invert dark logos/icons */
+    .dark-logo {
+        filter: invert(1);
+    }
+}
+
+/* ====================
+   CONTRAST & ACCESSIBILITY
+   ==================== */
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    [data-theme="dark"] {
+        --primary: #7c7fff;
+        --text-primary: #ffffff;
+        --text-secondary: #e0e0e0;
+        --border-primary: #ffffff;
+    }
+    
+    [data-theme="light"] {
+        --primary: #0000ff;
+        --text-primary: #000000;
+        --text-secondary: #333333;
+        --border-primary: #000000;
+    }
+}
+
+/* ====================
+   THEME TOGGLE BUTTON
+   ==================== */
+
+.theme-toggle {
+    position: relative;
+    overflow: hidden;
+}
+
+.theme-toggle i {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+[data-theme="light"] .theme-toggle .fa-moon {
+    transform: rotate(180deg) scale(0);
+    opacity: 0;
+}
+
+[data-theme="light"] .theme-toggle .fa-sun {
+    transform: rotate(0deg) scale(1);
+    opacity: 1;
+}
+
+[data-theme="dark"] .theme-toggle .fa-sun {
+    transform: rotate(180deg) scale(0);
+    opacity: 0;
+}
+
+[data-theme="dark"] .theme-toggle .fa-moon {
+    transform: rotate(0deg) scale(1);
+    opacity: 1;
+}
+
+/* ====================
+   THEME PICKER (OPTIONAL)
+   ==================== */
+
+.theme-picker {
+    position: fixed;
+    bottom: var(--space-8);
+    left: var(--space-8);
+    display: flex;
+    gap: var(--space-2);
+    padding: var(--space-3);
+    background: var(--surface-2);
+    border-radius: var(--radius-full);
+    box-shadow: var(--shadow-lg);
+    z-index: var(--z-sticky);
+}
+
+.theme-picker-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-full);
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: var(--transition-all);
+}
+
+.theme-picker-btn:hover {
+    transform: scale(1.1);
+}
+
+.theme-picker-btn.active {
+    border-color: var(--primary);
+    box-shadow: var(--glow-primary);
+}
+
+/* Theme color swatches */
+.theme-picker-btn[data-theme="dark"] {
+    background: #0a0a0a;
+}
+
+.theme-picker-btn[data-theme="light"] {
+    background: #ffffff;
+    border: 2px solid #e5e7eb;
+}
+
+.theme-picker-btn[data-theme="cyberpunk"] {
+    background: linear-gradient(45deg, #00ff9f, #ff00ff);
+}
+
+.theme-picker-btn[data-theme="matrix"] {
+    background: #000000;
+    box-shadow: inset 0 0 10px #00ff00;
+}
+
+.theme-picker-btn[data-theme="ocean"] {
+    background: linear-gradient(45deg, #0891b2, #001e3c);
+}

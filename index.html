@@ -3,14 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
     <!-- SEO Meta Tags -->
-    <title>Bijay Koirala | Python Developer</title>
-    
-    <meta name="description" content="Professional portfolio template. Hire data analyst, Python developer, cybersecurity expert. Web scraping, bot building, cookie checker, website analyzer, API checker, security services. Affordable freelance & internship opportunities.">
-    
-    <meta name="keywords" content="website template, portfolio template, professional website, clean portfolio, data analyst hire, data analyst example, cybersecurity expert, cybersecurity example, python developer, bot building, web scraping, cookie checker, website analyzer, API checker, security analyzer, internship, job opportunities, affordable web services, freelance developer, selenium, beautiful soup, discord bot, telegram bot, automation services">
-    
+    <title>Bijay Koirala | Python Developer & Automation Expert</title>
+    <meta name="description" content="Python developer specializing in automation, web scraping, and bot development. Building smart solutions for Netflix, ChatGPT, and more.">
+    <meta name="keywords" content="python developer, automation expert, web scraping, bot development, data analyst, Nepal developer, freelance developer">
     <meta name="author" content="Bijay Koirala">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#6366f1">
@@ -18,481 +16,781 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://bijaykoirala0.com.np/">
-    <meta property="og:title" content="Bijay Koirala | Portfolio Template">
-    <meta property="og:description" content="Professional portfolio template. Data analyst, cybersecurity expert, Python developer. Cookie checker, website analyzer, API checker services.">
-    <meta property="og:image" content="https://bijaykoirala0.com.np/assets/og-image.jpg">
+    <meta property="og:title" content="Bijay Koirala | Python Developer">
+    <meta property="og:description" content="Automation expert building smart solutions for modern workflows">
+    <meta property="og:image" content="https://bijaykoirala0.com.np/assets/images/og-image.jpg">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://bijaykoirala0.com.np/">
-    <meta property="twitter:title" content="Bijay Koirala | Portfolio">
-    <meta property="twitter:description" content="Professional template. Data analyst, Python developer, bot builder. Affordable web services.">
+    <meta property="twitter:title" content="Bijay Koirala | Python Developer">
+    <meta property="twitter:description" content="Automation expert building smart solutions">
+    <meta property="twitter:image" content="https://bijaykoirala0.com.np/assets/images/og-image.jpg">
     
     <!-- Canonical URL -->
     <link rel="canonical" href="https://bijaykoirala0.com.np/">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
     
-    <!-- Preconnect to external domains -->
+    <!-- Preconnect to External Domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome -->
+    <!-- CSS Files (Loaded in Order) -->
+    <link rel="stylesheet" href="/assets/css/variables.css">
+    <link rel="stylesheet" href="/assets/css/reset.css">
+    <link rel="stylesheet" href="/assets/css/base.css">
+    <link rel="stylesheet" href="/assets/css/components.css">
+    <link rel="stylesheet" href="/assets/css/animations.css">
+    <link rel="stylesheet" href="/assets/css/responsive.css">
+    <link rel="stylesheet" href="/assets/css/theme.css">
+    
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- AOS Animation Library -->
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
-    
-    <!-- Schema.org Data with All Services -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Bijay Koirala",
-        "url": "https://bijaykoirala0.com.np",
-        "jobTitle": ["Data Analyst", "Python Developer", "Cybersecurity Analyst", "Bot Developer"],
-        "email": "bijaykoirala003@gmail.com",
-        "knowsAbout": ["portfolio template", "website template", "data analysis", "cybersecurity", "web scraping", "bot building", "cookie checker", "website analyzer", "API checker", "security analysis", "automation"],
-        "offers": {
-            "@type": "Offer",
-            "itemOffered": {
-                "@type": "Service",
-                "name": "Web Development & Security Services",
-                "description": "Portfolio templates, web scraping, bot development, cookie checking, website analysis, API testing, security scanning"
-            }
-        }
-    }
-    </script>
 </head>
 <body>
-    <!-- Bubble Trail Container -->
-    <div class="bubble-trail-container" id="bubble-trail-container"></div>
-    
     <!-- Preloader -->
-    <div id="preloader">
-        <div class="loader">
-            <div class="loader-dot"></div>
-            <div class="loader-dot"></div>
-            <div class="loader-dot"></div>
+    <div id="preloader" class="preloader">
+        <div class="preloader-wrapper">
+            <div class="preloader-circle"></div>
+            <div class="preloader-circle"></div>
+            <div class="preloader-circle"></div>
         </div>
     </div>
-    
-    <!-- Navigation Bar -->
-    <nav class="navbar" id="navbar">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="navbar">
         <div class="nav-container">
-            <div class="nav-logo">
-                <a href="#home">&lt;Bijay/&gt;</a>
+            <div class="nav-brand">
+                <a href="#home" class="nav-logo">
+                    <span class="logo-lt">&lt;</span>
+                    <span class="logo-text">Bijay</span>
+                    <span class="logo-gt">/&gt;</span>
+                </a>
             </div>
-            
-            <ul class="nav-menu" id="nav-menu">
-                <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
-                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
-                <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
-                <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
-                <li class="nav-item"><a href="#github" class="nav-link">GitHub</a></li>
-                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link active" data-section="home">
+                        <span class="nav-icon"><i class="fas fa-home"></i></span>
+                        <span class="nav-text">Home</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link" data-section="about">
+                        <span class="nav-icon"><i class="fas fa-user"></i></span>
+                        <span class="nav-text">About</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#skills" class="nav-link" data-section="skills">
+                        <span class="nav-icon"><i class="fas fa-cog"></i></span>
+                        <span class="nav-text">Skills</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#projects" class="nav-link" data-section="projects">
+                        <span class="nav-icon"><i class="fas fa-code"></i></span>
+                        <span class="nav-text">Projects</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#services" class="nav-link" data-section="services">
+                        <span class="nav-icon"><i class="fas fa-briefcase"></i></span>
+                        <span class="nav-text">Services</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link" data-section="contact">
+                        <span class="nav-icon"><i class="fas fa-envelope"></i></span>
+                        <span class="nav-text">Contact</span>
+                    </a>
+                </li>
             </ul>
-            
-            <div class="nav-buttons">
-                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
-                    <i class="fas fa-moon"></i>
+
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <i class="fas fa-moon" id="themeIcon"></i>
                 </button>
-                <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
                 </button>
             </div>
         </div>
     </nav>
-    
+
     <!-- Hero Section -->
-    <section id="home" class="hero">
+    <section id="home" class="hero section">
+        <div class="hero-background">
+            <div class="hero-particles" id="particles"></div>
+            <div class="hero-gradient"></div>
+        </div>
+        
         <div class="hero-container">
-            <div class="hero-bg-animation">
-                <div class="floating-cube"></div>
-                <div class="floating-cube"></div>
-                <div class="floating-cube"></div>
-                <div class="floating-sphere"></div>
-                <div class="floating-sphere"></div>
-            </div>
-            
-            <div class="hero-content" data-aos="fade-up">
-                <p class="hero-greeting">Hey there! I'm</p>
-                <h1 class="hero-name">Bijay Koirala</h1>
-                <h2 class="hero-title">
-                    <span class="typed-text" id="typed-text"></span>
-                    <span class="typed-cursor">|</span>
-                </h2>
-                <p class="hero-description">
-                    I build automation tools that make workflows smarter and faster.<br>
+            <div class="hero-content">
+                <p class="hero-greeting animate-fadeInUp">
+                    <span class="wave">👋</span> Hey there! I'm
+                </p>
+                <h1 class="hero-name animate-fadeInUp animate-delay-1">
+                    Bijay Koirala
+                </h1>
+                <div class="hero-title animate-fadeInUp animate-delay-2">
+                    <span class="title-prefix">I'm a</span>
+                    <span class="title-dynamic" id="dynamicTitle">
+                        <span class="title-text" id="titleText">Python Developer</span>
+                        <span class="title-cursor">|</span>
+                    </span>
+                </div>
+                <p class="hero-description animate-fadeInUp animate-delay-3">
+                    Building automation tools that make workflows smarter and faster.
                     Currently crafting 15+ private automation solutions for Netflix, Outlook, ChatGPT & more!
                 </p>
                 
-                <div class="hero-buttons">
+                <div class="hero-cta animate-fadeInUp animate-delay-4">
                     <a href="#projects" class="btn btn-primary">
-                        <i class="fas fa-code"></i> View My Work
+                        <i class="fas fa-rocket"></i>
+                        <span>View My Work</span>
                     </a>
-                    <a href="assets/resume/resume.pdf" class="btn btn-outline" download>
-                        <i class="fas fa-download"></i> Download CV
+                    <a href="/assets/docs/resume.pdf" class="btn btn-secondary" download>
+                        <i class="fas fa-download"></i>
+                        <span>Download CV</span>
                     </a>
                 </div>
                 
-                <div class="hero-socials">
-                    <a href="https://github.com/bijay085" target="_blank" rel="noopener" aria-label="GitHub">
+                <div class="hero-socials animate-fadeInUp animate-delay-5">
+                    <a href="https://github.com/bijay085" target="_blank" rel="noopener" class="social-link" aria-label="GitHub">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="https://www.linkedin.com/in/bijay-koirala/" target="_blank" rel="noopener" aria-label="LinkedIn">
+                    <a href="https://www.linkedin.com/in/bijay-koirala/" target="_blank" rel="noopener" class="social-link" aria-label="LinkedIn">
                         <i class="fab fa-linkedin"></i>
                     </a>
-                    <a href="https://wa.me/9746665541" target="_blank" rel="noopener" aria-label="WhatsApp">
+                    <a href="https://wa.me/9746665541" target="_blank" rel="noopener" class="social-link" aria-label="WhatsApp">
                         <i class="fab fa-whatsapp"></i>
                     </a>
-                    <a href="mailto:bijaykoirala003@gmail.com" aria-label="Email">
+                    <a href="mailto:bijaykoirala003@gmail.com" class="social-link" aria-label="Email">
                         <i class="fas fa-envelope"></i>
                     </a>
                 </div>
             </div>
             
-            <div class="scroll-indicator">
-                <a href="#about">
+            <div class="hero-scroll-indicator">
+                <a href="#about" class="scroll-down">
                     <div class="mouse">
                         <div class="wheel"></div>
                     </div>
-                    <div class="scroll-text">Scroll Down</div>
+                    <span class="scroll-text">Scroll Down</span>
                 </a>
             </div>
         </div>
     </section>
-    
+
     <!-- About Section -->
-    <section id="about" class="about">
+    <section id="about" class="about section">
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up">
-                <span class="section-number"></span> About Me
-            </h2>
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="title-number">01.</span>
+                    <span class="title-text">About Me</span>
+                    <span class="title-line"></span>
+                </h2>
+            </div>
             
-            <div class="about-content">
-                <div class="about-text" data-aos="fade-right">
-                    <p>
-                        I'm Bijay Koirala from Nepal 🇳🇵, wanna be a Data Analyst and Automation Expert who turns
-                        repetitive tasks into automated workflows.
-                    </p>
-                    <p>
-                        Self-taught with a passion for web scraping, bot development, and creating tools that save hours
-                        of manual work. When I'm not coding, you'll find me sleeping (48hrs/day if possible!), gaming,
-                        or watching anime.
-                    </p>
-                    <p><strong>Tech Stack I work with:</strong></p>
+            <div class="about-container">
+                <div class="about-content">
+                    <div class="about-text">
+                        <p class="about-intro">
+                            Hello! I'm Bijay from Nepal 🇳🇵, a passionate Python developer who loves turning complex problems into simple, automated solutions.
+                        </p>
+                        <p>
+                            My journey started with curiosity about how things work on the internet, which led me to web scraping and automation. Now, I specialize in building tools that save hours of manual work for businesses and individuals.
+                        </p>
+                        <p>
+                            When I'm not coding, you'll find me exploring new technologies, watching anime, gaming, or dreaming about sleeping for 48 hours straight (if only that were possible! 😴).
+                        </p>
+                        
+                        <div class="about-highlights">
+                            <h3 class="highlights-title">Quick Facts:</h3>
+                            <ul class="highlights-list">
+                                <li>
+                                    <i class="fas fa-check"></i>
+                                    <span>Self-taught developer with 3+ years experience</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check"></i>
+                                    <span>Built 15+ automation tools for major platforms</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check"></i>
+                                    <span>Expert in Python, Selenium, BeautifulSoup</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check"></i>
+                                    <span>Available for freelance & remote opportunities</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                     
-                    <ul class="tech-list">
-                        <li><i class="fas fa-caret-right"></i> Python & Flask</li>
-                        <li><i class="fas fa-caret-right"></i> JavaScript & React</li>
-                        <li><i class="fas fa-caret-right"></i> Selenium & BeautifulSoup</li>
-                        <li><i class="fas fa-caret-right"></i> Discord & Telegram Bots</li>
-                        <li><i class="fas fa-caret-right"></i> MySQL & MongoDB</li>
-                        <li><i class="fas fa-caret-right"></i> Power BI & Excel</li>
+                    <div class="about-image">
+                        <div class="image-wrapper">
+                            <img src="/assets/images/profile.jpg" alt="Bijay Koirala" class="profile-img" loading="lazy">
+                            <div class="image-border"></div>
+                            <div class="image-decoration">
+                                <svg class="decoration-svg" viewBox="0 0 200 200">
+                                    <rect x="20" y="20" width="160" height="160" />
+                                </svg>
+                            </div>
+                        </div>
+                        
+                        <div class="about-stats">
+                            <div class="stat-item">
+                                <span class="stat-number" data-count="15">0</span>
+                                <span class="stat-label">Projects Completed</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number" data-count="1000">0</span>
+                                <span class="stat-label">Hours Saved</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number" data-count="100">0</span>
+                                <span class="stat-label">Automation Scripts</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="title-number">02.</span>
+                    <span class="title-text">Skills & Technologies</span>
+                    <span class="title-line"></span>
+                </h2>
+            </div>
+            
+            <div class="skills-container">
+                <!-- Programming Languages -->
+                <div class="skill-category">
+                    <h3 class="category-title">
+                        <i class="fas fa-code"></i>
+                        <span>Programming Languages</span>
+                    </h3>
+                    <div class="skills-grid">
+                        <div class="skill-item" data-skill="python" data-level="90">
+                            <div class="skill-icon">
+                                <i class="fab fa-python"></i>
+                            </div>
+                            <div class="skill-info">
+                                <h4 class="skill-name">Python</h4>
+                                <div class="skill-bar">
+                                    <div class="skill-progress"></div>
+                                </div>
+                                <span class="skill-percent">90%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item" data-skill="javascript" data-level="75">
+                            <div class="skill-icon">
+                                <i class="fab fa-js"></i>
+                            </div>
+                            <div class="skill-info">
+                                <h4 class="skill-name">JavaScript</h4>
+                                <div class="skill-bar">
+                                    <div class="skill-progress"></div>
+                                </div>
+                                <span class="skill-percent">75%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item" data-skill="php" data-level="60">
+                            <div class="skill-icon">
+                                <i class="fab fa-php"></i>
+                            </div>
+                            <div class="skill-info">
+                                <h4 class="skill-name">PHP</h4>
+                                <div class="skill-bar">
+                                    <div class="skill-progress"></div>
+                                </div>
+                                <span class="skill-percent">60%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item" data-skill="html-css" data-level="85">
+                            <div class="skill-icon">
+                                <i class="fab fa-html5"></i>
+                            </div>
+                            <div class="skill-info">
+                                <h4 class="skill-name">HTML/CSS</h4>
+                                <div class="skill-bar">
+                                    <div class="skill-progress"></div>
+                                </div>
+                                <span class="skill-percent">85%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Automation & Scraping -->
+                <div class="skill-category">
+                    <h3 class="category-title">
+                        <i class="fas fa-robot"></i>
+                        <span>Automation & Scraping</span>
+                    </h3>
+                    <div class="skills-grid">
+                        <div class="skill-item" data-skill="selenium" data-level="95">
+                            <div class="skill-icon">
+                                <i class="fas fa-browser"></i>
+                            </div>
+                            <div class="skill-info">
+                                <h4 class="skill-name">Selenium</h4>
+                                <div class="skill-bar">
+                                    <div class="skill-progress"></div>
+                                </div>
+                                <span class="skill-percent">95%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item" data-skill="beautifulsoup" data-level="90">
+                            <div class="skill-icon">
+                                <i class="fas fa-spider"></i>
+                            </div>
+                            <div class="skill-info">
+                                <h4 class="skill-name">BeautifulSoup</h4>
+                                <div class="skill-bar">
+                                    <div class="skill-progress"></div>
+                                </div>
+                                <span class="skill-percent">90%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item" data-skill="scrapy" data-level="70">
+                            <div class="skill-icon">
+                                <i class="fas fa-network-wired"></i>
+                            </div>
+                            <div class="skill-info">
+                                <h4 class="skill-name">Scrapy</h4>
+                                <div class="skill-bar">
+                                    <div class="skill-progress"></div>
+                                </div>
+                                <span class="skill-percent">70%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item" data-skill="playwright" data-level="65">
+                            <div class="skill-icon">
+                                <i class="fas fa-theater-masks"></i>
+                            </div>
+                            <div class="skill-info">
+                                <h4 class="skill-name">Playwright</h4>
+                                <div class="skill-bar">
+                                    <div class="skill-progress"></div>
+                                </div>
+                                <span class="skill-percent">65%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tools & Technologies -->
+                <div class="skill-category">
+                    <h3 class="category-title">
+                        <i class="fas fa-tools"></i>
+                        <span>Tools & Technologies</span>
+                    </h3>
+                    <div class="skills-grid">
+                        <div class="skill-item" data-skill="git" data-level="80">
+                            <div class="skill-icon">
+                                <i class="fab fa-git-alt"></i>
+                            </div>
+                            <div class="skill-info">
+                                <h4 class="skill-name">Git & GitHub</h4>
+                                <div class="skill-bar">
+                                    <div class="skill-progress"></div>
+                                </div>
+                                <span class="skill-percent">80%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item" data-skill="mysql" data-level="70">
+                            <div class="skill-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div class="skill-info">
+                                <h4 class="skill-name">MySQL/MongoDB</h4>
+                                <div class="skill-bar">
+                                    <div class="skill-progress"></div>
+                                </div>
+                                <span class="skill-percent">70%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item" data-skill="flask" data-level="75">
+                            <div class="skill-icon">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                            <div class="skill-info">
+                                <h4 class="skill-name">Flask</h4>
+                                <div class="skill-bar">
+                                    <div class="skill-progress"></div>
+                                </div>
+                                <span class="skill-percent">75%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item" data-skill="docker" data-level="55">
+                            <div class="skill-icon">
+                                <i class="fab fa-docker"></i>
+                            </div>
+                            <div class="skill-info">
+                                <h4 class="skill-name">Docker</h4>
+                                <div class="skill-bar">
+                                    <div class="skill-progress"></div>
+                                </div>
+                                <span class="skill-percent">55%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="title-number">03.</span>
+                    <span class="title-text">Featured Projects</span>
+                    <span class="title-line"></span>
+                </h2>
+            </div>
+            
+            <div class="projects-filter">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="automation">Automation</button>
+                <button class="filter-btn" data-filter="scraping">Web Scraping</button>
+                <button class="filter-btn" data-filter="bot">Bots</button>
+                <button class="filter-btn" data-filter="web">Web Dev</button>
+            </div>
+            
+            <div class="projects-grid" id="projectsGrid">
+                <!-- Project cards will be loaded dynamically via JavaScript -->
+                <!-- Sample structure for reference: -->
+                <div class="project-card" data-category="automation">
+                    <div class="project-image">
+                        <img src="/assets/images/projects/netflix-automation.jpg" alt="Netflix Automation" loading="lazy">
+                        <div class="project-overlay">
+                            <div class="overlay-content">
+                                <a href="https://github.com/bijay085" target="_blank" class="project-link" aria-label="View Code">
+                                    <i class="fas fa-code"></i>
+                                </a>
+                                <a href="#" target="_blank" class="project-link" aria-label="Live Demo">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Netflix Automation Suite</h3>
+                        <p class="project-description">
+                            Automated account management, content tracking, and watchlist organizer for Netflix power users.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Selenium</span>
+                            <span class="tech-tag">Flask</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="projects-more">
+                <button class="btn btn-primary" id="loadMoreProjects">
+                    <i class="fas fa-plus"></i>
+                    <span>Load More Projects</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="title-number">04.</span>
+                    <span class="title-text">Services I Offer</span>
+                    <span class="title-line"></span>
+                </h2>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="service-title">Web Automation</h3>
+                    <p class="service-description">
+                        Automate repetitive tasks, form filling, data entry, and browser interactions with custom Python scripts.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Browser Automation</li>
+                        <li><i class="fas fa-check"></i> Task Scheduling</li>
+                        <li><i class="fas fa-check"></i> API Integration</li>
                     </ul>
                 </div>
                 
-                <div class="about-image" data-aos="fade-left">
-                    <div class="image-wrapper">
-                        <div class="profile-placeholder">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div class="image-border"></div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-spider"></i>
                     </div>
+                    <h3 class="service-title">Web Scraping</h3>
+                    <p class="service-description">
+                        Extract data from websites, e-commerce platforms, and social media with scalable scraping solutions.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Data Extraction</li>
+                        <li><i class="fas fa-check"></i> Price Monitoring</li>
+                        <li><i class="fas fa-check"></i> Lead Generation</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3 class="service-title">Bot Development</h3>
+                    <p class="service-description">
+                        Build intelligent Discord, Telegram, and WhatsApp bots for community management and automation.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Discord Bots</li>
+                        <li><i class="fas fa-check"></i> Telegram Bots</li>
+                        <li><i class="fas fa-check"></i> ChatBot Integration</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="service-title">Data Analysis</h3>
+                    <p class="service-description">
+                        Transform raw data into actionable insights with Python-based analysis and visualization tools.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Data Cleaning</li>
+                        <li><i class="fas fa-check"></i> Visualization</li>
+                        <li><i class="fas fa-check"></i> Report Generation</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3 class="service-title">API Development</h3>
+                    <p class="service-description">
+                        Create RESTful APIs and integrate third-party services to power your applications.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> REST API Design</li>
+                        <li><i class="fas fa-check"></i> API Integration</li>
+                        <li><i class="fas fa-check"></i> Documentation</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="service-title">Consultation</h3>
+                    <p class="service-description">
+                        Technical consultation for automation strategies, tool selection, and project architecture.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Strategy Planning</li>
+                        <li><i class="fas fa-check"></i> Code Review</li>
+                        <li><i class="fas fa-check"></i> Training Sessions</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
-    
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
+
+    <!-- GitHub Stats Section -->
+    <section id="github" class="github section">
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up">
-                <span class="section-number"></span> Skills & Technologies
-            </h2>
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="title-number">05.</span>
+                    <span class="title-text">GitHub Activity</span>
+                    <span class="title-line"></span>
+                </h2>
+            </div>
             
-            <div class="skills-grid">
-                <div class="skill-category" data-aos="fade-up" data-aos-delay="100">
-                    <h3 class="category-title">
-                        <i class="fas fa-code"></i> Programming Languages
-                    </h3>
-                    <div class="skill-items">
-                        <div class="skill-item">
-                            <span>Python <span class="skill-level">85%</span></span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span>JavaScript <span class="skill-level">75%</span></span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 75%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span>HTML/CSS <span class="skill-level">90%</span></span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span>PHP <span class="skill-level">60%</span></span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 60%"></div>
-                            </div>
-                        </div>
+            <div class="github-stats">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-book"></i>
+                        <span class="stat-value" id="repoCount">--</span>
+                        <span class="stat-label">Repositories</span>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-star"></i>
+                        <span class="stat-value" id="starCount">--</span>
+                        <span class="stat-label">Stars Earned</span>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-code-branch"></i>
+                        <span class="stat-value" id="forkCount">--</span>
+                        <span class="stat-label">Forks</span>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-users"></i>
+                        <span class="stat-value" id="followerCount">--</span>
+                        <span class="stat-label">Followers</span>
                     </div>
                 </div>
                 
-                <div class="skill-category" data-aos="fade-up" data-aos-delay="200">
-                    <h3 class="category-title">
-                        <i class="fas fa-robot"></i> Automation & Scraping
-                    </h3>
-                    <div class="skill-items">
-                        <div class="skill-item">
-                            <span>Web Scraping <span class="skill-level">95%</span></span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 95%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span>Selenium <span class="skill-level">90%</span></span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span>Beautiful Soup <span class="skill-level">85%</span></span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span>Bot Development <span class="skill-level">80%</span></span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 80%"></div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="github-chart">
+                    <img src="https://github-readme-stats.vercel.app/api?username=bijay085&show_icons=true&theme=radical" alt="GitHub Stats" loading="lazy">
                 </div>
                 
-                <div class="skill-category" data-aos="fade-up" data-aos-delay="300">
-                    <h3 class="category-title">
-                        <i class="fas fa-database"></i> Data & Tools
-                    </h3>
-                    <div class="skill-items">
-                        <div class="skill-item">
-                            <span>Power BI <span class="skill-level">75%</span></span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 75%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span>Excel <span class="skill-level">85%</span></span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span>MySQL/MongoDB <span class="skill-level">70%</span></span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 70%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span>Git & GitHub <span class="skill-level">80%</span></span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 80%"></div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="github-languages">
+                    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=bijay085&layout=compact&theme=radical" alt="Top Languages" loading="lazy">
                 </div>
+                
+                <div class="github-contributions">
+                    <img src="https://github-readme-streak-stats.herokuapp.com/?user=bijay085&theme=radical" alt="GitHub Streak" loading="lazy">
+                </div>
+            </div>
+            
+            <div class="github-footer">
+                <a href="https://github.com/bijay085" target="_blank" rel="noopener" class="btn btn-primary">
+                    <i class="fab fa-github"></i>
+                    <span>View Full Profile</span>
+                </a>
             </div>
         </div>
     </section>
-    
+
     <!-- Terminal Section -->
-    <section id="terminal" class="terminal-section">
+    <section id="terminal" class="terminal section">
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up">
-                <span class="section-number"></span> Interactive Terminal
-            </h2>
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="title-number">06.</span>
+                    <span class="title-text">Interactive Terminal</span>
+                    <span class="title-line"></span>
+                </h2>
+            </div>
             
-            <div class="terminal-container" data-aos="fade-up" data-aos-delay="100">
+            <div class="terminal-container">
                 <div class="terminal-header">
                     <div class="terminal-controls">
                         <span class="control close"></span>
                         <span class="control minimize"></span>
                         <span class="control maximize"></span>
                     </div>
-                    <div class="terminal-title">bijay@portfolio: ~</div>
+                    <div class="terminal-title">bijay@portfolio:~$</div>
                 </div>
                 
-                <div class="terminal-body" id="terminal-body">
-                    <div class="terminal-content" id="terminal-content"></div>
+                <div class="terminal-body" id="terminalBody">
+                    <div class="terminal-output" id="terminalOutput">
+                        <div class="terminal-line">
+                            <span class="terminal-prompt">bijay@portfolio:~$</span>
+                            <span class="terminal-text">Welcome to my interactive terminal!</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="terminal-text">Type 'help' to see available commands.</span>
+                        </div>
+                    </div>
+                    
                     <div class="terminal-input-line">
-                        <span class="terminal-prompt-symbol">bijay@portfolio:~$</span>
-                        <input type="text" id="terminal-input" class="terminal-input" autofocus>
+                        <span class="terminal-prompt">bijay@portfolio:~$</span>
+                        <input type="text" class="terminal-input" id="terminalInput" autocomplete="off" autofocus>
                         <span class="terminal-cursor"></span>
                     </div>
                 </div>
             </div>
             
-            <div class="terminal-hint" data-aos="fade-up" data-aos-delay="200">
-                <p>💡 Pro tip: Try these commands: <code>help</code>, <code>about</code>, <code>skills</code>,
-                    <code>projects</code>, <code>matrix</code>, <code>joke</code>
+            <div class="terminal-hint">
+                <p>
+                    <i class="fas fa-lightbulb"></i>
+                    Try commands: <code>help</code>, <code>about</code>, <code>skills</code>, <code>projects</code>, <code>contact</code>, <code>clear</code>
                 </p>
             </div>
         </div>
     </section>
-    
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">
-                <span class="section-number"></span> Featured Projects
-            </h2>
-            
-            <div class="projects-grid" id="projects-grid">
-                <!-- Projects will be loaded dynamically -->
-            </div>
-        </div>
-    </section>
-    
-    <!-- GitHub Stats Section -->
-    <section id="github" class="github-section">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">
-                <span class="section-number"></span> GitHub Activity
-            </h2>
-            
-            <!-- Compact Stats Row -->
-            <div class="github-stats-compact" data-aos="fade-up">
-                <div class="stats-row">
-                    <div class="stat-item">
-                        <i class="fas fa-code-branch"></i>
-                        <span class="stat-value" id="total-contributions">...</span>
-                        <span class="stat-label">Contributions</span>
-                    </div>
-                    <div class="stat-item">
-                        <i class="fas fa-book"></i>
-                        <span class="stat-value" id="public-repos">...</span>
-                        <span class="stat-label">Repositories</span>
-                    </div>
-                    <div class="stat-item">
-                        <i class="fas fa-users"></i>
-                        <span class="stat-value" id="followers">...</span>
-                        <span class="stat-label">Followers</span>
-                    </div>
-                    <div class="stat-item">
-                        <i class="fas fa-star"></i>
-                        <span class="stat-value" id="total-stars">...</span>
-                        <span class="stat-label">Stars</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- GitHub Charts Grid -->
-            <div class="github-charts-grid" data-aos="fade-up" data-aos-delay="100">
-                <div class="github-card main-stats">
-                    <div class="card-content">
-                        <img id="github-chart" alt="GitHub Stats" loading="lazy">
-                        <div class="card-loading">
-                            <i class="fas fa-spinner fa-spin"></i>
-                            <p>Loading stats...</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="github-card lang-stats">
-                    <div class="card-content">
-                        <img id="language-chart" alt="Top Languages" loading="lazy">
-                        <div class="card-loading">
-                            <i class="fas fa-spinner fa-spin"></i>
-                            <p>Loading languages...</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Streak Stats -->
-            <div class="github-streak-section" data-aos="fade-up" data-aos-delay="200">
-                <div class="github-card streak-stats">
-                    <div class="card-content">
-                        <img id="streak-chart" alt="GitHub Streak" loading="lazy">
-                        <div class="card-loading">
-                            <i class="fas fa-spinner fa-spin"></i>
-                            <p>Loading streak...</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="github-footer" data-aos="fade-up" data-aos-delay="300">
-                <a href="https://github.com/bijay085" target="_blank" rel="noopener" class="btn btn-outline">
-                    <i class="fab fa-github"></i> View Full Profile on GitHub
-                </a>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">
-                <span class="section-number"></span> Services I Offer
-            </h2>
-            
-            <div class="services-grid" id="services-grid">
-                <!-- Services will be loaded dynamically -->
-            </div>
-        </div>
-    </section>
-    
+
     <!-- Contact Section -->
-    <section id="contact" class="contact">
+    <section id="contact" class="contact section">
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up">
-                <span class="section-number"></span> Get In Touch
-            </h2>
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="title-number">07.</span>
+                    <span class="title-text">Get In Touch</span>
+                    <span class="title-line"></span>
+                </h2>
+            </div>
             
-            <div class="contact-content">
-                <div class="contact-info" data-aos="fade-right">
-                    <h3>Let's Connect!</h3>
-                    <p>
-                        I'm currently looking for new opportunities and my inbox is always open.
-                        Whether you need automation tools, web scraping solutions, or just want to say hi,
-                        I'll get back to you within 24 hours!
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3 class="contact-heading">Let's Work Together!</h3>
+                    <p class="contact-description">
+                        I'm currently available for freelance work and exciting opportunities. 
+                        Whether you need automation solutions, web scraping tools, or just want to say hi, 
+                        I'd love to hear from you!
                     </p>
                     
                     <div class="contact-details">
                         <div class="contact-item">
                             <i class="fas fa-envelope"></i>
-                            <a href="mailto:bijaykoirala003@gmail.com">bijaykoirala003@gmail.com</a>
+                            <div class="item-info">
+                                <span class="item-label">Email</span>
+                                <a href="mailto:bijaykoirala003@gmail.com">bijaykoirala003@gmail.com</a>
+                            </div>
                         </div>
+                        
                         <div class="contact-item">
                             <i class="fas fa-phone"></i>
-                            <a href="tel:+9746665541">+974 666 5541</a>
+                            <div class="item-info">
+                                <span class="item-label">Phone</span>
+                                <a href="tel:+9746665541">+974 666 5541</a>
+                            </div>
                         </div>
-                        <div class="contact-item">
-                            <i class="fas fa-globe"></i>
-                            <a href="https://bijaykoirala0.com.np" target="_blank" rel="noopener">bijaykoirala0.com.np</a>
-                        </div>
+                        
                         <div class="contact-item">
                             <i class="fas fa-map-marker-alt"></i>
-                            <span>Nepal 🇳🇵 (GMT+5:45)</span>
+                            <div class="item-info">
+                                <span class="item-label">Location</span>
+                                <span>Nepal 🇳🇵 (GMT+5:45)</span>
+                            </div>
                         </div>
+                        
                         <div class="contact-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Available for Freelance | Intern | Part-time | Remote</span>
+                            <i class="fas fa-globe"></i>
+                            <div class="item-info">
+                                <span class="item-label">Website</span>
+                                <a href="https://bijaykoirala0.com.np">bijaykoirala0.com.np</a>
+                            </div>
                         </div>
                     </div>
                     
@@ -506,59 +804,109 @@
                         <a href="https://wa.me/9746665541" target="_blank" rel="noopener" class="social-link">
                             <i class="fab fa-whatsapp"></i>
                         </a>
-                        <a href="mailto:bijaykoirala003@gmail.com" class="social-link">
-                            <i class="fas fa-envelope"></i>
+                        <a href="https://twitter.com/bijaykoirala" target="_blank" rel="noopener" class="social-link">
+                            <i class="fab fa-twitter"></i>
                         </a>
                     </div>
                 </div>
                 
-                <form class="contact-form" data-aos="fade-left" id="contact-form">
-                    <div class="form-group">
-                        <input type="text" id="name" name="name" placeholder=" " required>
-                        <label for="name">Your Name</label>
-                    </div>
-                    
-                    <div class="form-group">
-                        <input type="email" id="email" name="email" placeholder=" " required>
-                        <label for="email">Your Email</label>
-                    </div>
-                    
-                    <div class="form-group">
-                        <input type="text" id="subject" name="subject" placeholder=" " required>
-                        <label for="subject">Subject</label>
-                    </div>
-                    
-                    <div class="form-group">
-                        <textarea id="message" name="message" rows="5" placeholder=" " required></textarea>
-                        <label for="message">Your Message</label>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-paper-plane"></i> Send Message
-                    </button>
-                </form>
+                <div class="contact-form-wrapper">
+                    <form class="contact-form" id="contactForm" action="/api/contact.php" method="POST">
+                        <div class="form-group">
+                            <label for="contactName">Your Name</label>
+                            <input type="text" id="contactName" name="name" required>
+                            <span class="form-error"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contactEmail">Your Email</label>
+                            <input type="email" id="contactEmail" name="email" required>
+                            <span class="form-error"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contactSubject">Subject</label>
+                            <input type="text" id="contactSubject" name="subject" required>
+                            <span class="form-error"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contactMessage">Message</label>
+                            <textarea id="contactMessage" name="message" rows="5" required></textarea>
+                            <span class="form-error"></span>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-submit">
+                            <i class="fas fa-paper-plane"></i>
+                            <span>Send Message</span>
+                        </button>
+                        
+                        <div class="form-status" id="formStatus"></div>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
-    
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <p class="footer-text">
-                    Built with ☕ & ❤️ by <span class="highlight">Bijay Koirala</span>
-                </p>
-                <p class="footer-year">
-                    <i class="far fa-copyright"></i> <span id="year">2024</span> All rights reserved.
-                </p>
+                <div class="footer-logo">
+                    <span class="logo-lt">&lt;</span>
+                    <span class="logo-text">Bijay</span>
+                    <span class="logo-gt">/&gt;</span>
+                </div>
+                
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                
+                <div class="footer-socials">
+                    <a href="https://github.com/bijay085" target="_blank" rel="noopener" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/bijay-koirala/" target="_blank" rel="noopener" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://wa.me/9746665541" target="_blank" rel="noopener" aria-label="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="mailto:bijaykoirala003@gmail.com" aria-label="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+                
+                <div class="footer-bottom">
+                    <p class="copyright">
+                        © <span id="currentYear">2024</span> Bijay Koirala. All rights reserved.
+                    </p>
+                    <p class="footer-tagline">
+                        Built with <span class="heart">❤️</span> and lots of <span class="coffee">☕</span>
+                    </p>
+                </div>
             </div>
         </div>
     </footer>
-    
+
     <!-- Back to Top Button -->
-    <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
         <i class="fas fa-arrow-up"></i>
     </button>
 
+    <!-- JavaScript Files -->
+    <script src="/assets/js/preloader.js"></script>
+    <script src="/assets/js/navigation.js"></script>
+    <script src="/assets/js/theme.js"></script>
+    <script src="/assets/js/animations.js"></script>
+    <script src="/assets/js/skills.js"></script>
+    <script src="/assets/js/projects.js"></script>
+    <script src="/assets/js/terminal.js"></script>
+    <script src="/assets/js/github.js"></script>
+    <script src="/assets/js/contact.js"></script>
+    <script src="/assets/js/main.js"></script>
 </body>
-</html>
+</html>r
