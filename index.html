@@ -60,9 +60,43 @@
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Inline CSS for GitHub Charts Row -->
+    <style>
+        .github-charts-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-6);
+            margin-bottom: var(--space-8);
+            align-items: stretch;
+        }
+
+        @media (max-width: 1024px) {
+            .github-charts-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .github-charts-row .github-contributions {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .github-charts-row {
+                grid-template-columns: 1fr;
+            }
+            .github-charts-row .github-contributions {
+                grid-column: auto;
+            }
+        }
+
+        /* Remove title numbers */
+        .title-number {
+            display: none;
+        }
+    </style>
 </head>
 
-<body>
+<body data-theme="dark">
     <!-- Preloader -->
     <div id="preloader" class="preloader">
         <div class="preloader-wrapper">
@@ -191,15 +225,16 @@
                     </a>
                 </div>
             </div>
+        </div>
 
-            <div class="hero-scroll-indicator">
-                <a href="#about" class="scroll-down">
-                    <div class="mouse">
-                        <div class="wheel"></div>
-                    </div>
-                    <span class="scroll-text">Scroll Down</span>
-                </a>
-            </div>
+        <!-- Fixed Scroll Indicator -->
+        <div class="hero-scroll-indicator">
+            <a href="#about" class="scroll-down">
+                <div class="mouse">
+                    <div class="wheel"></div>
+                </div>
+                <span class="scroll-text">Scroll Down</span>
+            </a>
         </div>
     </section>
 
@@ -208,7 +243,6 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">
-                    <span class="title-number">01.</span>
                     <span class="title-text">About Me</span>
                     <span class="title-line"></span>
                 </h2>
@@ -291,189 +325,187 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">
-                    <span class="title-number">02.</span>
                     <span class="title-text">Skills & Technologies</span>
                     <span class="title-line"></span>
                 </h2>
             </div>
 
             <div class="skills-container">
-                <!-- Programming Languages -->
+                <!-- Skills will be dynamically loaded by JavaScript -->
+                <!-- Fallback content if JS fails -->
                 <div class="skill-category">
                     <h3 class="category-title">
                         <i class="fas fa-code"></i>
                         <span>Programming Languages</span>
                     </h3>
                     <div class="skills-grid">
-                        <div class="skill-item" data-skill="python" data-level="90">
+                        <div class="skill-item" data-skill="python" data-level="60">
                             <div class="skill-icon">
                                 <i class="fab fa-python"></i>
                             </div>
                             <div class="skill-info">
                                 <h4 class="skill-name">Python</h4>
                                 <div class="skill-bar">
-                                    <div class="skill-progress"></div>
+                                    <div class="skill-progress" data-level="60"></div>
                                 </div>
-                                <span class="skill-percent">90%</span>
+                                <span class="skill-percent">60%</span>
                             </div>
                         </div>
 
-                        <div class="skill-item" data-skill="javascript" data-level="75">
+                        <div class="skill-item" data-skill="javascript" data-level="30">
                             <div class="skill-icon">
                                 <i class="fab fa-js"></i>
                             </div>
                             <div class="skill-info">
                                 <h4 class="skill-name">JavaScript</h4>
                                 <div class="skill-bar">
-                                    <div class="skill-progress"></div>
+                                    <div class="skill-progress" data-level="30"></div>
                                 </div>
-                                <span class="skill-percent">75%</span>
+                                <span class="skill-percent">30%</span>
                             </div>
                         </div>
 
-                        <div class="skill-item" data-skill="php" data-level="60">
+                        <div class="skill-item" data-skill="php" data-level="10">
                             <div class="skill-icon">
                                 <i class="fab fa-php"></i>
                             </div>
                             <div class="skill-info">
                                 <h4 class="skill-name">PHP</h4>
                                 <div class="skill-bar">
-                                    <div class="skill-progress"></div>
+                                    <div class="skill-progress" data-level="10"></div>
                                 </div>
-                                <span class="skill-percent">60%</span>
+                                <span class="skill-percent">10%</span>
                             </div>
                         </div>
 
-                        <div class="skill-item" data-skill="html-css" data-level="85">
+                        <div class="skill-item" data-skill="html-css" data-level="50">
                             <div class="skill-icon">
                                 <i class="fab fa-html5"></i>
                             </div>
                             <div class="skill-info">
                                 <h4 class="skill-name">HTML/CSS</h4>
                                 <div class="skill-bar">
-                                    <div class="skill-progress"></div>
+                                    <div class="skill-progress" data-level="50"></div>
                                 </div>
-                                <span class="skill-percent">85%</span>
+                                <span class="skill-percent">50%</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Automation & Scraping -->
                 <div class="skill-category">
                     <h3 class="category-title">
                         <i class="fas fa-robot"></i>
                         <span>Automation & Scraping</span>
                     </h3>
                     <div class="skills-grid">
-                        <div class="skill-item" data-skill="selenium" data-level="95">
+                        <div class="skill-item" data-skill="selenium" data-level="60">
                             <div class="skill-icon">
                                 <i class="fas fa-browser"></i>
                             </div>
                             <div class="skill-info">
                                 <h4 class="skill-name">Selenium</h4>
                                 <div class="skill-bar">
-                                    <div class="skill-progress"></div>
+                                    <div class="skill-progress" data-level="60"></div>
                                 </div>
-                                <span class="skill-percent">95%</span>
+                                <span class="skill-percent">60%</span>
                             </div>
                         </div>
 
-                        <div class="skill-item" data-skill="beautifulsoup" data-level="90">
+                        <div class="skill-item" data-skill="beautifulsoup" data-level="30">
                             <div class="skill-icon">
                                 <i class="fas fa-spider"></i>
                             </div>
                             <div class="skill-info">
                                 <h4 class="skill-name">BeautifulSoup</h4>
                                 <div class="skill-bar">
-                                    <div class="skill-progress"></div>
+                                    <div class="skill-progress" data-level="30"></div>
                                 </div>
-                                <span class="skill-percent">90%</span>
+                                <span class="skill-percent">30%</span>
                             </div>
                         </div>
 
-                        <div class="skill-item" data-skill="scrapy" data-level="70">
+                        <div class="skill-item" data-skill="scrapy" data-level="10">
                             <div class="skill-icon">
                                 <i class="fas fa-network-wired"></i>
                             </div>
                             <div class="skill-info">
                                 <h4 class="skill-name">Scrapy</h4>
                                 <div class="skill-bar">
-                                    <div class="skill-progress"></div>
+                                    <div class="skill-progress" data-level="10"></div>
                                 </div>
-                                <span class="skill-percent">70%</span>
+                                <span class="skill-percent">10%</span>
                             </div>
                         </div>
 
-                        <div class="skill-item" data-skill="playwright" data-level="65">
+                        <div class="skill-item" data-skill="requests" data-level="50">
                             <div class="skill-icon">
-                                <i class="fas fa-theater-masks"></i>
+                                <i class="fas fa-globe"></i>
                             </div>
                             <div class="skill-info">
-                                <h4 class="skill-name">Playwright</h4>
+                                <h4 class="skill-name">Requests</h4>
                                 <div class="skill-bar">
-                                    <div class="skill-progress"></div>
+                                    <div class="skill-progress" data-level="50"></div>
                                 </div>
-                                <span class="skill-percent">65%</span>
+                                <span class="skill-percent">50%</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Tools & Technologies -->
                 <div class="skill-category">
                     <h3 class="category-title">
                         <i class="fas fa-tools"></i>
                         <span>Tools & Technologies</span>
                     </h3>
                     <div class="skills-grid">
-                        <div class="skill-item" data-skill="git" data-level="80">
+                        <div class="skill-item" data-skill="git" data-level="60">
                             <div class="skill-icon">
                                 <i class="fab fa-git-alt"></i>
                             </div>
                             <div class="skill-info">
                                 <h4 class="skill-name">Git & GitHub</h4>
                                 <div class="skill-bar">
-                                    <div class="skill-progress"></div>
+                                    <div class="skill-progress" data-level="60"></div>
+                                </div>
+                                <span class="skill-percent">60%</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-item" data-skill="vscode" data-level="80">
+                            <div class="skill-icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div class="skill-info">
+                                <h4 class="skill-name">VS Code</h4>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-level="80"></div>
                                 </div>
                                 <span class="skill-percent">80%</span>
                             </div>
                         </div>
 
-                        <div class="skill-item" data-skill="mysql" data-level="70">
-                            <div class="skill-icon">
-                                <i class="fas fa-database"></i>
-                            </div>
-                            <div class="skill-info">
-                                <h4 class="skill-name">MySQL/MongoDB</h4>
-                                <div class="skill-bar">
-                                    <div class="skill-progress"></div>
-                                </div>
-                                <span class="skill-percent">70%</span>
-                            </div>
-                        </div>
-
-                        <div class="skill-item" data-skill="flask" data-level="75">
+                        <div class="skill-item" data-skill="flask" data-level="5">
                             <div class="skill-icon">
                                 <i class="fas fa-flask"></i>
                             </div>
                             <div class="skill-info">
                                 <h4 class="skill-name">Flask</h4>
                                 <div class="skill-bar">
-                                    <div class="skill-progress"></div>
+                                    <div class="skill-progress" data-level="5"></div>
                                 </div>
-                                <span class="skill-percent">75%</span>
+                                <span class="skill-percent">5%</span>
                             </div>
                         </div>
 
-                        <div class="skill-item" data-skill="docker" data-level="55">
+                        <div class="skill-item" data-skill="chatbots" data-level="55">
                             <div class="skill-icon">
-                                <i class="fab fa-docker"></i>
+                                <i class="fas fa-robot"></i>
                             </div>
                             <div class="skill-info">
-                                <h4 class="skill-name">Docker</h4>
+                                <h4 class="skill-name">Chat Bots</h4>
                                 <div class="skill-bar">
-                                    <div class="skill-progress"></div>
+                                    <div class="skill-progress" data-level="55"></div>
                                 </div>
                                 <span class="skill-percent">55%</span>
                             </div>
@@ -489,7 +521,6 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">
-                    <span class="title-number">03.</span>
                     <span class="title-text">Featured Projects</span>
                     <span class="title-line"></span>
                 </h2>
@@ -504,8 +535,8 @@
             </div>
 
             <div class="projects-grid" id="projectsGrid">
-                <!-- Project cards will be loaded dynamically via JavaScript -->
-                <!-- Sample structure for reference: -->
+                <!-- Projects will be loaded dynamically via JavaScript -->
+                <!-- Sample project card for reference -->
                 <div class="project-card" data-category="automation">
                     <div class="project-image">
                         <img src="/assets/images/projects/netflix-automation.jpg" alt="Netflix Automation"
@@ -551,7 +582,6 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">
-                    <span class="title-number">04.</span>
                     <span class="title-text">Services I Offer</span>
                     <span class="title-line"></span>
                 </h2>
@@ -658,52 +688,286 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">
-                    <span class="title-number">05.</span>
                     <span class="title-text">GitHub Activity</span>
                     <span class="title-line"></span>
                 </h2>
             </div>
 
             <div class="github-stats">
+                <!-- Stats Cards Grid -->
                 <div class="stats-grid">
                     <div class="stat-card">
                         <i class="fas fa-book"></i>
-                        <span class="stat-value" id="repoCount">--</span>
+                        <span class="stat-value" id="repoCount">6</span>
                         <span class="stat-label">Repositories</span>
                     </div>
                     <div class="stat-card">
                         <i class="fas fa-star"></i>
-                        <span class="stat-value" id="starCount">--</span>
+                        <span class="stat-value" id="starCount">3</span>
                         <span class="stat-label">Stars Earned</span>
                     </div>
                     <div class="stat-card">
                         <i class="fas fa-code-branch"></i>
-                        <span class="stat-value" id="forkCount">--</span>
+                        <span class="stat-value" id="forkCount">0</span>
                         <span class="stat-label">Forks</span>
                     </div>
                     <div class="stat-card">
                         <i class="fas fa-users"></i>
-                        <span class="stat-value" id="followerCount">--</span>
+                        <span class="stat-value" id="followerCount">2</span>
                         <span class="stat-label">Followers</span>
                     </div>
                 </div>
 
-                <div class="github-chart">
-                    <img src="https://github-readme-stats.vercel.app/api?username=bijay085&show_icons=true&theme=radical"
-                        alt="GitHub Stats" loading="lazy">
+                <!-- GitHub Stats Charts - 3 IN A ROW -->
+                <div class="github-charts-row">
+                    <div class="github-chart" id="github-chart">
+                        <img src="https://github-readme-stats.vercel.app/api?username=bijay085&show_icons=true&theme=radical&count_private=true&include_all_commits=true"
+                            alt="GitHub Stats" loading="lazy">
+                    </div>
+
+                    <div class="github-languages" id="language-chart">
+                        <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=bijay085&layout=compact&theme=radical"
+                            alt="Top Languages" loading="lazy">
+                    </div>
+
+                    <div class="github-contributions" id="github-contributions">
+                        <img src="https://github-readme-streak-stats.herokuapp.com/?user=bijay085&theme=radical"
+                            alt="GitHub Streak" loading="lazy">
+                    </div>
                 </div>
 
-                <div class="github-languages">
-                    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=bijay085&layout=compact&theme=radical"
-                        alt="Top Languages" loading="lazy">
+                <!-- Recent Repositories Section -->
+                <div id="recent-repos">
+                    <h3 class="github-section-title">
+                        <i class="fas fa-folder-open"></i>
+                        Recent Repositories
+                    </h3>
+                    <div class="repos-grid">
+                        <!-- Repository Cards -->
+                        <div class="repo-card">
+                            <div class="repo-header">
+                                <a href="https://github.com/bijay085/bijay085" target="_blank" rel="noopener" class="repo-name">
+                                    <i class="fas fa-book"></i>
+                                    bijay085
+                                </a>
+                                <a href="https://github.com/bijay085/bijay085" target="_blank" rel="noopener" class="repo-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                            <p class="repo-description">No description available</p>
+                            <div class="repo-stats">
+                                <span class="repo-stat">
+                                    <i class="fas fa-star"></i> 1
+                                </span>
+                                <span class="repo-stat">
+                                    <i class="fas fa-code-branch"></i> 0
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="repo-card">
+                            <div class="repo-header">
+                                <a href="https://github.com/bijay085/College-Project" target="_blank" rel="noopener" class="repo-name">
+                                    <i class="fas fa-book"></i>
+                                    College-Project
+                                </a>
+                                <a href="https://github.com/bijay085/College-Project" target="_blank" rel="noopener" class="repo-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                            <p class="repo-description">No description available</p>
+                            <div class="repo-stats">
+                                <span class="repo-language">
+                                    <span class="language-dot" data-language="Python" style="background: #3572A5;"></span>
+                                    Python
+                                </span>
+                                <span class="repo-stat">
+                                    <i class="fas fa-star"></i> 0
+                                </span>
+                                <span class="repo-stat">
+                                    <i class="fas fa-code-branch"></i> 0
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="repo-card">
+                            <div class="repo-header">
+                                <a href="https://github.com/bijay085/License" target="_blank" rel="noopener" class="repo-name">
+                                    <i class="fas fa-book"></i>
+                                    License
+                                </a>
+                                <a href="https://github.com/bijay085/License" target="_blank" rel="noopener" class="repo-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                            <p class="repo-description">All license file.</p>
+                            <div class="repo-stats">
+                                <span class="repo-language">
+                                    <span class="language-dot" data-language="Batchfile" style="background: #C1F12E;"></span>
+                                    Batchfile
+                                </span>
+                                <span class="repo-stat">
+                                    <i class="fas fa-star"></i> 0
+                                </span>
+                                <span class="repo-stat">
+                                    <i class="fas fa-code-branch"></i> 0
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="repo-card">
+                            <div class="repo-header">
+                                <a href="https://github.com/bijay085/Discord-Bot" target="_blank" rel="noopener" class="repo-name">
+                                    <i class="fas fa-book"></i>
+                                    Discord-Bot
+                                </a>
+                                <a href="https://github.com/bijay085/Discord-Bot" target="_blank" rel="noopener" class="repo-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                            <p class="repo-description">No description available</p>
+                            <div class="repo-stats">
+                                <span class="repo-language">
+                                    <span class="language-dot" data-language="Python" style="background: #3572A5;"></span>
+                                    Python
+                                </span>
+                                <span class="repo-stat">
+                                    <i class="fas fa-star"></i> 0
+                                </span>
+                                <span class="repo-stat">
+                                    <i class="fas fa-code-branch"></i> 0
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="repo-card">
+                            <div class="repo-header">
+                                <a href="https://github.com/bijay085/Computer-Tricks" target="_blank" rel="noopener" class="repo-name">
+                                    <i class="fas fa-book"></i>
+                                    Computer-Tricks
+                                </a>
+                                <a href="https://github.com/bijay085/Computer-Tricks" target="_blank" rel="noopener" class="repo-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                            <p class="repo-description">All the computer shortcut or activation key</p>
+                            <div class="repo-stats">
+                                <span class="repo-language">
+                                    <span class="language-dot" data-language="Batchfile" style="background: #C1F12E;"></span>
+                                    Batchfile
+                                </span>
+                                <span class="repo-stat">
+                                    <i class="fas fa-star"></i> 1
+                                </span>
+                                <span class="repo-stat">
+                                    <i class="fas fa-code-branch"></i> 0
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="repo-card">
+                            <div class="repo-header">
+                                <a href="https://github.com/bijay085/Projects" target="_blank" rel="noopener" class="repo-name">
+                                    <i class="fas fa-book"></i>
+                                    Projects
+                                </a>
+                                <a href="https://github.com/bijay085/Projects" target="_blank" rel="noopener" class="repo-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                            <p class="repo-description">A collection of academic, experimental, and practice projects in various programming languages and technologies.</p>
+                            <div class="repo-stats">
+                                <span class="repo-language">
+                                    <span class="language-dot" data-language="PHP" style="background: #4F5D95;"></span>
+                                    PHP
+                                </span>
+                                <span class="repo-stat">
+                                    <i class="fas fa-star"></i> 0
+                                </span>
+                                <span class="repo-stat">
+                                    <i class="fas fa-code-branch"></i> 0
+                                </span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="github-contributions">
-                    <img src="https://github-readme-streak-stats.herokuapp.com/?user=bijay085&theme=radical"
-                        alt="GitHub Streak" loading="lazy">
+                <!-- Recent Activity Section -->
+                <div id="activity-feed">
+                    <h3 class="github-section-title">
+                        <i class="fas fa-bolt"></i>
+                        Recent Activity
+                    </h3>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon create">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                            <div class="activity-content">
+                                <span class="activity-text">Created</span>
+                                <a href="https://github.com/bijay085/Portfolio" target="_blank" rel="noopener" class="activity-repo">
+                                    bijay085/Portfolio
+                                </a>
+                                <span class="activity-time">1 day ago</span>
+                            </div>
+                        </div>
+
+                        <div class="activity-item">
+                            <div class="activity-icon push">
+                                <i class="fas fa-upload"></i>
+                            </div>
+                            <div class="activity-content">
+                                <span class="activity-text">Pushed to</span>
+                                <a href="https://github.com/bijay085/bijay085" target="_blank" rel="noopener" class="activity-repo">
+                                    bijay085/bijay085
+                                </a>
+                                <span class="activity-time">1 day ago</span>
+                            </div>
+                        </div>
+
+                        <div class="activity-item">
+                            <div class="activity-icon push">
+                                <i class="fas fa-upload"></i>
+                            </div>
+                            <div class="activity-content">
+                                <span class="activity-text">Pushed to</span>
+                                <a href="https://github.com/bijay085/bijay085" target="_blank" rel="noopener" class="activity-repo">
+                                    bijay085/bijay085
+                                </a>
+                                <span class="activity-time">1 day ago</span>
+                            </div>
+                        </div>
+
+                        <div class="activity-item">
+                            <div class="activity-icon push">
+                                <i class="fas fa-upload"></i>
+                            </div>
+                            <div class="activity-content">
+                                <span class="activity-text">Pushed to</span>
+                                <a href="https://github.com/bijay085/bijay085" target="_blank" rel="noopener" class="activity-repo">
+                                    bijay085/bijay085
+                                </a>
+                                <span class="activity-time">1 day ago</span>
+                            </div>
+                        </div>
+
+                        <div class="activity-item">
+                            <div class="activity-icon push">
+                                <i class="fas fa-upload"></i>
+                            </div>
+                            <div class="activity-content">
+                                <span class="activity-text">Pushed to</span>
+                                <a href="https://github.com/bijay085/bijay085" target="_blank" rel="noopener" class="activity-repo">
+                                    bijay085/bijay085
+                                </a>
+                                <span class="activity-time">1 day ago</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
+            <!-- View Full Profile Button -->
             <div class="github-footer">
                 <a href="https://github.com/bijay085" target="_blank" rel="noopener" class="btn btn-primary">
                     <i class="fab fa-github"></i>
@@ -718,7 +982,6 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">
-                    <span class="title-number">06.</span>
                     <span class="title-text">Interactive Terminal</span>
                     <span class="title-line"></span>
                 </h2>
@@ -768,7 +1031,6 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">
-                    <span class="title-number">07.</span>
                     <span class="title-text">Get In Touch</span>
                     <span class="title-line"></span>
                 </h2>
@@ -837,26 +1099,26 @@
                 <div class="contact-form-wrapper">
                     <form class="contact-form" id="contactForm" action="/api/contact.php" method="POST">
                         <div class="form-group">
+                            <input type="text" id="contactName" name="name" placeholder=" " required>
                             <label for="contactName">Your Name</label>
-                            <input type="text" id="contactName" name="name" required>
                             <span class="form-error"></span>
                         </div>
 
                         <div class="form-group">
+                            <input type="email" id="contactEmail" name="email" placeholder=" " required>
                             <label for="contactEmail">Your Email</label>
-                            <input type="email" id="contactEmail" name="email" required>
                             <span class="form-error"></span>
                         </div>
 
                         <div class="form-group">
+                            <input type="text" id="contactSubject" name="subject" placeholder=" " required>
                             <label for="contactSubject">Subject</label>
-                            <input type="text" id="contactSubject" name="subject" required>
                             <span class="form-error"></span>
                         </div>
 
                         <div class="form-group">
+                            <textarea id="contactMessage" name="message" rows="5" placeholder=" " required></textarea>
                             <label for="contactMessage">Message</label>
-                            <textarea id="contactMessage" name="message" rows="5" required></textarea>
                             <span class="form-error"></span>
                         </div>
 
@@ -909,7 +1171,7 @@
 
             <!-- Copyright & Tagline -->
             <div class="footer-bottom">
-                <p class="copyright">© 2025 Bijay Koirala. All rights reserved.</p>
+                <p class="copyright">© <span id="currentYear">2025</span> Bijay Koirala. All rights reserved.</p>
                 <p class="footer-tagline">
                     Built with <span class="heart">❤️</span> and lots of <span class="coffee">☕</span>
                 </p>

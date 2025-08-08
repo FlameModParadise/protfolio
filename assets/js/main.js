@@ -709,3 +709,163 @@ Keyboard Shortcuts:
     });
 
 })();
+/**
+ * SCROLL INDICATOR ENHANCEMENT
+ * Add this to your main.js or create a new file
+ */
+
+(function() {
+    'use strict';
+
+    // Wait for DOM to be ready
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        // Get scroll indicator element
+        const scrollIndicator = document.querySelector('.hero-scroll-indicator');
+        const scrollLink = document.querySelector('.scroll-down');
+        
+        if (!scrollIndicator || !scrollLink) {
+            console.warn('Scroll indicator elements not found');
+            return;
+        }
+
+        // Smooth scroll on click
+        scrollLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+                // Calculate offset for fixed navbar
+                const navbarHeight = document.querySelector('.navbar')?.offsetHeight || 0;
+                const targetPosition = targetSection.offsetTop - navbarHeight;
+                
+                // Smooth scroll to target
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+                
+                // Optional: Add a subtle animation to the indicator
+                scrollIndicator.style.transform = 'translateX(-50%) scale(0.9)';
+                setTimeout(() => {
+                    scrollIndicator.style.transform = 'translateX(-50%) scale(1)';
+                }, 200);
+            }
+        });
+
+        // Hide scroll indicator when scrolling down
+        let lastScrollTop = 0;
+        let isIndicatorVisible = true;
+
+        function handleScroll() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // Hide indicator after scrolling 100px
+            if (scrollTop > 100 && isIndicatorVisible) {
+                scrollIndicator.style.opacity = '0';
+                scrollIndicator.style.pointerEvents = 'none';
+                isIndicatorVisible = false;
+            } 
+            // Show indicator when back at top
+            else if (scrollTop <= 100 && !isIndicatorVisible) {
+                scrollIndicator.style.opacity = '1';
+                scrollIndicator.style.pointerEvents = 'auto';
+                isIndicatorVisible = true;
+            }
+
+            lastScrollTop = scrollTop;
+        }
+
+        // Throttle scroll event for performance
+        let scrollTimer;
+        window.addEventListener('scroll', function() {
+            if (scrollTimer) {
+                clearTimeout(scrollTimer);
+            }
+            scrollTimer = setTimeout(handleScroll, 50);
+        });
+
+        // Initial check
+        handleScroll();
+
+        // Add hover effect enhancement
+        scrollLink.addEventListener('mouseenter', function() {
+            const wheel = this.querySelector('.wheel');
+            if (wheel) {
+                wheel.style.animationDuration = '1s';
+            }
+        });
+
+        scrollLink.addEventListener('mouseleave', function() {
+            const wheel = this.querySelector('.wheel');
+            if (wheel) {
+                wheel.style.animationDuration = '2s';
+            }
+        });
+
+        // Optional: Add keyboard support
+        document.addEventListener('keydown', function(e) {
+            // Press 'S' to scroll down from hero
+            if (e.key === 's' || e.key === 'S') {
+                const heroSection = document.querySelector('.hero');
+                if (heroSection && window.pageYOffset < heroSection.offsetHeight) {
+                    scrollLink.click();
+                }
+            }
+        });
+
+        // Test if animation is working
+        console.log('Scroll indicator initialized successfully');
+        
+        // Debug: Check if CSS is applied correctly
+        const mouseElement = document.querySelector('.mouse');
+        const wheelElement = document.querySelector('.wheel');
+        
+        if (mouseElement && wheelElement) {
+            const mouseStyles = window.getComputedStyle(mouseElement);
+            const wheelStyles = window.getComputedStyle(wheelElement);
+            
+            console.log('Mouse element styles:', {
+                width: mouseStyles.width,
+                height: mouseStyles.height,
+                border: mouseStyles.border,
+                position: mouseStyles.position
+            });
+            
+            console.log('Wheel element styles:', {
+                animation: wheelStyles.animation,
+                position: wheelStyles.position,
+                background: wheelStyles.background
+            });
+        }
+    });
+
+    // Alternative: Simpler version without dependencies
+    function initScrollIndicator() {
+        const scrollDown = document.querySelector('.scroll-down');
+        
+        if (scrollDown) {
+            scrollDown.onclick = function(e) {
+                e.preventDefault();
+                const about = document.getElementById('about');
+                if (about) {
+                    about.scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                return false;
+            };
+        }
+    }
+
+    // Call simple version as backup
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initScrollIndicator);
+    } else {
+        initScrollIndicator();
+    }
+
+})();
