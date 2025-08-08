@@ -437,8 +437,6 @@
             <div class="modal-overlay"></div>
             <div class="modal-content">
                 <button class="modal-close" aria-label="Close modal">&times;</button>
-                    ×
-                </button>
                 <div class="modal-body"></div>
             </div>
         `;
