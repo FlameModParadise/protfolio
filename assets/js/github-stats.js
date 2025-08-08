@@ -1,5 +1,5 @@
 /* ===============================================
-   GITHUB STATS - ENHANCED VERSION
+   GITHUB STATS - ENHANCED VERSION (FIXED)
    File: github-stats.js
    Location: /htdocs/assets/js/github-stats.js
    =============================================== */
@@ -42,28 +42,32 @@
     // CACHE MANAGEMENT
     // ===============================================
     const cache = {
-        get(key) {
-            const item = localStorage.getItem(`github_stats_${key}`);
-            if (!item) return null;
-            
-            const { data, timestamp } = JSON.parse(item);
-            const isExpired = Date.now() - timestamp > config.cacheTime;
-            
-            if (isExpired) {
-                localStorage.removeItem(`github_stats_${key}`);
+        get: function(key) {
+            try {
+                const item = localStorage.getItem('github_stats_' + key);
+                if (!item) return null;
+                
+                const parsed = JSON.parse(item);
+                const isExpired = Date.now() - parsed.timestamp > config.cacheTime;
+                
+                if (isExpired) {
+                    localStorage.removeItem('github_stats_' + key);
+                    return null;
+                }
+                
+                return parsed.data;
+            } catch (e) {
                 return null;
             }
-            
-            return data;
         },
         
-        set(key, data) {
+        set: function(key, data) {
             const item = {
-                data,
+                data: data,
                 timestamp: Date.now()
             };
             try {
-                localStorage.setItem(`github_stats_${key}`, JSON.stringify(item));
+                localStorage.setItem('github_stats_' + key, JSON.stringify(item));
             } catch (e) {
                 console.warn('Failed to cache data:', e);
             }
@@ -92,7 +96,7 @@
         config.theme = isDarkMode ? 'dark' : 'light';
         
         // Listen for theme changes
-        const observer = new MutationObserver(() => {
+        const observer = new MutationObserver(function() {
             const newTheme = document.body.classList.contains('light-theme') ? 'light' : 'dark';
             if (newTheme !== config.theme) {
                 config.theme = newTheme;
@@ -118,8 +122,8 @@
             threshold: 0.01
         };
         
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
                 if (entry.isIntersecting && !state.hasLoaded && !state.isLoading) {
                     state.isLoading = true;
                     loadAllStats();
@@ -170,7 +174,7 @@
     // ===============================================
     function showLoadingState() {
         const elements = ['total-contributions', 'public-repos', 'followers', 'total-stars'];
-        elements.forEach(id => {
+        elements.forEach(function(id) {
             const el = document.getElementById(id);
             if (el) {
                 el.innerHTML = '<span style="opacity: 0.5;">...</span>';
@@ -181,23 +185,27 @@
     // ===============================================
     // FETCH GITHUB STATS WITH RETRY
     // ===============================================
-    async function fetchGitHubStats(attempt = 1) {
+    async function fetchGitHubStats(attempt) {
+        attempt = attempt || 1;
+        
         try {
             // Fetch user data
-            const userData = await fetchWithRetry(`${config.apiBaseUrl}/users/${config.username}`);
+            const userData = await fetchWithRetry(config.apiBaseUrl + '/users/' + config.username);
             
             // Fetch repositories for star count
             const repos = await fetchWithRetry(
-                `${config.apiBaseUrl}/users/${config.username}/repos?per_page=100&sort=stars`
+                config.apiBaseUrl + '/users/' + config.username + '/repos?per_page=100&sort=stars'
             );
             
             // Calculate total stars
-            const totalStars = repos.reduce((sum, repo) => sum + (repo.stargazers_count || 0), 0);
+            const totalStars = repos.reduce(function(sum, repo) {
+                return sum + (repo.stargazers_count || 0);
+            }, 0);
             
             // Fetch contribution data (using GraphQL would be better but requires auth)
             // For now, we'll estimate based on recent activity
             const events = await fetchWithRetry(
-                `${config.apiBaseUrl}/users/${config.username}/events/public?per_page=100`
+                config.apiBaseUrl + '/users/' + config.username + '/events/public?per_page=100'
             );
             
             // Estimate contributions (rough calculation)
@@ -220,7 +228,7 @@
             console.log('GitHub stats fetched successfully:', stats);
             
         } catch (error) {
-            console.error(`Attempt ${attempt} failed:`, error);
+            console.error('Attempt ' + attempt + ' failed:', error);
             
             if (attempt < config.retryAttempts) {
                 await delay(config.retryDelay * attempt);
@@ -242,7 +250,7 @@
         });
         
         if (!response.ok) {
-            throw new Error(`API request failed: ${response.status}`);
+            throw new Error('API request failed: ' + response.status);
         }
         
         return response.json();
@@ -289,7 +297,7 @@
     }
     
     function loadImage(elementId, url) {
-        return new Promise((resolve) => {
+        return new Promise(function(resolve) {
             const img = document.getElementById(elementId);
             if (!img) {
                 resolve();
@@ -303,22 +311,29 @@
                 img.classList.add('loaded');
                 img.style.display = 'block';
                 
-                const loading = img.parentElement?.querySelector('.card-loading');
-                if (loading) {
-                    loading.style.display = 'none';
+                // Fixed: Use parentNode instead of parentElement for better compatibility
+                const parent = img.parentNode;
+                if (parent) {
+                    const loading = parent.querySelector('.card-loading');
+                    if (loading) {
+                        loading.style.display = 'none';
+                    }
                 }
                 resolve();
             };
             
             tempImg.onerror = function() {
-                const loading = img.parentElement?.querySelector('.card-loading');
-                if (loading) {
-                    loading.innerHTML = `
-                        <i class="fas fa-exclamation-circle" style="color: #ff6b6b;"></i>
-                        <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 0.5rem;">
-                            Unable to load chart
-                        </p>
-                    `;
+                // Fixed: Use parentNode instead of parentElement for better compatibility
+                const parent = img.parentNode;
+                if (parent) {
+                    const loading = parent.querySelector('.card-loading');
+                    if (loading) {
+                        loading.innerHTML = 
+                            '<i class="fas fa-exclamation-circle" style="color: #ff6b6b;"></i>' +
+                            '<p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 0.5rem;">' +
+                            'Unable to load chart' +
+                            '</p>';
+                    }
                 }
                 resolve();
             };
@@ -346,7 +361,7 @@
             cache_seconds: '3600'
         });
         
-        return `https://github-readme-stats.vercel.app/api?${params}`;
+        return 'https://github-readme-stats.vercel.app/api?' + params.toString();
     }
     
     function getLanguageImageUrl() {
@@ -362,7 +377,7 @@
             cache_seconds: '3600'
         });
         
-        return `https://github-readme-stats.vercel.app/api/top-langs/?${params}`;
+        return 'https://github-readme-stats.vercel.app/api/top-langs/?' + params.toString();
     }
     
     function getStreakImageUrl() {
@@ -379,7 +394,7 @@
             cache_seconds: '3600'
         });
         
-        return `https://streak-stats.demolab.com/?${params}`;
+        return 'https://streak-stats.demolab.com/?' + params.toString();
     }
     
     // ===============================================
@@ -444,7 +459,9 @@
     }
     
     function delay(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
+        return new Promise(function(resolve) {
+            setTimeout(resolve, ms);
+        });
     }
     
     // ===============================================
@@ -458,10 +475,10 @@
     
     // Export for debugging
     window.GitHubStats = {
-        config,
-        state,
+        config: config,
+        state: state,
         reload: loadAllStats,
-        clearCache: () => {
+        clearCache: function() {
             localStorage.removeItem('github_stats_user_stats');
             console.log('Cache cleared');
         }

@@ -185,14 +185,6 @@
         <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
     </noscript>
 
-    <!-- Preload critical images -->
-    <link rel="preload" as="image" href="assets/images/profile.jpg">
-    <link rel="preload" as="image" href="assets/projects/project1.png">
-    <link rel="preload" as="image" href="assets/projects/project2.png">
-    <link rel="preload" as="image" href="assets/projects/project3.png">
-    <link rel="preload" as="image" href="assets/projects/project4.png">
-    <link rel="preload" as="image" href="assets/projects/project5.png">
-
     <!-- Script to handle CSS loading -->
     <script>
         !function (e) { "use strict"; e.loadCSS || (e.loadCSS = function () { }); var t = loadCSS.relpreload = {}; if (t.support = function () { var t; try { t = e.document.createElement("link").relList.supports("preload") } catch (e) { t = !1 } return function () { return t } }(), t.bindMediaToggle = function (e) { function t() { e.media = a } var a = e.media || "all"; e.addEventListener ? e.addEventListener("load", t) : e.attachEvent && e.attachEvent("onload", t), setTimeout(function () { e.rel = "stylesheet", e.media = "only x" }), setTimeout(t, 3e3) }, t.poly = function () { if (!t.support()) for (var a = e.document.getElementsByTagName("link"), n = 0; n < a.length; n++) { var o = a[n]; "preload" !== o.rel || "style" !== o.getAttribute("as") || o.getAttribute("data-loadcss") || (o.setAttribute("data-loadcss", !0), t.bindMediaToggle(o)) } }, !t.support()) { t.poly(); var a = e.setInterval(t.poly, 500); e.addEventListener ? e.addEventListener("load", function () { t.poly(), e.clearInterval(a) }) : e.attachEvent && e.attachEvent("onload", function () { t.poly(), e.clearInterval(a) }) } "undefined" != typeof exports ? exports.loadCSS = loadCSS : e.loadCSS = loadCSS }("undefined" != typeof global ? global : this);
@@ -316,7 +308,7 @@
     <section id="about" class="about">
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">
-                <span class="section-number">01.</span> About Me
+                <span class="section-number"></span> About Me
             </h2>
 
             <div class="about-content">
@@ -346,7 +338,9 @@
 
                 <div class="about-image" data-aos="fade-left">
                     <div class="image-wrapper">
-                        <img src="assets/images/profile.jpg" alt="Bijay Koirala" loading="lazy">
+                        <div style="width: 100%; height: 300px; background: linear-gradient(135deg, #6366f1, #10b981); border-radius: 16px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-user" style="font-size: 5rem; color: white;"></i>
+                        </div>
                         <div class="image-border"></div>
                     </div>
                 </div>
@@ -358,7 +352,7 @@
     <section id="skills" class="skills">
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">
-                <span class="section-number">02.</span> Skills & Technologies
+                <span class="section-number"></span> Skills & Technologies
             </h2>
 
             <div class="skills-grid">
@@ -465,7 +459,7 @@
     <section id="terminal" class="terminal-section">
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">
-                <span class="section-number">03.</span> Interactive Terminal
+                <span class="section-number"></span> Interactive Terminal
             </h2>
 
             <div class="terminal-container" data-aos="fade-up" data-aos-delay="100">
@@ -481,41 +475,41 @@
                 <div class="terminal-body" id="terminal-body">
                     <div class="terminal-content" id="terminal-content">
                         <div class="ascii-art">
-                            ____ _ _
-                            | _ \(_)(_) __ _ _ _
-                            | |_) | || |/ _` | | | |
-                            | _ <| || | (_| | |_| | |_| \_\_|/ |\__,_|\__, | |__/ |___/ </div>
-
-                                <div class="terminal-line terminal-success">Welcome to Bijay's Interactive Portfolio
-                                    Terminal!</div>
-                                <div class="terminal-line terminal-info">Type 'help' to see available commands.</div>
-                                <div class="terminal-line terminal-comment"># Try commands like: about, skills,
-                                    projects, contact</div>
-                                <div class="terminal-line">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-                                </div>
+    ____  _  _               
+   |  _ \(_)(_) __ _ _   _   
+   | |_) | || |/ _` | | | |  
+   |  _ &lt;| || | (_| | |_| |  
+   |___|/ |\__,_|\__, |  
+            |__/        |___/   
                         </div>
 
-                        <div class="terminal-input-line">
-                            <span class="terminal-prompt-symbol">bijay@portfolio:~$</span>
-                            <input type="text" id="terminal-input" class="terminal-input" autofocus>
-                            <span class="terminal-cursor"></span>
-                        </div>
+                        <div class="terminal-line terminal-success">Welcome to Bijay's Interactive Portfolio Terminal!</div>
+                        <div class="terminal-line terminal-info">Type 'help' to see available commands.</div>
+                        <div class="terminal-line terminal-comment"># Try commands like: about, skills, projects, contact</div>
+                        <div class="terminal-line">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+                    </div>
+
+                    <div class="terminal-input-line">
+                        <span class="terminal-prompt-symbol">bijay@portfolio:~$</span>
+                        <input type="text" id="terminal-input" class="terminal-input" autofocus>
+                        <span class="terminal-cursor"></span>
                     </div>
                 </div>
-
-                <div class="terminal-hint" data-aos="fade-up" data-aos-delay="200">
-                    <p>💡 Pro tip: Try these commands: <code>help</code>, <code>about</code>, <code>skills</code>,
-                        <code>projects</code>, <code>matrix</code>, <code>joke</code>
-                    </p>
-                </div>
             </div>
+
+            <div class="terminal-hint" data-aos="fade-up" data-aos-delay="200">
+                <p>💡 Pro tip: Try these commands: <code>help</code>, <code>about</code>, <code>skills</code>,
+                    <code>projects</code>, <code>matrix</code>, <code>joke</code>
+                </p>
+            </div>
+        </div>
     </section>
 
-    <!-- Projects Section - UPDATED WITH IMAGES -->
+    <!-- Projects Section - WITH IMAGES -->
     <section id="projects" class="projects">
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">
-                <span class="section-number">04.</span> Featured Projects
+                <span class="section-number"></span> Featured Projects
             </h2>
 
             <div class="projects-grid">
@@ -523,15 +517,9 @@
                 <div class="project-card featured" data-aos="fade-up" data-aos-delay="100">
                     <div class="featured-badge">Featured</div>
                     <div class="project-image">
-                        <img src="assets/images/project1.png" alt="API/Web Scraping Suite" loading="lazy"
-                            onerror="this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='<i class=\'fas fa-spider\'></i>';">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <span style="color: white; font-size: 14px;">
-                                    <i class="fas fa-lock"></i> Private Repository
-                                </span>
-                            </div>
-                        </div>
+                        <img src="assets/projects/project1.png" 
+                             alt="API/Web Scraping Suite"
+                             onerror="this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='<i class=\'fas fa-spider\'></i>';">
                     </div>
                     <div class="project-content">
                         <p class="project-overline">Featured Collection</p>
@@ -558,16 +546,9 @@
                 <!-- Project 2: Bot Ecosystem -->
                 <div class="project-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="project-image">
-                        <img src="assets/projects/project2.png" alt="Bot Ecosystem" loading="lazy"
-                            onerror="this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='<i class=\'fas fa-robot\'></i>';">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="https://github.com/bijay085/Projects/tree/master/Bots" target="_blank"
-                                    aria-label="GitHub">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                            </div>
-                        </div>
+                        <img src="assets/projects/project2.png" 
+                             alt="Bot Ecosystem"
+                             onerror="this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='<i class=\'fas fa-robot\'></i>';">
                     </div>
                     <div class="project-content">
                         <p class="project-overline">Automation</p>
@@ -588,20 +569,9 @@
                 <!-- Project 3: CMS Platform -->
                 <div class="project-card" data-aos="fade-up" data-aos-delay="300">
                     <div class="project-image">
-                        <img src="assets/projects/project3.png" alt="CMS Platform" loading="lazy"
-                            onerror="this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='<i class=\'fas fa-globe\'></i>';">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="https://github.com/bijay085/Projects/tree/master/CMS%20Site" target="_blank"
-                                    aria-label="GitHub">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                                <a href="https://flamemodparadise.github.io/My-Site/" target="_blank"
-                                    aria-label="Live Demo">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </a>
-                            </div>
-                        </div>
+                        <img src="assets/projects/project3.png" 
+                             alt="CMS Platform"
+                             onerror="this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='<i class=\'fas fa-globe\'></i>';">
                     </div>
                     <div class="project-content">
                         <p class="project-overline">Web Development</p>
@@ -622,16 +592,9 @@
                 <!-- Project 4: FraudShield System -->
                 <div class="project-card" data-aos="fade-up" data-aos-delay="400">
                     <div class="project-image">
-                        <img src="assets/projects/project4.png" alt="FraudShield System" loading="lazy"
-                            onerror="this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='<i class=\'fas fa-shield-alt\'></i>';">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="https://github.com/bijay085/College-Project" target="_blank"
-                                    aria-label="GitHub">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                            </div>
-                        </div>
+                        <img src="assets/projects/project4.png" 
+                             alt="FraudShield System"
+                             onerror="this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='<i class=\'fas fa-shield-alt\'></i>';">
                     </div>
                     <div class="project-content">
                         <p class="project-overline">College Project</p>
@@ -652,16 +615,9 @@
                 <!-- Project 5: Gamified Learning Tracker -->
                 <div class="project-card" data-aos="fade-up" data-aos-delay="500">
                     <div class="project-image">
-                        <img src="assets/projects/project5.png" alt="Gamified Learning Tracker" loading="lazy"
-                            onerror="this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='<i class=\'fas fa-gamepad\'></i>';">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="https://github.com/bijay085/Projects/tree/master/Gamified%20Learning%20Progress%20Tracker"
-                                    target="_blank" aria-label="GitHub">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                            </div>
-                        </div>
+                        <img src="assets/projects/project5.png" 
+                             alt="Gamified Learning Tracker"
+                             onerror="this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='<i class=\'fas fa-gamepad\'></i>';">
                     </div>
                     <div class="project-content">
                         <p class="project-overline">Educational</p>
@@ -682,16 +638,9 @@
                 <!-- Project 6: More Projects -->
                 <div class="project-card more-projects" data-aos="fade-up" data-aos-delay="600">
                     <div class="project-image">
-                        <img src="assets/projects/project6.png" alt="More Projects" loading="lazy"
-                            onerror="this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='<i class=\'fas fa-plus\'></i>';">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="https://github.com/bijay085?tab=repositories" target="_blank"
-                                    aria-label="View All Projects">
-                                    <i class="fas fa-folder-open"></i>
-                                </a>
-                            </div>
-                        </div>
+                        <img src="assets/projects/project6.png" 
+                             alt="More Projects"
+                             onerror="this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='<i class=\'fas fa-plus\'></i>';">
                     </div>
                     <div class="project-content">
                         <p class="project-overline">Explore More</p>
@@ -716,7 +665,7 @@
     <section id="github" class="github-section">
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">
-                <span class="section-number">05.</span> GitHub Activity
+                <span class="section-number"></span> GitHub Activity
             </h2>
 
             <!-- Compact Stats Row -->
@@ -793,7 +742,7 @@
     <section id="services" class="services">
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">
-                <span class="section-number">06.</span> Services I Offer
+                <span class="section-number"></span> Services I Offer
             </h2>
 
             <div class="services-grid">
@@ -822,7 +771,6 @@
                         <ul>
                             <li>Custom Commands</li>
                             <li>API Integration</li>
-                            <li>24/7 Hosting</li>
                         </ul>
                     </div>
                 </div>
@@ -864,7 +812,7 @@
     <section id="contact" class="contact">
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">
-                <span class="section-number">07.</span> Get In Touch
+                <span class="section-number"></span> Get In Touch
             </h2>
 
             <div class="contact-content">
@@ -970,29 +918,6 @@
     <script defer src="assets/js/terminal.js"></script>
     <script defer src="assets/js/bubble-trail.js"></script>
     <script defer src="assets/js/github-stats.js"></script>
-
-    <!-- Additional Script for Project Image Handling -->
-    <script>
-        // Handle project images with fallback
-        document.addEventListener('DOMContentLoaded', function () {
-            const projectImages = document.querySelectorAll('.project-image img');
-
-            projectImages.forEach(img => {
-                // Add loading class
-                img.parentElement.classList.add('loading');
-
-                img.addEventListener('load', function () {
-                    this.parentElement.classList.remove('loading');
-                });
-
-                img.addEventListener('error', function () {
-                    console.log('Failed to load image:', this.src);
-                    this.parentElement.classList.remove('loading');
-                });
-            });
-        });
-    </script>
-
 </body>
 
 </html>
