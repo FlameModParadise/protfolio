@@ -75,6 +75,7 @@
             .github-charts-row {
                 grid-template-columns: repeat(2, 1fr);
             }
+
             .github-charts-row .github-contributions {
                 grid-column: 1 / -1;
             }
@@ -84,6 +85,7 @@
             .github-charts-row {
                 grid-template-columns: 1fr;
             }
+
             .github-charts-row .github-contributions {
                 grid-column: auto;
             }
@@ -97,6 +99,8 @@
 </head>
 
 <body data-theme="dark">
+    <!-- Bubble Trail Container -->
+    <div class="bubble-trail-container" id="bubble-trail-container"></div>
     <!-- Preloader -->
     <div id="preloader" class="preloader">
         <div class="preloader-wrapper">
@@ -177,57 +181,79 @@
         </div>
 
         <div class="hero-container">
-            <div class="hero-content">
-                <p class="hero-greeting animate-fadeInUp">
-                    <span class="wave">👋</span> Hey there! I'm
-                </p>
-                <h1 class="hero-name animate-fadeInUp animate-delay-1">
-                    Bijay Koirala
-                </h1>
-                <div class="hero-title animate-fadeInUp animate-delay-2">
-                    <span class="title-prefix">I'm a</span>
-                    <span class="title-dynamic" id="dynamicTitle">
-                        <span class="title-text" id="titleText">Python Developer</span>
-                        <span class="title-cursor">|</span>
-                    </span>
-                </div>
-                <p class="hero-description animate-fadeInUp animate-delay-3">
-                    Building automation tools that make workflows smarter and faster.
-                    Currently crafting 15+ private automation solutions for Netflix, Outlook, ChatGPT & more!
-                </p>
+            <div class="hero-content-wrapper">
+                <!-- Left side - Content -->
+                <div class="hero-content">
+                    <p class="hero-greeting animate-fadeInUp">
+                        <span class="wave">👋</span> Hey there! I'm
+                    </p>
+                    <h1 class="hero-name animate-fadeInUp animate-delay-1">
+                        Bijay Koirala
+                    </h1>
+                    <div class="hero-title animate-fadeInUp animate-delay-2">
+                        <span class="title-dynamic" id="dynamicTitle">
+                            <span class="title-text" id="titleText">Data Analyst</span>
+                            <span class="title-cursor">|</span>
+                        </span>
+                    </div>
+                    <p class="hero-description animate-fadeInUp animate-delay-3">
+                        I build automation tools that make workflows smarter and faster.
+                        Currently crafting 15+ private automation solutions for Netflix, Outlook, ChatGPT & more!
+                    </p>
 
-                <div class="hero-cta animate-fadeInUp animate-delay-4">
-                    <a href="#projects" class="btn btn-primary">
-                        <i class="fas fa-rocket"></i>
-                        <span>View My Work</span>
-                    </a>
-                    <a href="/assets/docs/resume.pdf" class="btn btn-secondary" download>
-                        <i class="fas fa-download"></i>
-                        <span>Download CV</span>
-                    </a>
+                    <div class="hero-cta animate-fadeInUp animate-delay-4">
+                        <a href="#projects" class="btn btn-primary">
+                            <i class="fas fa-code"></i>
+                            <span>View My Work</span>
+                        </a>
+                        <a href="/assets/docs/resume.pdf" class="btn btn-secondary" download>
+                            <i class="fas fa-download"></i>
+                            <span>Download CV</span>
+                        </a>
+                    </div>
+
+                    <div class="hero-socials animate-fadeInUp animate-delay-5">
+                        <a href="https://github.com/bijay085" target="_blank" rel="noopener" class="social-link"
+                            aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/bijay-koirala/" target="_blank" rel="noopener"
+                            class="social-link" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://wa.me/9746665541" target="_blank" rel="noopener" class="social-link"
+                            aria-label="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="mailto:bijaykoirala003@gmail.com" class="social-link" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
                 </div>
 
-                <div class="hero-socials animate-fadeInUp animate-delay-5">
-                    <a href="https://github.com/bijay085" target="_blank" rel="noopener" class="social-link"
-                        aria-label="GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/bijay-koirala/" target="_blank" rel="noopener"
-                        class="social-link" aria-label="LinkedIn">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="https://wa.me/9746665541" target="_blank" rel="noopener" class="social-link"
-                        aria-label="WhatsApp">
-                        <i class="fab fa-whatsapp"></i>
-                    </a>
-                    <a href="mailto:bijaykoirala003@gmail.com" class="social-link" aria-label="Email">
-                        <i class="fas fa-envelope"></i>
-                    </a>
+                <!-- Right side - Geometric Design -->
+                <div class="hero-visual animate-fadeInUp animate-delay-3">
+                    <div class="geometric-shapes">
+                        <div class="shape shape-1"></div>
+                        <div class="shape shape-2"></div>
+                        <div class="shape shape-3"></div>
+                        <div class="floating-elements">
+                            <div class="float-item">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div class="float-item">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="float-item">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Fixed Scroll Indicator -->
+        <!-- Keep the scroll indicator -->
         <div class="hero-scroll-indicator">
             <a href="#about" class="scroll-down">
                 <div class="mouse">
@@ -237,7 +263,6 @@
             </a>
         </div>
     </section>
-
     <!-- About Section -->
     <section id="about" class="about section">
         <div class="container">
@@ -746,11 +771,13 @@
                         <!-- Repository Cards -->
                         <div class="repo-card">
                             <div class="repo-header">
-                                <a href="https://github.com/bijay085/bijay085" target="_blank" rel="noopener" class="repo-name">
+                                <a href="https://github.com/bijay085/bijay085" target="_blank" rel="noopener"
+                                    class="repo-name">
                                     <i class="fas fa-book"></i>
                                     bijay085
                                 </a>
-                                <a href="https://github.com/bijay085/bijay085" target="_blank" rel="noopener" class="repo-link">
+                                <a href="https://github.com/bijay085/bijay085" target="_blank" rel="noopener"
+                                    class="repo-link">
                                     <i class="fas fa-external-link-alt"></i>
                                 </a>
                             </div>
@@ -767,18 +794,21 @@
 
                         <div class="repo-card">
                             <div class="repo-header">
-                                <a href="https://github.com/bijay085/College-Project" target="_blank" rel="noopener" class="repo-name">
+                                <a href="https://github.com/bijay085/College-Project" target="_blank" rel="noopener"
+                                    class="repo-name">
                                     <i class="fas fa-book"></i>
                                     College-Project
                                 </a>
-                                <a href="https://github.com/bijay085/College-Project" target="_blank" rel="noopener" class="repo-link">
+                                <a href="https://github.com/bijay085/College-Project" target="_blank" rel="noopener"
+                                    class="repo-link">
                                     <i class="fas fa-external-link-alt"></i>
                                 </a>
                             </div>
                             <p class="repo-description">No description available</p>
                             <div class="repo-stats">
                                 <span class="repo-language">
-                                    <span class="language-dot" data-language="Python" style="background: #3572A5;"></span>
+                                    <span class="language-dot" data-language="Python"
+                                        style="background: #3572A5;"></span>
                                     Python
                                 </span>
                                 <span class="repo-stat">
@@ -792,18 +822,21 @@
 
                         <div class="repo-card">
                             <div class="repo-header">
-                                <a href="https://github.com/bijay085/License" target="_blank" rel="noopener" class="repo-name">
+                                <a href="https://github.com/bijay085/License" target="_blank" rel="noopener"
+                                    class="repo-name">
                                     <i class="fas fa-book"></i>
                                     License
                                 </a>
-                                <a href="https://github.com/bijay085/License" target="_blank" rel="noopener" class="repo-link">
+                                <a href="https://github.com/bijay085/License" target="_blank" rel="noopener"
+                                    class="repo-link">
                                     <i class="fas fa-external-link-alt"></i>
                                 </a>
                             </div>
                             <p class="repo-description">All license file.</p>
                             <div class="repo-stats">
                                 <span class="repo-language">
-                                    <span class="language-dot" data-language="Batchfile" style="background: #C1F12E;"></span>
+                                    <span class="language-dot" data-language="Batchfile"
+                                        style="background: #C1F12E;"></span>
                                     Batchfile
                                 </span>
                                 <span class="repo-stat">
@@ -817,18 +850,21 @@
 
                         <div class="repo-card">
                             <div class="repo-header">
-                                <a href="https://github.com/bijay085/Discord-Bot" target="_blank" rel="noopener" class="repo-name">
+                                <a href="https://github.com/bijay085/Discord-Bot" target="_blank" rel="noopener"
+                                    class="repo-name">
                                     <i class="fas fa-book"></i>
                                     Discord-Bot
                                 </a>
-                                <a href="https://github.com/bijay085/Discord-Bot" target="_blank" rel="noopener" class="repo-link">
+                                <a href="https://github.com/bijay085/Discord-Bot" target="_blank" rel="noopener"
+                                    class="repo-link">
                                     <i class="fas fa-external-link-alt"></i>
                                 </a>
                             </div>
                             <p class="repo-description">No description available</p>
                             <div class="repo-stats">
                                 <span class="repo-language">
-                                    <span class="language-dot" data-language="Python" style="background: #3572A5;"></span>
+                                    <span class="language-dot" data-language="Python"
+                                        style="background: #3572A5;"></span>
                                     Python
                                 </span>
                                 <span class="repo-stat">
@@ -842,18 +878,21 @@
 
                         <div class="repo-card">
                             <div class="repo-header">
-                                <a href="https://github.com/bijay085/Computer-Tricks" target="_blank" rel="noopener" class="repo-name">
+                                <a href="https://github.com/bijay085/Computer-Tricks" target="_blank" rel="noopener"
+                                    class="repo-name">
                                     <i class="fas fa-book"></i>
                                     Computer-Tricks
                                 </a>
-                                <a href="https://github.com/bijay085/Computer-Tricks" target="_blank" rel="noopener" class="repo-link">
+                                <a href="https://github.com/bijay085/Computer-Tricks" target="_blank" rel="noopener"
+                                    class="repo-link">
                                     <i class="fas fa-external-link-alt"></i>
                                 </a>
                             </div>
                             <p class="repo-description">All the computer shortcut or activation key</p>
                             <div class="repo-stats">
                                 <span class="repo-language">
-                                    <span class="language-dot" data-language="Batchfile" style="background: #C1F12E;"></span>
+                                    <span class="language-dot" data-language="Batchfile"
+                                        style="background: #C1F12E;"></span>
                                     Batchfile
                                 </span>
                                 <span class="repo-stat">
@@ -867,15 +906,18 @@
 
                         <div class="repo-card">
                             <div class="repo-header">
-                                <a href="https://github.com/bijay085/Projects" target="_blank" rel="noopener" class="repo-name">
+                                <a href="https://github.com/bijay085/Projects" target="_blank" rel="noopener"
+                                    class="repo-name">
                                     <i class="fas fa-book"></i>
                                     Projects
                                 </a>
-                                <a href="https://github.com/bijay085/Projects" target="_blank" rel="noopener" class="repo-link">
+                                <a href="https://github.com/bijay085/Projects" target="_blank" rel="noopener"
+                                    class="repo-link">
                                     <i class="fas fa-external-link-alt"></i>
                                 </a>
                             </div>
-                            <p class="repo-description">A collection of academic, experimental, and practice projects in various programming languages and technologies.</p>
+                            <p class="repo-description">A collection of academic, experimental, and practice projects in
+                                various programming languages and technologies.</p>
                             <div class="repo-stats">
                                 <span class="repo-language">
                                     <span class="language-dot" data-language="PHP" style="background: #4F5D95;"></span>
@@ -905,7 +947,8 @@
                             </div>
                             <div class="activity-content">
                                 <span class="activity-text">Created</span>
-                                <a href="https://github.com/bijay085/Portfolio" target="_blank" rel="noopener" class="activity-repo">
+                                <a href="https://github.com/bijay085/Portfolio" target="_blank" rel="noopener"
+                                    class="activity-repo">
                                     bijay085/Portfolio
                                 </a>
                                 <span class="activity-time">1 day ago</span>
@@ -918,7 +961,8 @@
                             </div>
                             <div class="activity-content">
                                 <span class="activity-text">Pushed to</span>
-                                <a href="https://github.com/bijay085/bijay085" target="_blank" rel="noopener" class="activity-repo">
+                                <a href="https://github.com/bijay085/bijay085" target="_blank" rel="noopener"
+                                    class="activity-repo">
                                     bijay085/bijay085
                                 </a>
                                 <span class="activity-time">1 day ago</span>
@@ -931,7 +975,8 @@
                             </div>
                             <div class="activity-content">
                                 <span class="activity-text">Pushed to</span>
-                                <a href="https://github.com/bijay085/bijay085" target="_blank" rel="noopener" class="activity-repo">
+                                <a href="https://github.com/bijay085/bijay085" target="_blank" rel="noopener"
+                                    class="activity-repo">
                                     bijay085/bijay085
                                 </a>
                                 <span class="activity-time">1 day ago</span>
@@ -944,7 +989,8 @@
                             </div>
                             <div class="activity-content">
                                 <span class="activity-text">Pushed to</span>
-                                <a href="https://github.com/bijay085/bijay085" target="_blank" rel="noopener" class="activity-repo">
+                                <a href="https://github.com/bijay085/bijay085" target="_blank" rel="noopener"
+                                    class="activity-repo">
                                     bijay085/bijay085
                                 </a>
                                 <span class="activity-time">1 day ago</span>
@@ -957,7 +1003,8 @@
                             </div>
                             <div class="activity-content">
                                 <span class="activity-text">Pushed to</span>
-                                <a href="https://github.com/bijay085/bijay085" target="_blank" rel="noopener" class="activity-repo">
+                                <a href="https://github.com/bijay085/bijay085" target="_blank" rel="noopener"
+                                    class="activity-repo">
                                     bijay085/bijay085
                                 </a>
                                 <span class="activity-time">1 day ago</span>
@@ -1195,6 +1242,8 @@
     <script src="/assets/js/github.js"></script>
     <script src="/assets/js/contact.js"></script>
     <script src="/assets/js/main.js"></script>
+    <script src="assets/js/bubble.js" defer></script>
+
 </body>
 
 </html>

@@ -1,11 +1,29 @@
 /**
- * MAIN APPLICATION CONTROLLER
+ * MAIN APPLICATION CONTROLLER - FIXED VERSION
  * File: /htdocs/assets/js/main.js
  * Initializes all modules and manages global functionality
+ * INCLUDES: Scroll to top fix, scroll indicator fix, size adjustments
  */
 
 (function() {
     'use strict';
+
+    // ============================
+    // CRITICAL FIX #1: FORCE PAGE TO START AT TOP
+    // ============================
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    
+    // Prevent browser from auto-scrolling to hash
+    if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+    }
+    
+    // Remove hash from URL without scrolling
+    if (window.location.hash) {
+        history.replaceState(null, null, ' ');
+    }
 
     // Global configuration
     const APP_CONFIG = {
@@ -47,6 +65,13 @@
      */
     async function init() {
         try {
+            // ============================
+            // FIX #2: FORCE SCROLL TO TOP BEFORE INIT
+            // ============================
+            window.scrollTo(0, 0);
+            document.documentElement.scrollTop = 0;
+            document.body.scrollTop = 0;
+            
             // Mark start time
             markPerformance('appStart');
             
@@ -56,11 +81,21 @@
                 return;
             }
             
+            // ============================
+            // FIX #3: APPLY SIZE REDUCTIONS
+            // ============================
+            applySizeReductions();
+            
             // Initialize modules
             await initializeModules();
             
             // Set up global event handlers
             setupGlobalHandlers();
+            
+            // ============================
+            // FIX #4: INITIALIZE SCROLL INDICATOR
+            // ============================
+            initializeScrollIndicator();
             
             // Initialize third-party integrations
             initializeIntegrations();
@@ -81,6 +116,15 @@
             const loadTime = performance.now() - state.performance.startTime;
             console.log(`✅ Portfolio initialized in ${loadTime.toFixed(2)}ms`);
             
+            // ============================
+            // FIX #5: FINAL SCROLL TO TOP AFTER INIT
+            // ============================
+            setTimeout(() => {
+                window.scrollTo(0, 0);
+                document.documentElement.scrollTop = 0;
+                document.body.scrollTop = 0;
+            }, 100);
+            
             // Dispatch ready event
             window.dispatchEvent(new CustomEvent('portfolioReady', {
                 detail: { loadTime, version: APP_CONFIG.version }
@@ -90,6 +134,167 @@
             console.error('Failed to initialize application:', error);
             handleInitError(error);
         }
+    }
+
+    /**
+     * FIX: Apply size reductions to make everything smaller
+     */
+    function applySizeReductions() {
+        const root = document.documentElement;
+        
+        // Reduce all spacing by 25%
+        root.style.setProperty('--space-1', '0.2rem');
+        root.style.setProperty('--space-2', '0.4rem');
+        root.style.setProperty('--space-3', '0.6rem');
+        root.style.setProperty('--space-4', '0.8rem');
+        root.style.setProperty('--space-5', '1rem');
+        root.style.setProperty('--space-6', '1.2rem');
+        root.style.setProperty('--space-8', '1.6rem');
+        root.style.setProperty('--space-10', '2rem');
+        root.style.setProperty('--space-12', '2.4rem');
+        root.style.setProperty('--space-16', '3.2rem');
+        root.style.setProperty('--space-20', '4rem');
+        
+        // Reduce font sizes
+        root.style.setProperty('--text-xs', '0.7rem');
+        root.style.setProperty('--text-sm', '0.8rem');
+        root.style.setProperty('--text-base', '0.9rem');
+        root.style.setProperty('--text-lg', '1rem');
+        root.style.setProperty('--text-xl', '1.1rem');
+        root.style.setProperty('--text-2xl', '1.3rem');
+        root.style.setProperty('--text-3xl', '1.6rem');
+        root.style.setProperty('--text-4xl', '2rem');
+        root.style.setProperty('--text-5xl', '2.5rem');
+        root.style.setProperty('--text-6xl', '3rem');
+        
+        // Reduce section padding
+        root.style.setProperty('--section-padding', '3rem 0');
+        
+        // Reduce navbar height
+        root.style.setProperty('--navbar-height', '3.5rem');
+        
+        // Apply to sections
+        const sections = document.querySelectorAll('.section');
+        sections.forEach(section => {
+            section.style.paddingTop = '3rem';
+            section.style.paddingBottom = '3rem';
+        });
+        
+        // Make hero smaller
+        const hero = document.querySelector('.hero');
+        if (hero) {
+            hero.style.minHeight = '90vh';
+            hero.style.paddingBottom = '60px';
+        }
+        
+        // Make containers more compact
+        const containers = document.querySelectorAll('.container');
+        containers.forEach(container => {
+            container.style.maxWidth = '1200px';
+            container.style.padding = '0 1rem';
+        });
+    }
+
+    /**
+     * FIX: Initialize scroll indicator properly
+     */
+    function initializeScrollIndicator() {
+        const scrollIndicator = document.querySelector('.hero-scroll-indicator');
+        const scrollLink = document.querySelector('.scroll-down');
+        
+        if (!scrollIndicator || !scrollLink) {
+            console.warn('Scroll indicator not found, creating it...');
+            createScrollIndicator();
+            return;
+        }
+        
+        // Make sure it's visible and clickable
+        scrollIndicator.style.position = 'absolute';
+        scrollIndicator.style.bottom = '2rem';
+        scrollIndicator.style.left = '50%';
+        scrollIndicator.style.transform = 'translateX(-50%)';
+        scrollIndicator.style.zIndex = '10';
+        scrollIndicator.style.opacity = '1';
+        scrollIndicator.style.pointerEvents = 'auto';
+        
+        // Add click functionality
+        scrollLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const aboutSection = document.querySelector('#about');
+            if (aboutSection) {
+                const navbarHeight = 60;
+                const targetPosition = aboutSection.offsetTop - navbarHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+        
+        // Show/hide based on scroll
+        let isVisible = true;
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > 100 && isVisible) {
+                scrollIndicator.style.opacity = '0';
+                scrollIndicator.style.pointerEvents = 'none';
+                isVisible = false;
+            } else if (scrollTop <= 100 && !isVisible) {
+                scrollIndicator.style.opacity = '1';
+                scrollIndicator.style.pointerEvents = 'auto';
+                isVisible = true;
+            }
+        });
+    }
+
+    /**
+     * Create scroll indicator if missing
+     */
+    function createScrollIndicator() {
+        const hero = document.querySelector('.hero');
+        if (!hero) return;
+        
+        const indicatorHTML = `
+            <div class="hero-scroll-indicator" style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); z-index: 10;">
+                <a href="#about" class="scroll-down" style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem; color: rgba(255,255,255,0.6); text-decoration: none; cursor: pointer;">
+                    <div class="mouse" style="width: 26px; height: 42px; border: 2px solid rgba(255,255,255,0.6); border-radius: 15px; position: relative;">
+                        <div class="wheel" style="width: 4px; height: 10px; background: rgba(255,255,255,0.6); border-radius: 2px; position: absolute; top: 8px; left: 50%; transform: translateX(-50%); animation: scroll-wheel 2s infinite;"></div>
+                    </div>
+                    <span class="scroll-text" style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 500;">Scroll Down</span>
+                </a>
+            </div>
+        `;
+        
+        hero.insertAdjacentHTML('beforeend', indicatorHTML);
+        
+        // Add animation CSS if not exists
+        if (!document.querySelector('#scroll-indicator-styles')) {
+            const style = document.createElement('style');
+            style.id = 'scroll-indicator-styles';
+            style.textContent = `
+                @keyframes scroll-wheel {
+                    0% { opacity: 1; transform: translateX(-50%) translateY(0); }
+                    100% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+                }
+                .hero-scroll-indicator { animation: bounce 2s infinite; }
+                @keyframes bounce {
+                    0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+                    40% { transform: translateX(-50%) translateY(-10px); }
+                    60% { transform: translateX(-50%) translateY(-5px); }
+                }
+                .scroll-down:hover { transform: translateY(3px); }
+                .scroll-down:hover .mouse { border-color: var(--primary) !important; }
+                .scroll-down:hover .wheel { background: var(--primary) !important; }
+            `;
+            document.head.appendChild(style);
+        }
+        
+        // Reinitialize
+        setTimeout(initializeScrollIndicator, 100);
     }
 
     /**
@@ -212,13 +417,13 @@
         
         e.preventDefault();
         
-        // Use NavigationManager if available
-        if (state.modules.NavigationManager) {
-            state.modules.NavigationManager.scrollTo(target);
-        } else {
-            // Fallback smooth scroll
-            target.scrollIntoView({ behavior: 'smooth' });
-        }
+        const navbarHeight = 60;
+        const targetPosition = target.offsetTop - navbarHeight;
+        
+        window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+        });
     }
 
     /**
@@ -311,7 +516,12 @@
     function navigateToSection(sectionId) {
         const section = document.getElementById(sectionId);
         if (section) {
-            section.scrollIntoView({ behavior: 'smooth' });
+            const navbarHeight = 60;
+            const targetPosition = section.offsetTop - navbarHeight;
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
         }
     }
 
@@ -503,14 +713,29 @@ Keyboard Shortcuts:
         const toast = document.createElement('div');
         toast.className = 'toast';
         toast.textContent = message;
+        toast.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            z-index: 10000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        `;
         document.body.appendChild(toast);
         
         // Animate in
-        setTimeout(() => toast.classList.add('visible'), 100);
+        setTimeout(() => {
+            toast.style.opacity = '1';
+        }, 100);
         
         // Remove after duration
         setTimeout(() => {
-            toast.classList.remove('visible');
+            toast.style.opacity = '0';
             setTimeout(() => toast.remove(), 300);
         }, duration);
     }
@@ -546,11 +771,6 @@ Keyboard Shortcuts:
                 'page_path': '/'
             });
         }
-        
-        // Initialize reCAPTCHA if needed
-        if (window.grecaptcha) {
-            // reCAPTCHA will be initialized by contact form
-        }
     }
 
     /**
@@ -574,50 +794,6 @@ Keyboard Shortcuts:
                 if (APP_CONFIG.debug) {
                     console.log('Performance Metrics:', metrics);
                 }
-                
-                // Send to analytics
-                if (APP_CONFIG.enableAnalytics && window.gtag) {
-                    window.gtag('event', 'timing_complete', {
-                        'name': 'load',
-                        'value': Math.round(metrics.pageLoadTime)
-                    });
-                }
-            }
-        }
-        
-        // Monitor Core Web Vitals
-        if ('PerformanceObserver' in window) {
-            try {
-                // Largest Contentful Paint
-                const lcpObserver = new PerformanceObserver((entryList) => {
-                    const entries = entryList.getEntries();
-                    const lastEntry = entries[entries.length - 1];
-                    console.log('LCP:', lastEntry.renderTime || lastEntry.loadTime);
-                });
-                lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] });
-                
-                // First Input Delay
-                const fidObserver = new PerformanceObserver((entryList) => {
-                    const entries = entryList.getEntries();
-                    entries.forEach(entry => {
-                        console.log('FID:', entry.processingStart - entry.startTime);
-                    });
-                });
-                fidObserver.observe({ entryTypes: ['first-input'] });
-                
-                // Cumulative Layout Shift
-                const clsObserver = new PerformanceObserver((entryList) => {
-                    let cls = 0;
-                    entryList.getEntries().forEach(entry => {
-                        if (!entry.hadRecentInput) {
-                            cls += entry.value;
-                        }
-                    });
-                    console.log('CLS:', cls);
-                });
-                clsObserver.observe({ entryTypes: ['layout-shift'] });
-            } catch (error) {
-                console.warn('Performance Observer not supported:', error);
             }
         }
     }
@@ -630,16 +806,6 @@ Keyboard Shortcuts:
             try {
                 const registration = await navigator.serviceWorker.register('/sw.js');
                 console.log('Service Worker registered:', registration);
-                
-                // Check for updates
-                registration.addEventListener('updatefound', () => {
-                    const newWorker = registration.installing;
-                    newWorker.addEventListener('statechange', () => {
-                        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                            showToast('New version available! Refresh to update.');
-                        }
-                    });
-                });
             } catch (error) {
                 console.error('Service Worker registration failed:', error);
             }
@@ -691,181 +857,44 @@ Keyboard Shortcuts:
         showToast: showToast,
         copyToClipboard: copyToClipboard,
         navigateToSection: navigateToSection,
-        isInitialized: () => state.initialized
+        isInitialized: () => state.initialized,
+        scrollToTop: () => {
+            window.scrollTo(0, 0);
+            document.documentElement.scrollTop = 0;
+            document.body.scrollTop = 0;
+        }
     };
+
+    // ============================
+    // CRITICAL: FORCE SCROLL TO TOP BEFORE DOM READY
+    // ============================
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
 
     // Initialize when DOM is ready
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', init);
+        document.addEventListener('DOMContentLoaded', () => {
+            // Force scroll to top again
+            window.scrollTo(0, 0);
+            init();
+        });
     } else {
+        // Force scroll to top again
+        window.scrollTo(0, 0);
         init();
     }
 
     // Also ensure initialization on window load
     window.addEventListener('load', () => {
+        // Force scroll to top on load
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+        
         if (!state.initialized) {
             init();
         }
     });
-
-})();
-/**
- * SCROLL INDICATOR ENHANCEMENT
- * Add this to your main.js or create a new file
- */
-
-(function() {
-    'use strict';
-
-    // Wait for DOM to be ready
-    document.addEventListener('DOMContentLoaded', function() {
-        
-        // Get scroll indicator element
-        const scrollIndicator = document.querySelector('.hero-scroll-indicator');
-        const scrollLink = document.querySelector('.scroll-down');
-        
-        if (!scrollIndicator || !scrollLink) {
-            console.warn('Scroll indicator elements not found');
-            return;
-        }
-
-        // Smooth scroll on click
-        scrollLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-            
-            if (targetSection) {
-                // Calculate offset for fixed navbar
-                const navbarHeight = document.querySelector('.navbar')?.offsetHeight || 0;
-                const targetPosition = targetSection.offsetTop - navbarHeight;
-                
-                // Smooth scroll to target
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-                
-                // Optional: Add a subtle animation to the indicator
-                scrollIndicator.style.transform = 'translateX(-50%) scale(0.9)';
-                setTimeout(() => {
-                    scrollIndicator.style.transform = 'translateX(-50%) scale(1)';
-                }, 200);
-            }
-        });
-
-        // Hide scroll indicator when scrolling down
-        let lastScrollTop = 0;
-        let isIndicatorVisible = true;
-
-        function handleScroll() {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            
-            // Hide indicator after scrolling 100px
-            if (scrollTop > 100 && isIndicatorVisible) {
-                scrollIndicator.style.opacity = '0';
-                scrollIndicator.style.pointerEvents = 'none';
-                isIndicatorVisible = false;
-            } 
-            // Show indicator when back at top
-            else if (scrollTop <= 100 && !isIndicatorVisible) {
-                scrollIndicator.style.opacity = '1';
-                scrollIndicator.style.pointerEvents = 'auto';
-                isIndicatorVisible = true;
-            }
-
-            lastScrollTop = scrollTop;
-        }
-
-        // Throttle scroll event for performance
-        let scrollTimer;
-        window.addEventListener('scroll', function() {
-            if (scrollTimer) {
-                clearTimeout(scrollTimer);
-            }
-            scrollTimer = setTimeout(handleScroll, 50);
-        });
-
-        // Initial check
-        handleScroll();
-
-        // Add hover effect enhancement
-        scrollLink.addEventListener('mouseenter', function() {
-            const wheel = this.querySelector('.wheel');
-            if (wheel) {
-                wheel.style.animationDuration = '1s';
-            }
-        });
-
-        scrollLink.addEventListener('mouseleave', function() {
-            const wheel = this.querySelector('.wheel');
-            if (wheel) {
-                wheel.style.animationDuration = '2s';
-            }
-        });
-
-        // Optional: Add keyboard support
-        document.addEventListener('keydown', function(e) {
-            // Press 'S' to scroll down from hero
-            if (e.key === 's' || e.key === 'S') {
-                const heroSection = document.querySelector('.hero');
-                if (heroSection && window.pageYOffset < heroSection.offsetHeight) {
-                    scrollLink.click();
-                }
-            }
-        });
-
-        // Test if animation is working
-        console.log('Scroll indicator initialized successfully');
-        
-        // Debug: Check if CSS is applied correctly
-        const mouseElement = document.querySelector('.mouse');
-        const wheelElement = document.querySelector('.wheel');
-        
-        if (mouseElement && wheelElement) {
-            const mouseStyles = window.getComputedStyle(mouseElement);
-            const wheelStyles = window.getComputedStyle(wheelElement);
-            
-            console.log('Mouse element styles:', {
-                width: mouseStyles.width,
-                height: mouseStyles.height,
-                border: mouseStyles.border,
-                position: mouseStyles.position
-            });
-            
-            console.log('Wheel element styles:', {
-                animation: wheelStyles.animation,
-                position: wheelStyles.position,
-                background: wheelStyles.background
-            });
-        }
-    });
-
-    // Alternative: Simpler version without dependencies
-    function initScrollIndicator() {
-        const scrollDown = document.querySelector('.scroll-down');
-        
-        if (scrollDown) {
-            scrollDown.onclick = function(e) {
-                e.preventDefault();
-                const about = document.getElementById('about');
-                if (about) {
-                    about.scrollIntoView({ 
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-                return false;
-            };
-        }
-    }
-
-    // Call simple version as backup
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initScrollIndicator);
-    } else {
-        initScrollIndicator();
-    }
 
 })();
