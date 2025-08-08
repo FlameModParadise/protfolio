@@ -1,200 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Bijay Koirala - Data Analyst | Automation Enthusiast | Web Developer">
-    <meta name="keywords" content="data analyst, web scraping, automation, python, bot development">
+    
+    <!-- SEO Meta Tags -->
+    <title>Bijay Koirala | Python Developer</title>
+    
+    <meta name="description" content="Professional portfolio template. Hire data analyst, Python developer, cybersecurity expert. Web scraping, bot building, cookie checker, website analyzer, API checker, security services. Affordable freelance & internship opportunities.">
+    
+    <meta name="keywords" content="website template, portfolio template, professional website, clean portfolio, data analyst hire, data analyst example, cybersecurity expert, cybersecurity example, python developer, bot building, web scraping, cookie checker, website analyzer, API checker, security analyzer, internship, job opportunities, affordable web services, freelance developer, selenium, beautiful soup, discord bot, telegram bot, automation services">
+    
     <meta name="author" content="Bijay Koirala">
-
-    <title>Bijay Koirala | Portfolio</title>
-
-    <!-- Preconnect to external domains for faster loading -->
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#6366f1">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bijaykoirala0.com.np/">
+    <meta property="og:title" content="Bijay Koirala | Portfolio Template">
+    <meta property="og:description" content="Professional portfolio template. Data analyst, cybersecurity expert, Python developer. Cookie checker, website analyzer, API checker services.">
+    <meta property="og:image" content="https://bijaykoirala0.com.np/assets/og-image.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://bijaykoirala0.com.np/">
+    <meta property="twitter:title" content="Bijay Koirala | Portfolio">
+    <meta property="twitter:description" content="Professional template. Data analyst, Python developer, bot builder. Affordable web services.">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bijaykoirala0.com.np/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    
+    <!-- Preconnect to external domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://github-readme-stats.vercel.app">
-    <link rel="preconnect" href="https://github-readme-streak-stats.herokuapp.com">
-
-    <!-- Critical CSS - Inline for faster initial render -->
-    <style>
-        /* Critical CSS for above-the-fold content */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: #0a0a0b;
-            color: #f3f4f6;
-            font-family: 'Inter', -apple-system, sans-serif;
-        }
-
-        #preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: #0a0a0b;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
-
-        .loader {
-            display: flex;
-            gap: 10px;
-        }
-
-        .loader-dot {
-            width: 15px;
-            height: 15px;
-            background: #6366f1;
-            border-radius: 50%;
-            animation: loaderDot 1.4s ease-in-out infinite;
-        }
-
-        @keyframes loaderDot {
-
-            0%,
-            80%,
-            100% {
-                transform: scale(0);
-                opacity: 0.5;
-            }
-
-            40% {
-                transform: scale(1);
-                opacity: 1;
+    
+    <!-- Critical CSS -->
+    <link rel="stylesheet" href="assets/css/critical.css">
+    
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Component Styles -->
+    <link rel="stylesheet" href="assets/css/components/terminal.css">
+    <link rel="stylesheet" href="assets/css/components/github-stats.css">
+    <link rel="stylesheet" href="assets/css/components/bubble-trail.css">
+    
+    <!-- AOS Animation Library -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    
+    <!-- Schema.org Data with All Services -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Bijay Koirala",
+        "url": "https://bijaykoirala0.com.np",
+        "jobTitle": ["Data Analyst", "Python Developer", "Cybersecurity Analyst", "Bot Developer"],
+        "email": "bijaykoirala003@gmail.com",
+        "knowsAbout": ["portfolio template", "website template", "data analysis", "cybersecurity", "web scraping", "bot building", "cookie checker", "website analyzer", "API checker", "security analysis", "automation"],
+        "offers": {
+            "@type": "Offer",
+            "itemOffered": {
+                "@type": "Service",
+                "name": "Web Development & Security Services",
+                "description": "Portfolio templates, web scraping, bot development, cookie checking, website analysis, API testing, security scanning"
             }
         }
-
-        .loader-dot:nth-child(1) {
-            animation-delay: -0.32s;
-        }
-
-        .loader-dot:nth-child(2) {
-            animation-delay: -0.16s;
-        }
-
-        #preloader.hide {
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.5s, visibility 0.5s;
-        }
-
-        /* Hide GitHub images initially */
-        .github-card img {
-            display: none;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        .github-card img.loaded {
-            display: block;
-            opacity: 1;
-        }
-
-        /* Project Image Styles */
-        .project-image {
-            position: relative;
-            height: 220px;
-            overflow: hidden;
-            background: linear-gradient(135deg, #1e1e1f, #141415);
-        }
-
-        .project-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .project-card:hover .project-image img {
-            transform: scale(1.1);
-        }
-
-        /* Fallback for missing images */
-        .project-image.no-image {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #1e1e1f, #141415);
-        }
-
-        .project-image.no-image i {
-            font-size: 4rem;
-            color: #6366f1;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-    </style>
-
-    <!-- Load Google Fonts with display=swap for better performance -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap"
-        rel="stylesheet">
-
-    <!-- Defer non-critical CSS -->
-    <link rel="preload" href="assets/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-        <link rel="stylesheet" href="assets/css/style.css">
-    </noscript>
-
-    <link rel="preload" href="assets/css/terminal.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-        <link rel="stylesheet" href="assets/css/terminal.css">
-    </noscript>
-
-    <link rel="preload" href="assets/css/bubble-trail.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-        <link rel="stylesheet" href="assets/css/bubble-trail.css">
-    </noscript>
-
-    <link rel="preload" href="assets/css/github-stats.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-        <link rel="stylesheet" href="assets/css/github-stats.css">
-    </noscript>
-
-    <!-- Font Awesome - Load asynchronously -->
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style"
-        onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    </noscript>
-
-    <!-- AOS CSS - Load asynchronously since it's not critical -->
-    <link rel="preload" href="https://unpkg.com/aos@2.3.1/dist/aos.css" as="style"
-        onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-        <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
-    </noscript>
-
-    <!-- Script to handle CSS loading -->
-    <script>
-        !function (e) { "use strict"; e.loadCSS || (e.loadCSS = function () { }); var t = loadCSS.relpreload = {}; if (t.support = function () { var t; try { t = e.document.createElement("link").relList.supports("preload") } catch (e) { t = !1 } return function () { return t } }(), t.bindMediaToggle = function (e) { function t() { e.media = a } var a = e.media || "all"; e.addEventListener ? e.addEventListener("load", t) : e.attachEvent && e.attachEvent("onload", t), setTimeout(function () { e.rel = "stylesheet", e.media = "only x" }), setTimeout(t, 3e3) }, t.poly = function () { if (!t.support()) for (var a = e.document.getElementsByTagName("link"), n = 0; n < a.length; n++) { var o = a[n]; "preload" !== o.rel || "style" !== o.getAttribute("as") || o.getAttribute("data-loadcss") || (o.setAttribute("data-loadcss", !0), t.bindMediaToggle(o)) } }, !t.support()) { t.poly(); var a = e.setInterval(t.poly, 500); e.addEventListener ? e.addEventListener("load", function () { t.poly(), e.clearInterval(a) }) : e.attachEvent && e.attachEvent("onload", function () { t.poly(), e.clearInterval(a) }) } "undefined" != typeof exports ? exports.loadCSS = loadCSS : e.loadCSS = loadCSS }("undefined" != typeof global ? global : this);
+    }
     </script>
 </head>
-
 <body>
     <!-- Bubble Trail Container -->
     <div class="bubble-trail-container" id="bubble-trail-container"></div>
-
+    
     <!-- Preloader -->
     <div id="preloader">
         <div class="loader">
@@ -203,35 +92,23 @@
             <div class="loader-dot"></div>
         </div>
     </div>
-
+    
     <!-- Navigation Bar -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="nav-logo">
                 <a href="#home">&lt;Bijay/&gt;</a>
             </div>
-
+            
             <ul class="nav-menu" id="nav-menu">
-                <li class="nav-item">
-                    <a href="#home" class="nav-link">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#about" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#skills" class="nav-link">Skills</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#projects" class="nav-link">Projects</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#github" class="nav-link">GitHub</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#contact" class="nav-link">Contact</a>
-                </li>
+                <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
+                <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
+                <li class="nav-item"><a href="#github" class="nav-link">GitHub</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
-
+            
             <div class="nav-buttons">
                 <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
                     <i class="fas fa-moon"></i>
@@ -244,7 +121,7 @@
             </div>
         </div>
     </nav>
-
+    
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-container">
@@ -255,7 +132,7 @@
                 <div class="floating-sphere"></div>
                 <div class="floating-sphere"></div>
             </div>
-
+            
             <div class="hero-content" data-aos="fade-up">
                 <p class="hero-greeting">Hey there! I'm</p>
                 <h1 class="hero-name">Bijay Koirala</h1>
@@ -267,7 +144,7 @@
                     I build automation tools that make workflows smarter and faster.<br>
                     Currently crafting 15+ private automation solutions for Netflix, Outlook, ChatGPT & more!
                 </p>
-
+                
                 <div class="hero-buttons">
                     <a href="#projects" class="btn btn-primary">
                         <i class="fas fa-code"></i> View My Work
@@ -276,15 +153,15 @@
                         <i class="fas fa-download"></i> Download CV
                     </a>
                 </div>
-
+                
                 <div class="hero-socials">
-                    <a href="https://github.com/bijay085" target="_blank" aria-label="GitHub">
+                    <a href="https://github.com/bijay085" target="_blank" rel="noopener" aria-label="GitHub">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="https://www.linkedin.com/in/bijay-koirala/" target="_blank" aria-label="LinkedIn">
+                    <a href="https://www.linkedin.com/in/bijay-koirala/" target="_blank" rel="noopener" aria-label="LinkedIn">
                         <i class="fab fa-linkedin"></i>
                     </a>
-                    <a href="https://wa.me/9746665541" target="_blank" aria-label="WhatsApp">
+                    <a href="https://wa.me/9746665541" target="_blank" rel="noopener" aria-label="WhatsApp">
                         <i class="fab fa-whatsapp"></i>
                     </a>
                     <a href="mailto:bijaykoirala003@gmail.com" aria-label="Email">
@@ -292,7 +169,7 @@
                     </a>
                 </div>
             </div>
-
+            
             <div class="scroll-indicator">
                 <a href="#about">
                     <div class="mouse">
@@ -303,14 +180,14 @@
             </div>
         </div>
     </section>
-
+    
     <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">
                 <span class="section-number"></span> About Me
             </h2>
-
+            
             <div class="about-content">
                 <div class="about-text" data-aos="fade-right">
                     <p>
@@ -322,10 +199,8 @@
                         of manual work. When I'm not coding, you'll find me sleeping (48hrs/day if possible!), gaming,
                         or watching anime.
                     </p>
-                    <p>
-                        <strong>Tech Stack I work with:</strong>
-                    </p>
-
+                    <p><strong>Tech Stack I work with:</strong></p>
+                    
                     <ul class="tech-list">
                         <li><i class="fas fa-caret-right"></i> Python & Flask</li>
                         <li><i class="fas fa-caret-right"></i> JavaScript & React</li>
@@ -335,11 +210,11 @@
                         <li><i class="fas fa-caret-right"></i> Power BI & Excel</li>
                     </ul>
                 </div>
-
+                
                 <div class="about-image" data-aos="fade-left">
                     <div class="image-wrapper">
-                        <div style="width: 100%; height: 300px; background: linear-gradient(135deg, #6366f1, #10b981); border-radius: 16px; display: flex; align-items: center; justify-content: center;">
-                            <i class="fas fa-user" style="font-size: 5rem; color: white;"></i>
+                        <div class="profile-placeholder">
+                            <i class="fas fa-user"></i>
                         </div>
                         <div class="image-border"></div>
                     </div>
@@ -347,14 +222,14 @@
             </div>
         </div>
     </section>
-
+    
     <!-- Skills Section -->
     <section id="skills" class="skills">
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">
                 <span class="section-number"></span> Skills & Technologies
             </h2>
-
+            
             <div class="skills-grid">
                 <div class="skill-category" data-aos="fade-up" data-aos-delay="100">
                     <h3 class="category-title">
@@ -387,7 +262,7 @@
                         </div>
                     </div>
                 </div>
-
+                
                 <div class="skill-category" data-aos="fade-up" data-aos-delay="200">
                     <h3 class="category-title">
                         <i class="fas fa-robot"></i> Automation & Scraping
@@ -419,7 +294,7 @@
                         </div>
                     </div>
                 </div>
-
+                
                 <div class="skill-category" data-aos="fade-up" data-aos-delay="300">
                     <h3 class="category-title">
                         <i class="fas fa-database"></i> Data & Tools
@@ -454,14 +329,14 @@
             </div>
         </div>
     </section>
-
+    
     <!-- Terminal Section -->
     <section id="terminal" class="terminal-section">
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">
                 <span class="section-number"></span> Interactive Terminal
             </h2>
-
+            
             <div class="terminal-container" data-aos="fade-up" data-aos-delay="100">
                 <div class="terminal-header">
                     <div class="terminal-controls">
@@ -471,24 +346,9 @@
                     </div>
                     <div class="terminal-title">bijay@portfolio: ~</div>
                 </div>
-
+                
                 <div class="terminal-body" id="terminal-body">
-                    <div class="terminal-content" id="terminal-content">
-                        <div class="ascii-art">
-    ____  _  _               
-   |  _ \(_)(_) __ _ _   _   
-   | |_) | || |/ _` | | | |  
-   |  _ &lt;| || | (_| | |_| |  
-   |___|/ |\__,_|\__, |  
-            |__/        |___/   
-                        </div>
-
-                        <div class="terminal-line terminal-success">Welcome to Bijay's Interactive Portfolio Terminal!</div>
-                        <div class="terminal-line terminal-info">Type 'help' to see available commands.</div>
-                        <div class="terminal-line terminal-comment"># Try commands like: about, skills, projects, contact</div>
-                        <div class="terminal-line">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
-                    </div>
-
+                    <div class="terminal-content" id="terminal-content"></div>
                     <div class="terminal-input-line">
                         <span class="terminal-prompt-symbol">bijay@portfolio:~$</span>
                         <input type="text" id="terminal-input" class="terminal-input" autofocus>
@@ -496,7 +356,7 @@
                     </div>
                 </div>
             </div>
-
+            
             <div class="terminal-hint" data-aos="fade-up" data-aos-delay="200">
                 <p>💡 Pro tip: Try these commands: <code>help</code>, <code>about</code>, <code>skills</code>,
                     <code>projects</code>, <code>matrix</code>, <code>joke</code>
@@ -504,170 +364,27 @@
             </div>
         </div>
     </section>
-
-    <!-- Projects Section - WITH IMAGES -->
+    
+    <!-- Projects Section -->
     <section id="projects" class="projects">
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">
                 <span class="section-number"></span> Featured Projects
             </h2>
-
-            <div class="projects-grid">
-                <!-- Project 1: API/Web Scraping Suite -->
-                <div class="project-card featured" data-aos="fade-up" data-aos-delay="100">
-                    <div class="featured-badge">Featured</div>
-                    <div class="project-image">
-                        <img src="assets/projects/project1.png" 
-                             alt="API/Web Scraping Suite"
-                             onerror="this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='<i class=\'fas fa-spider\'></i>';">
-                    </div>
-                    <div class="project-content">
-                        <p class="project-overline">Featured Collection</p>
-                        <h3 class="project-title">API/Web Scraping Suite</h3>
-                        <p class="project-description">
-                            <strong>15+ Private Automation Tools</strong> including Netflix, Outlook, ChatGPT
-                            integrations.
-                            Professional-grade web scraping and API automation solutions for various platforms.
-                        </p>
-                        <ul class="project-tech-list">
-                            <li>Python</li>
-                            <li>Selenium</li>
-                            <li>BeautifulSoup</li>
-                            <li>Requests</li>
-                            <li>API Integration</li>
-                        </ul>
-                        <div class="project-stats">
-                            <span><i class="fas fa-tools"></i> 15+ Tools</span>
-                            <span><i class="fas fa-lock"></i> Private</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 2: Bot Ecosystem -->
-                <div class="project-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="project-image">
-                        <img src="assets/projects/project2.png" 
-                             alt="Bot Ecosystem"
-                             onerror="this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='<i class=\'fas fa-robot\'></i>';">
-                    </div>
-                    <div class="project-content">
-                        <p class="project-overline">Automation</p>
-                        <h3 class="project-title">Bot Ecosystem</h3>
-                        <p class="project-description">
-                            Telegram & Discord bots for workflow automation and enhanced user experience.
-                            Custom bot solutions for various automation needs.
-                        </p>
-                        <ul class="project-tech-list">
-                            <li>Python</li>
-                            <li>Telebot</li>
-                            <li>Discord.py</li>
-                            <li>API Integration</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Project 3: CMS Platform -->
-                <div class="project-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="project-image">
-                        <img src="assets/projects/project3.png" 
-                             alt="CMS Platform"
-                             onerror="this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='<i class=\'fas fa-globe\'></i>';">
-                    </div>
-                    <div class="project-content">
-                        <p class="project-overline">Web Development</p>
-                        <h3 class="project-title">CMS Platform</h3>
-                        <p class="project-description">
-                            Full-featured Content Management System with modern UI/UX.
-                            Dynamic content loading with JSON-based data management.
-                        </p>
-                        <ul class="project-tech-list">
-                            <li>HTML/CSS</li>
-                            <li>JavaScript</li>
-                            <li>JSON</li>
-                            <li>Frontend</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Project 4: FraudShield System -->
-                <div class="project-card" data-aos="fade-up" data-aos-delay="400">
-                    <div class="project-image">
-                        <img src="assets/projects/project4.png" 
-                             alt="FraudShield System"
-                             onerror="this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='<i class=\'fas fa-shield-alt\'></i>';">
-                    </div>
-                    <div class="project-content">
-                        <p class="project-overline">College Project</p>
-                        <h3 class="project-title">FraudShield System</h3>
-                        <p class="project-description">
-                            E-commerce fraud detection system with rule-based transaction monitoring.
-                            Protects online transactions using intelligent pattern recognition.
-                        </p>
-                        <ul class="project-tech-list">
-                            <li>Python</li>
-                            <li>Flask</li>
-                            <li>MongoDB</li>
-                            <li>Frontend</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Project 5: Gamified Learning Tracker -->
-                <div class="project-card" data-aos="fade-up" data-aos-delay="500">
-                    <div class="project-image">
-                        <img src="assets/projects/project5.png" 
-                             alt="Gamified Learning Tracker"
-                             onerror="this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='<i class=\'fas fa-gamepad\'></i>';">
-                    </div>
-                    <div class="project-content">
-                        <p class="project-overline">Educational</p>
-                        <h3 class="project-title">Gamified Learning Tracker</h3>
-                        <p class="project-description">
-                            Interactive progress tracking system with gamification elements for enhanced motivation.
-                            Makes learning fun and engaging.
-                        </p>
-                        <ul class="project-tech-list">
-                            <li>PHP</li>
-                            <li>MySQL</li>
-                            <li>HTML/CSS</li>
-                            <li>JavaScript</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <!-- Project 6: More Projects -->
-                <div class="project-card more-projects" data-aos="fade-up" data-aos-delay="600">
-                    <div class="project-image">
-                        <img src="assets/projects/project6.png" 
-                             alt="More Projects"
-                             onerror="this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='<i class=\'fas fa-plus\'></i>';">
-                    </div>
-                    <div class="project-content">
-                        <p class="project-overline">Explore More</p>
-                        <h3 class="project-title">View All Projects</h3>
-                        <p class="project-description">
-                            Check out my GitHub for more projects including automation scripts,
-                            web applications, and experimental tools.
-                        </p>
-                        <div class="project-cta" style="margin-top: 20px; text-align: center;">
-                            <a href="https://github.com/bijay085?tab=repositories" target="_blank"
-                                class="btn btn-outline">
-                                <i class="fab fa-github"></i> View on GitHub
-                            </a>
-                        </div>
-                    </div>
-                </div>
+            
+            <div class="projects-grid" id="projects-grid">
+                <!-- Projects will be loaded dynamically -->
             </div>
         </div>
     </section>
-
+    
     <!-- GitHub Stats Section -->
     <section id="github" class="github-section">
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">
                 <span class="section-number"></span> GitHub Activity
             </h2>
-
+            
             <!-- Compact Stats Row -->
             <div class="github-stats-compact" data-aos="fade-up">
                 <div class="stats-row">
@@ -693,22 +410,22 @@
                     </div>
                 </div>
             </div>
-
+            
             <!-- GitHub Charts Grid -->
             <div class="github-charts-grid" data-aos="fade-up" data-aos-delay="100">
                 <div class="github-card main-stats">
                     <div class="card-content">
-                        <img id="github-chart" alt="GitHub Stats" style="display: none;" />
+                        <img id="github-chart" alt="GitHub Stats" loading="lazy">
                         <div class="card-loading">
                             <i class="fas fa-spinner fa-spin"></i>
                             <p>Loading stats...</p>
                         </div>
                     </div>
                 </div>
-
+                
                 <div class="github-card lang-stats">
                     <div class="card-content">
-                        <img id="language-chart" alt="Top Languages" style="display: none;" />
+                        <img id="language-chart" alt="Top Languages" loading="lazy">
                         <div class="card-loading">
                             <i class="fas fa-spinner fa-spin"></i>
                             <p>Loading languages...</p>
@@ -716,12 +433,12 @@
                     </div>
                 </div>
             </div>
-
+            
             <!-- Streak Stats -->
             <div class="github-streak-section" data-aos="fade-up" data-aos-delay="200">
                 <div class="github-card streak-stats">
                     <div class="card-content">
-                        <img id="streak-chart" alt="GitHub Streak" style="display: none;" />
+                        <img id="streak-chart" alt="GitHub Streak" loading="lazy">
                         <div class="card-loading">
                             <i class="fas fa-spinner fa-spin"></i>
                             <p>Loading streak...</p>
@@ -729,92 +446,35 @@
                     </div>
                 </div>
             </div>
-
+            
             <div class="github-footer" data-aos="fade-up" data-aos-delay="300">
-                <a href="https://github.com/bijay085" target="_blank" class="btn btn-outline">
+                <a href="https://github.com/bijay085" target="_blank" rel="noopener" class="btn btn-outline">
                     <i class="fab fa-github"></i> View Full Profile on GitHub
                 </a>
             </div>
         </div>
     </section>
-
+    
     <!-- Services Section -->
     <section id="services" class="services">
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">
                 <span class="section-number"></span> Services I Offer
             </h2>
-
-            <div class="services-grid">
-                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="service-icon">
-                        <i class="fas fa-spider"></i>
-                    </div>
-                    <h3>Web Scraping</h3>
-                    <p>Data extraction from any website with custom scrapers and automation tools</p>
-                    <div class="service-features">
-                        <ul>
-                            <li>Data Mining</li>
-                            <li>API Integration</li>
-                            <li>Real-time Scraping</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="service-icon">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <h3>Bot Development</h3>
-                    <p>Custom Telegram and Discord bots for automation and user engagement</p>
-                    <div class="service-features">
-                        <ul>
-                            <li>Custom Commands</li>
-                            <li>API Integration</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="service-icon">
-                        <i class="fas fa-cogs"></i>
-                    </div>
-                    <h3>Process Automation</h3>
-                    <p>Workflow automation to save time and increase productivity</p>
-                    <div class="service-features">
-                        <ul>
-                            <li>Task Automation</li>
-                            <li>Data Processing</li>
-                            <li>Report Generation</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="service-card" data-aos="fade-up" data-aos-delay="400">
-                    <div class="service-icon">
-                        <i class="fas fa-plug"></i>
-                    </div>
-                    <h3>API Development</h3>
-                    <p>RESTful API design and integration with third-party services</p>
-                    <div class="service-features">
-                        <ul>
-                            <li>RESTful Design</li>
-                            <li>Documentation</li>
-                            <li>Third-party Integration</li>
-                        </ul>
-                    </div>
-                </div>
+            
+            <div class="services-grid" id="services-grid">
+                <!-- Services will be loaded dynamically -->
             </div>
         </div>
     </section>
-
+    
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">
                 <span class="section-number"></span> Get In Touch
             </h2>
-
+            
             <div class="contact-content">
                 <div class="contact-info" data-aos="fade-right">
                     <h3>Let's Connect!</h3>
@@ -823,7 +483,7 @@
                         Whether you need automation tools, web scraping solutions, or just want to say hi,
                         I'll get back to you within 24 hours!
                     </p>
-
+                    
                     <div class="contact-details">
                         <div class="contact-item">
                             <i class="fas fa-envelope"></i>
@@ -835,7 +495,7 @@
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-globe"></i>
-                            <a href="https://bijaykoirala0.com.np" target="_blank">bijaykoirala0.com.np</a>
+                            <a href="https://bijaykoirala0.com.np" target="_blank" rel="noopener">bijaykoirala0.com.np</a>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-map-marker-alt"></i>
@@ -846,15 +506,15 @@
                             <span>Available for Freelance | Intern | Part-time | Remote</span>
                         </div>
                     </div>
-
+                    
                     <div class="contact-socials">
-                        <a href="https://github.com/bijay085" target="_blank" class="social-link">
+                        <a href="https://github.com/bijay085" target="_blank" rel="noopener" class="social-link">
                             <i class="fab fa-github"></i>
                         </a>
-                        <a href="https://www.linkedin.com/in/bijay-koirala/" target="_blank" class="social-link">
+                        <a href="https://www.linkedin.com/in/bijay-koirala/" target="_blank" rel="noopener" class="social-link">
                             <i class="fab fa-linkedin"></i>
                         </a>
-                        <a href="https://wa.me/9746665541" target="_blank" class="social-link">
+                        <a href="https://wa.me/9746665541" target="_blank" rel="noopener" class="social-link">
                             <i class="fab fa-whatsapp"></i>
                         </a>
                         <a href="mailto:bijaykoirala003@gmail.com" class="social-link">
@@ -862,28 +522,28 @@
                         </a>
                     </div>
                 </div>
-
+                
                 <form class="contact-form" data-aos="fade-left" id="contact-form">
                     <div class="form-group">
                         <input type="text" id="name" name="name" placeholder=" " required>
                         <label for="name">Your Name</label>
                     </div>
-
+                    
                     <div class="form-group">
                         <input type="email" id="email" name="email" placeholder=" " required>
                         <label for="email">Your Email</label>
                     </div>
-
+                    
                     <div class="form-group">
                         <input type="text" id="subject" name="subject" placeholder=" " required>
                         <label for="subject">Subject</label>
                     </div>
-
+                    
                     <div class="form-group">
                         <textarea id="message" name="message" rows="5" placeholder=" " required></textarea>
                         <label for="message">Your Message</label>
                     </div>
-
+                    
                     <button type="submit" class="btn btn-primary">
                         <i class="fas fa-paper-plane"></i> Send Message
                     </button>
@@ -891,7 +551,7 @@
             </div>
         </div>
     </section>
-
+    
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -905,19 +565,37 @@
             </div>
         </div>
     </footer>
-
+    
     <!-- Back to Top Button -->
     <button class="back-to-top" id="back-to-top" aria-label="Back to top">
         <i class="fas fa-arrow-up"></i>
     </button>
-
-    <!-- JavaScript Files -->
-    <script src="assets/js/main.js"></script>
-    <script async src="https://unpkg.com/aos@2.3.1/dist/aos.js"
-        onload="AOS.init({duration: 1000, once: true, offset: 100});"></script>
-    <script defer src="assets/js/terminal.js"></script>
-    <script defer src="assets/js/bubble-trail.js"></script>
-    <script defer src="assets/js/github-stats.js"></script>
+    
+    <!-- Core JavaScript -->
+    <script src="assets/js/core.js"></script>
+    
+    <!-- Components JavaScript -->
+    <script src="assets/js/components/typing.js" defer></script>
+    <script src="assets/js/components/terminal.js" defer></script>
+    <script src="assets/js/components/github-stats.js" defer></script>
+    <script src="assets/js/components/bubble-trail.js" defer></script>
+    <script src="assets/js/components/projects.js" defer></script>
+    <script src="assets/js/components/services.js" defer></script>
+    
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+    
+    <!-- Initialize AOS after load -->
+    <script>
+        window.addEventListener('load', function() {
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 1000,
+                    once: true,
+                    offset: 100
+                });
+            }
+        });
+    </script>
 </body>
-
 </html>

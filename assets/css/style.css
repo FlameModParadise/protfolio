@@ -2584,3 +2584,90 @@ section {
         scroll-behavior: auto !important;
     }
 }
+/* ===============================================
+   PROFILE PLACEHOLDER STYLES
+   Add this to your style.css file
+   =============================================== */
+
+.profile-placeholder {
+    width: 100%;
+    height: 300px;
+    background: linear-gradient(135deg, #6366f1, #10b981);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.profile-placeholder::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    animation: profileShine 3s ease-in-out infinite;
+}
+
+@keyframes profileShine {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.profile-placeholder i {
+    font-size: 5rem;
+    color: white;
+    z-index: 1;
+    position: relative;
+}
+
+/* GitHub card image fixes */
+.github-card img {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    width: 100%;
+    height: auto;
+}
+
+.github-card img.loaded {
+    display: block;
+    opacity: 1;
+}
+
+/* Terminal initial content */
+.terminal-content::before {
+    content: "    ____  _  _               \A   |  _ \\(_)(_) __ _ _   _   \A   | |_) | || |/ _` | | | |  \A   |  _ <| || | (_| | |_| |  \A   |___|/ |\\__,_|\\__, |  \A            |__/        |___/   \A\AWelcome to Bijay's Interactive Portfolio Terminal!\AType 'help' to see available commands.\A# Try commands like: about, skills, projects, contact\A━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━";
+    white-space: pre;
+    font-family: 'Fira Code', monospace;
+    color: #64ffda;
+    display: block;
+    line-height: 1.2;
+    font-size: 0.9rem;
+}
+
+/* Notification animations */
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
