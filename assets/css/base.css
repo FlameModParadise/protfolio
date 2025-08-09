@@ -42,7 +42,7 @@
     --leading-loose: 2;
     
     /* Layout */
-    --navbar-height: 64px;
+    --navbar-height: 75px;
     --container-max: 1280px;
     
     /* Transitions */
@@ -188,7 +188,7 @@ body * {
 }
 
 .navbar.scrolled {
-    height: calc(var(--navbar-height) - 8px);
+    height: calc(var(--navbar-height) - 5px);
     background: rgba(10, 10, 10, 0.98);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
 }
