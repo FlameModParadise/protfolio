@@ -527,19 +527,6 @@
             }
         });
         
-        // Social links with rotation effect
-        const socialLinks = document.querySelectorAll('.social-link');
-        socialLinks.forEach(link => {
-            link.addEventListener('mouseenter', function() {
-                this.style.transition = 'transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
-                this.style.transform = 'rotate(360deg) scale(1.2)';
-            });
-            
-            link.addEventListener('mouseleave', function() {
-                this.style.transform = 'rotate(0) scale(1)';
-            });
-        });
-        
         // Buttons with ripple effect
         const buttons = document.querySelectorAll('.btn');
         buttons.forEach(btn => {
